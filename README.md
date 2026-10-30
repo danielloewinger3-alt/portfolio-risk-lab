@@ -67,8 +67,8 @@ All numbers below are quoted from [`docs/VALIDATION.md`](docs/VALIDATION.md), wh
 - **Volatility forecasting** (purged walk-forward, QLIKE): **GARCH-t had the lowest QLIKE on 4 of 4 portfolios; LightGBM beat GARCH-t on 0 of 4.** The winner's lead over the runner-up was statistically meaningful (Newey-West) on 1 of 4, so the honest summary is "GARCH-t is at least as good, and the ML model did not earn its complexity here".
 - **Regimes** (3-state HMM on SPY): annualized volatility Calm 8.2%, Transition 19.1%, Stress 60.1%; portfolio volatility in Stress regimes is 4.5x to 6.4x its Calm level. In-sample labels were identical on 100.0% of days across 5 alternative seeds.
 - **Filings retrieval** (on a **synthetic** gold set of 26 questions written by the build agent, so a sanity check rather than a benchmark): hit@6 with one company's filings was 100.0% hybrid vs 96.2% dense; with a five-company filter, dense scored 96.2% vs 92.3% hybrid. **Dense retrieval alone was competitive with hybrid.** Citation validity: 936 of 936.
-- **LLM memos**: the local `qwen2.5:7b` model **failed verification on 4 of 4 sample memos, even after a retry** (the smaller `qwen2.5:3b` failed too). The verifier caught 48 violations in first drafts (38 numbers typed from the facts list, 10 citations to passages that were not retrieved), so **every committed memo is the deterministic template**, with 0 unsupported numbers. The UI says which source produced each memo.
-- **Filings Q&A** with the same model: of 9 questions, 8 verified on the first pass and 1 after a retry; 26 claims kept and 0 dropped by the verifier; citation validity 100.0%.
+- **LLM memos**: with `openai/gpt-oss-120b` (hosted on Groq's free tier), **3 of 4 sample memos passed verification on the first pass**; the fourth was rejected twice (5 violations caught on first drafts across all four) and **fell back to the deterministic template**. Final memos with unsupported numbers: 0. Small local models (`qwen2.5:3b` and `qwen2.5:7b` via Ollama) failed verification on every sample memo in earlier runs, which is exactly the case the template fallback exists for. The UI says which source produced each memo.
+- **Filings Q&A** with the same model: of 9 questions, 8 verified on the first pass and 1 after a retry; 32 claims kept and 0 dropped by the verifier; citation validity 100.0%.
 - **Tests**: 523 passed, 0 failed (live-network tests deselected); coverage 97.5% overall, and every docs/07 gate met (`risk/` 99.3%, `ml/` 98.8%, `llm/verify.py` 100.0%, `rag/chunking.py` 96.4%).
 
 ## Methodology highlights and limitations
@@ -78,7 +78,7 @@ All numbers below are quoted from [`docs/VALIDATION.md`](docs/VALIDATION.md), wh
 - The regime model is fitted in-sample; regime labels on the chart are descriptive. Only the filtered current-regime probability is forward-safe.
 - Each result comes from one 10-year window that includes COVID and the 2022 rate shock. Other periods can rank models differently.
 - The retrieval gold set is synthetic, and MD&A could not be extracted for 3 filers (see [`docs/BLOCKERS.md`](docs/BLOCKERS.md)).
-- Local 3B and 7B models cannot write a verified memo here. LLM-written memos need a stronger model, such as Claude via an Anthropic API key.
+- Local 3B and 7B models cannot write a verified memo here; a hosted 120B model passes most of the time. Free hosted tiers are rate-limited, so a busy demo can fall back to the template until the limit resets.
 - Prices are a static snapshot. Live mode fetches from Yahoo Finance and falls back to the bundle.
 
 ## Run locally
@@ -100,7 +100,7 @@ No keys are needed. Optional LLM features:
 cp .env.example .env
 # Anthropic: set ANTHROPIC_API_KEY=...  (RISKLAB_LLM_PROVIDER=auto picks it up)
 # Free hosted model: set RISKLAB_OPENAI_API_KEY=... (a Groq key from console.groq.com;
-#   defaults to llama-3.3-70b-versatile; any OpenAI-compatible host via RISKLAB_OPENAI_BASE_URL)
+#   defaults to openai/gpt-oss-120b; any OpenAI-compatible host via RISKLAB_OPENAI_BASE_URL)
 # Local Ollama: install from https://ollama.com, then
 ollama pull qwen2.5:3b        # or qwen2.5:7b (about 4.7 GB), set RISKLAB_OLLAMA_MODEL to match
 # RISKLAB_LLM_PROVIDER=ollama

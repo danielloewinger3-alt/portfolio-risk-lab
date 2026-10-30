@@ -31,7 +31,7 @@ DEFAULT_LLM_MODEL = "claude-sonnet-5-5"
 DEFAULT_OLLAMA_MODEL = "qwen2.5:3b"
 DEFAULT_OLLAMA_URL = "http://127.0.0.1:11434"
 DEFAULT_OPENAI_BASE_URL = "https://api.groq.com/openai/v1"
-DEFAULT_OPENAI_MODEL = "llama-3.3-70b-versatile"
+DEFAULT_OPENAI_MODEL = "openai/gpt-oss-120b"
 
 LLMProvider = Literal["auto", "anthropic", "openai", "ollama", "none"]
 """``auto`` (default) resolves at runtime in :func:`risklab.llm.client.resolve_provider`:

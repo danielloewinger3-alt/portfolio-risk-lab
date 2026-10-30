@@ -15,6 +15,7 @@ import responses
 from risklab.config import Settings
 from risklab.errors import LLMUnavailableError
 from risklab.llm.client import (
+    REASONING_HEADROOM,
     AnthropicClient,
     LimitedLLMClient,
     LLMClient,
@@ -185,9 +186,10 @@ def test_openai_request_is_deterministic_and_json_mode() -> None:
     req = responses.calls[0].request
     assert req.headers["Authorization"] == "Bearer gsk-secret"
     body = json.loads(req.body or b"")
-    assert body["model"] == "llama-test" and body["max_tokens"] == 50
+    assert body["model"] == "llama-test" and body["max_tokens"] == 50 + REASONING_HEADROOM
     assert (body["temperature"], body["seed"]) == (0.0, 42)
     assert body["response_format"] == {"type": "json_object"}
+    assert body["reasoning_effort"] == "low"
     system, user = body["messages"]
     assert system["role"] == "system" and system["content"].startswith("SYS")
     assert '"type": "object"' in system["content"]
@@ -204,11 +206,33 @@ def test_openai_without_schema_is_plain_text() -> None:
 
 
 @responses.activate
-def test_openai_drops_rejected_response_format() -> None:
-    responses.post(OAI_CHAT, status=400, json={"error": {"message": "response_format"}})
+def test_openai_without_reasoning_options() -> None:
+    responses.post(OAI_CHAT, json=oai_body("x"))
+    client = OpenAICompatClient("k", "m", OAI, reasoning_effort=None, reasoning_headroom=0)
+    client.complete("s", "u", max_tokens=5)
+    body = json.loads(responses.calls[0].request.body or b"")
+    assert "reasoning_effort" not in body and body["max_tokens"] == 5
+
+
+@responses.activate
+@pytest.mark.parametrize("schema", [{}, None])
+def test_openai_drops_rejected_optional_params(schema: dict[str, Any] | None) -> None:
+    responses.post(OAI_CHAT, status=400, json={"error": {"message": "reasoning_effort"}})
     responses.post(OAI_CHAT, json=oai_body())
-    OpenAICompatClient("k", "m", OAI, backoff=0).complete("s", "u", max_tokens=5, json_schema={})
-    assert "response_format" not in json.loads(responses.calls[1].request.body or b"")
+    client = OpenAICompatClient("k", "m", OAI, backoff=0)
+    client.complete("s", "u", max_tokens=5, json_schema=schema)
+    retry = json.loads(responses.calls[1].request.body or b"")
+    assert "response_format" not in retry and "reasoning_effort" not in retry
+    assert retry["max_tokens"] == 5 + REASONING_HEADROOM
+
+
+@responses.activate
+def test_openai_logs_truncated_output(caplog: pytest.LogCaptureFixture) -> None:
+    body = oai_body('{"a": ')
+    body["choices"][0]["finish_reason"] = "length"
+    responses.post(OAI_CHAT, json=body)
+    assert OpenAICompatClient("k", "m", OAI).complete("s", "u", max_tokens=5) == '{"a": '
+    assert "token limit" in caplog.text
 
 
 @responses.activate
@@ -310,7 +334,7 @@ def test_explicit_ollama_ignores_api_key() -> None:
 
 def test_resolve_openai() -> None:
     st = resolve_provider(settings(openai_api_key="gsk-x"), probe=False)
-    assert (st.provider, st.model) == ("openai", "llama-3.3-70b-versatile")
+    assert (st.provider, st.model) == ("openai", "openai/gpt-oss-120b")
     assert "gsk-x" not in st.reason
     # Anthropic wins under auto; an explicit openai choice wins over an Anthropic key.
     both = {"openai_api_key": "gsk-x", "anthropic_api_key": "sk-x"}
@@ -319,7 +343,7 @@ def test_resolve_openai() -> None:
     st = resolve_provider(settings(llm_provider="openai"))
     assert st.provider == "none" and "RISKLAB_OPENAI_API_KEY" in st.reason
     s = settings(openai_api_key=" ", openai_model="", openai_base_url=" ")
-    assert s.openai_api_key is None and s.openai_model == "llama-3.3-70b-versatile"
+    assert s.openai_api_key is None and s.openai_model == "openai/gpt-oss-120b"
     assert s.openai_base_url == "https://api.groq.com/openai/v1"
 
 

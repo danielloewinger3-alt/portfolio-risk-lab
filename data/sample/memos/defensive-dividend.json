@@ -1,52 +1,47 @@
 {
  "portfolio_name": "Defensive dividend",
- "source": "template",
- "provider": "ollama",
- "model": "qwen2.5:7b",
+ "source": "llm",
+ "provider": "openai",
+ "model": "openai/gpt-oss-120b",
  "draft": {
-  "summary": "[[fact:portfolio_name]] holds [[fact:n_holdings]] positions ([[fact:holdings]]) and is compared with [[fact:benchmark]]. Between [[fact:start_date]] and [[fact:end_date]] it grew at [[fact:cagr]] a year with annualized volatility of [[fact:ann_vol]], and its worst peak-to-trough loss was [[fact:max_drawdown]]. [[fact:top_risk_contributor]] is [[fact:top_risk_contributor_weight]] of the weight but [[fact:top_risk_contributor_pct]] of the volatility.",
-  "return_and_risk": "The Sharpe ratio is [[fact:sharpe]] and the Sortino ratio is [[fact:sortino]], using a risk-free rate of [[fact:rf_annual]]. The benchmark grew at [[fact:benchmark_cagr]] a year with volatility of [[fact:benchmark_ann_vol]] and a maximum drawdown of [[fact:benchmark_max_drawdown]]. Beta to the benchmark is [[fact:beta]]. The maximum drawdown ran from [[fact:max_drawdown_peak]] to [[fact:max_drawdown_trough]] and lasted [[fact:max_drawdown_duration]] in total. The effective number of independent risk bets is [[fact:effective_n_bets]]. Daily returns have skewness of [[fact:skew]] and excess kurtosis of [[fact:excess_kurtosis]]; positive excess kurtosis means fatter tails than a normal distribution.",
-  "tail_risk": "On a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least [[fact:var_95_1d_hist]], and the average loss on those days is [[fact:es_95_1d_hist]]. At 99% confidence the historical VaR is [[fact:var_99_1d_hist]] and the Expected Shortfall [[fact:es_99_1d_hist]], against a normal-distribution VaR of [[fact:var_99_1d_normal]]. The 10-day 95% historical VaR is [[fact:var_95_10d_hist]]. In a rolling backtest the 95% historical VaR was exceeded on [[fact:kupiec_exceptions_95_hist]] days against [[fact:kupiec_expected_95_hist]] expected (Kupiec verdict: [[fact:kupiec_verdict_95_hist]]); at 99% the verdict is [[fact:kupiec_verdict_99_hist]]. Over the next [[fact:mc_horizon]], a simulation assuming [[fact:mc_drift_annual]] annual drift gives a [[fact:mc_p_loss]] chance of a loss, a median return of [[fact:mc_median_terminal]] and a [[fact:mc_p_dd_20]] chance of a drawdown deeper than one fifth of value.",
-  "stress_and_regimes": "Of [[fact:stress_scenarios_run]] historical stress scenarios with enough history, the worst was [[fact:worst_stress_scenario]]: the portfolio returned [[fact:worst_stress_return]] against [[fact:worst_stress_benchmark_return]] for the benchmark. A regime model on the benchmark puts the market in a [[fact:regime_current]] regime ([[fact:regime_current_prob]] probability); in Stress regimes this portfolio's volatility is [[fact:stress_vol_multiple]] its Calm level. In a walk-forward volatility test the best forecaster was [[fact:vol_forecast_winner]], which forecasts annualized volatility of [[fact:vol_forecast_current]] for the next month.",
+  "summary": "The [[fact:portfolio_name]] strategy aims for steady income while limiting volatility. Compared with its benchmark, it has delivered solid growth over the analysis window.",
+  "return_and_risk": "The portfolio’s compound annual growth rate is [[fact:cagr]] versus the benchmark’s [[fact:benchmark_cagr]]. Annualized volatility stands at [[fact:ann_vol]] compared with [[fact:benchmark_ann_vol]] for the benchmark, giving a Sharpe ratio of [[fact:sharpe]] and a Sortino ratio of [[fact:sortino]]. The maximum drawdown recorded was [[fact:max_drawdown]] over a period of [[fact:max_drawdown_duration]], with the worst peak on [[fact:max_drawdown_peak]] and trough on [[fact:max_drawdown_trough]].",
+  "tail_risk": "One‑day 95% historical VaR is [[fact:var_95_1d_hist]] and the corresponding expected shortfall is [[fact:es_95_1d_hist]]. The 99% historical VaR is [[fact:var_99_1d_hist]] with expected shortfall [[fact:es_99_1d_hist]]. Back‑testing shows the 95% VaR is [[fact:kupiec_verdict_95_hist]] ([[fact:kupiec_exceptions_95_hist]] exceptions versus [[fact:kupiec_expected_95_hist]] expected). The 99% VaR back‑test indicates the model [[fact:kupiec_verdict_99_hist]].",
+  "stress_and_regimes": "In the most severe historical stress scenario, the COVID crash, the portfolio lost [[fact:worst_stress_return]] while the benchmark fell [[fact:worst_stress_benchmark_return]]. Volatility in stress regimes is estimated at [[fact:stress_vol_multiple]] times the calm regime. The current market regime is identified as [[fact:regime_current]] with a probability of [[fact:regime_current_prob]]. The forecast for next‑month volatility is [[fact:vol_forecast_current]] using the GARCH‑t model, which outperformed LightGBM.",
   "disclosed_risks": [
    {
-    "text": "COCA COLA CO (KO) discloses a risk in its 10-K.",
+    "text": "Unfavorable general economic and geopolitical conditions could negatively impact financial results.",
     "chunk_ids": [
      "KO-2025-1A-0001"
     ]
    },
    {
-    "text": "Walmart Inc. (WMT) discloses a risk in its 10-K.",
-    "chunk_ids": [
-     "WMT-2026-1A-0001"
-    ]
-   },
-   {
-    "text": "PFIZER INC (PFE) discloses a risk in its 10-K.",
-    "chunk_ids": [
-     "PFE-2025-1A-0001"
-    ]
-   },
-   {
-    "text": "Walmart Inc. (WMT) discloses a risk: Natural disasters, climate change, geopolitical events, catastrophic and other events could materially adversely affect our financial performance.",
+    "text": "Supply chain disruptions, natural disasters, and geopolitical events could materially affect operations and financial performance.",
     "chunk_ids": [
      "WMT-2026-1A-0020"
     ]
+   },
+   {
+    "text": "Competitive pressures and industry‑specific risks may adversely affect earnings.",
+    "chunk_ids": [
+     "JNJ-2025-1A-0001",
+     "XOM-2025-1A-0001"
+    ]
    }
   ],
-  "caveats": ""
+  "caveats": "All figures are based on historical data and model assumptions; actual future performance may differ."
  },
  "sections": {
-  "summary": "Defensive dividend holds 6 positions (JNJ, PG, KO, PFE, XOM, WMT) and is compared with SPY. Between 2016-11-01 and 2026-10-29 it grew at 13.34% a year with annualized volatility of 14.68%, and its worst peak-to-trough loss was -28.29%. PG is 20.00% of the weight but 20.13% of the volatility.",
-  "return_and_risk": "The Sharpe ratio is 0.73 and the Sortino ratio is 1.34, using a risk-free rate of 3.00%. The benchmark grew at 15.58% a year with volatility of 17.95% and a maximum drawdown of -33.72%. Beta to the benchmark is 0.52. The maximum drawdown ran from 2020-01-17 to 2020-03-23 and lasted 206 trading days in total. The effective number of independent risk bets is 5.71. Daily returns have skewness of -0.17 and excess kurtosis of 12.18; positive excess kurtosis means fatter tails than a normal distribution.",
-  "tail_risk": "On a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least 1.26%, and the average loss on those days is 2.08%. At 99% confidence the historical VaR is 2.36% and the Expected Shortfall 3.85%, against a normal-distribution VaR of 2.15%. The 10-day 95% historical VaR is 3.27%. In a rolling backtest the 95% historical VaR was exceeded on 132 days against 113.2 expected (Kupiec verdict: consistent); at 99% the verdict is model underestimates risk. Over the next 252 trading days, a simulation assuming 5.00% annual drift gives a 36.73% chance of a loss, a median return of 4.20% and a 14.15% chance of a drawdown deeper than one fifth of value.",
-  "stress_and_regimes": "Of 4 historical stress scenarios with enough history, the worst was COVID crash: the portfolio returned -27.30% against -33.72% for the benchmark. A regime model on the benchmark puts the market in a Calm regime (90.37% probability); in Stress regimes this portfolio's volatility is 5.5x its Calm level. In a walk-forward volatility test the best forecaster was GARCH-t, which forecasts annualized volatility of 17.56% for the next month.",
-  "disclosed_risks": "- COCA COLA CO (KO) discloses a risk in its 10-K. ([KO 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm))\n- Walmart Inc. (WMT) discloses a risk in its 10-K. ([WMT 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm))\n- PFIZER INC (PFE) discloses a risk in its 10-K. ([PFE 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/78003/000007800326000026/pfe-20251231.htm))\n- Walmart Inc. (WMT) discloses a risk: Natural disasters, climate change, geopolitical events, catastrophic and other events could materially adversely affect our financial performance. ([WMT 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm))",
-  "caveats": "- All figures are historical estimates from daily data between 2016-11-01 and 2026-10-29; future losses can be larger.\n- Value at Risk and Expected Shortfall assume the past is representative of the future; the normal-distribution versions understate fat tails.\n- Monte Carlo results depend on the assumed annual return of 5.00% and resample past daily returns.\n- Regimes come from a hidden Markov model fitted to the benchmark; the current regime uses only data up to the last date.\n- Disclosed risks summarize the latest 10-K risk factors; ETFs and funds have none."
+  "summary": "The Defensive dividend strategy aims for steady income while limiting volatility. Compared with its benchmark, it has delivered solid growth over the analysis window.",
+  "return_and_risk": "The portfolio’s compound annual growth rate is 13.34% versus the benchmark’s 15.58%. Annualized volatility stands at 14.68% compared with 17.95% for the benchmark, giving a Sharpe ratio of 0.73 and a Sortino ratio of 1.34. The maximum drawdown recorded was -28.29% over a period of 206 trading days, with the worst peak on 2020-01-17 and trough on 2020-03-23.",
+  "tail_risk": "One‑day 95% historical VaR is 1.26% and the corresponding expected shortfall is 2.08%. The 99% historical VaR is 2.36% with expected shortfall 3.85%. Back‑testing shows the 95% VaR is consistent (132 exceptions versus 113.2 expected). The 99% VaR back‑test indicates the model model underestimates risk.",
+  "stress_and_regimes": "In the most severe historical stress scenario, the COVID crash, the portfolio lost -27.30% while the benchmark fell -33.72%. Volatility in stress regimes is estimated at 5.5x times the calm regime. The current market regime is identified as Calm with a probability of 90.37%. The forecast for next‑month volatility is 17.56% using the GARCH‑t model, which outperformed LightGBM.",
+  "disclosed_risks": "- Unfavorable general economic and geopolitical conditions could negatively impact financial results. ([KO 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm))\n- Supply chain disruptions, natural disasters, and geopolitical events could materially affect operations and financial performance. ([WMT 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm))\n- Competitive pressures and industry‑specific risks may adversely affect earnings. ([JNJ 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/200406/000020040626000016/jnj-20251228.htm)) ([XOM 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/34088/000003408826000045/xom-20251231.htm))",
+  "caveats": "All figures are based on historical data and model assumptions; actual future performance may differ.\n\n- All figures are historical estimates from daily data between 2016-11-01 and 2026-10-29; future losses can be larger.\n- Value at Risk and Expected Shortfall assume the past is representative of the future; the normal-distribution versions understate fat tails.\n- Monte Carlo results depend on the assumed annual return of 5.00% and resample past daily returns.\n- Regimes come from a hidden Markov model fitted to the benchmark; the current regime uses only data up to the last date.\n- Disclosed risks summarize the latest 10-K risk factors; ETFs and funds have none.\n- The prose was written by a language model. Every figure was inserted by code from computed results and checked by an automatic verifier."
  },
  "disclosed_risks": [
   {
-   "text": "COCA COLA CO (KO) discloses a risk in its 10-K.",
+   "text": "Unfavorable general economic and geopolitical conditions could negatively impact financial results.",
    "chunk_ids": [
     "KO-2025-1A-0001"
    ],
@@ -58,31 +53,7 @@
    ]
   },
   {
-   "text": "Walmart Inc. (WMT) discloses a risk in its 10-K.",
-   "chunk_ids": [
-    "WMT-2026-1A-0001"
-   ],
-   "citations": [
-    "WMT 10-K FY2026, Item 1A"
-   ],
-   "urls": [
-    "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm"
-   ]
-  },
-  {
-   "text": "PFIZER INC (PFE) discloses a risk in its 10-K.",
-   "chunk_ids": [
-    "PFE-2025-1A-0001"
-   ],
-   "citations": [
-    "PFE 10-K FY2025, Item 1A"
-   ],
-   "urls": [
-    "https://www.sec.gov/Archives/edgar/data/78003/000007800326000026/pfe-20251231.htm"
-   ]
-  },
-  {
-   "text": "Walmart Inc. (WMT) discloses a risk: Natural disasters, climate change, geopolitical events, catastrophic and other events could materially adversely affect our financial performance.",
+   "text": "Supply chain disruptions, natural disasters, and geopolitical events could materially affect operations and financial performance.",
    "chunk_ids": [
     "WMT-2026-1A-0020"
    ],
@@ -92,276 +63,114 @@
    "urls": [
     "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm"
    ]
+  },
+  {
+   "text": "Competitive pressures and industry‑specific risks may adversely affect earnings.",
+   "chunk_ids": [
+    "JNJ-2025-1A-0001",
+    "XOM-2025-1A-0001"
+   ],
+   "citations": [
+    "JNJ 10-K FY2025, Item 1A",
+    "XOM 10-K FY2025, Item 1A"
+   ],
+   "urls": [
+    "https://www.sec.gov/Archives/edgar/data/200406/000020040626000016/jnj-20251228.htm",
+    "https://www.sec.gov/Archives/edgar/data/34088/000003408826000045/xom-20251231.htm"
+   ]
   }
  ],
- "markdown": "# Risk memo: Defensive dividend\n\n_Deterministic template memo. Verified: 0 unsupported numbers, 49 figures traced to code._\n\n## Summary\n\nDefensive dividend holds 6 positions (JNJ, PG, KO, PFE, XOM, WMT) and is compared with SPY. Between 2016-11-01 and 2026-10-29 it grew at 13.34% a year with annualized volatility of 14.68%, and its worst peak-to-trough loss was -28.29%. PG is 20.00% of the weight but 20.13% of the volatility.\n\n## Return and risk profile\n\nThe Sharpe ratio is 0.73 and the Sortino ratio is 1.34, using a risk-free rate of 3.00%. The benchmark grew at 15.58% a year with volatility of 17.95% and a maximum drawdown of -33.72%. Beta to the benchmark is 0.52. The maximum drawdown ran from 2020-01-17 to 2020-03-23 and lasted 206 trading days in total. The effective number of independent risk bets is 5.71. Daily returns have skewness of -0.17 and excess kurtosis of 12.18; positive excess kurtosis means fatter tails than a normal distribution.\n\n## Tail risk\n\nOn a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least 1.26%, and the average loss on those days is 2.08%. At 99% confidence the historical VaR is 2.36% and the Expected Shortfall 3.85%, against a normal-distribution VaR of 2.15%. The 10-day 95% historical VaR is 3.27%. In a rolling backtest the 95% historical VaR was exceeded on 132 days against 113.2 expected (Kupiec verdict: consistent); at 99% the verdict is model underestimates risk. Over the next 252 trading days, a simulation assuming 5.00% annual drift gives a 36.73% chance of a loss, a median return of 4.20% and a 14.15% chance of a drawdown deeper than one fifth of value.\n\n## Stress and regimes\n\nOf 4 historical stress scenarios with enough history, the worst was COVID crash: the portfolio returned -27.30% against -33.72% for the benchmark. A regime model on the benchmark puts the market in a Calm regime (90.37% probability); in Stress regimes this portfolio's volatility is 5.5x its Calm level. In a walk-forward volatility test the best forecaster was GARCH-t, which forecasts annualized volatility of 17.56% for the next month.\n\n## Disclosed risks from filings\n\n- COCA COLA CO (KO) discloses a risk in its 10-K. ([KO 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm))\n- Walmart Inc. (WMT) discloses a risk in its 10-K. ([WMT 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm))\n- PFIZER INC (PFE) discloses a risk in its 10-K. ([PFE 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/78003/000007800326000026/pfe-20251231.htm))\n- Walmart Inc. (WMT) discloses a risk: Natural disasters, climate change, geopolitical events, catastrophic and other events could materially adversely affect our financial performance. ([WMT 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm))\n\n## Caveats and limitations\n\n- All figures are historical estimates from daily data between 2016-11-01 and 2026-10-29; future losses can be larger.\n- Value at Risk and Expected Shortfall assume the past is representative of the future; the normal-distribution versions understate fat tails.\n- Monte Carlo results depend on the assumed annual return of 5.00% and resample past daily returns.\n- Regimes come from a hidden Markov model fitted to the benchmark; the current regime uses only data up to the last date.\n- Disclosed risks summarize the latest 10-K risk factors; ETFs and funds have none.\n\n_Educational tool, not investment advice. Models are simplifications; historical risk measures can understate future losses._\n",
+ "markdown": "# Risk memo: Defensive dividend\n\n_Written by openai/gpt-oss-120b (openai). Verified: 0 unsupported numbers, 25 figures traced to code._\n\n## Summary\n\nThe Defensive dividend strategy aims for steady income while limiting volatility. Compared with its benchmark, it has delivered solid growth over the analysis window.\n\n## Return and risk profile\n\nThe portfolio’s compound annual growth rate is 13.34% versus the benchmark’s 15.58%. Annualized volatility stands at 14.68% compared with 17.95% for the benchmark, giving a Sharpe ratio of 0.73 and a Sortino ratio of 1.34. The maximum drawdown recorded was -28.29% over a period of 206 trading days, with the worst peak on 2020-01-17 and trough on 2020-03-23.\n\n## Tail risk\n\nOne‑day 95% historical VaR is 1.26% and the corresponding expected shortfall is 2.08%. The 99% historical VaR is 2.36% with expected shortfall 3.85%. Back‑testing shows the 95% VaR is consistent (132 exceptions versus 113.2 expected). The 99% VaR back‑test indicates the model model underestimates risk.\n\n## Stress and regimes\n\nIn the most severe historical stress scenario, the COVID crash, the portfolio lost -27.30% while the benchmark fell -33.72%. Volatility in stress regimes is estimated at 5.5x times the calm regime. The current market regime is identified as Calm with a probability of 90.37%. The forecast for next‑month volatility is 17.56% using the GARCH‑t model, which outperformed LightGBM.\n\n## Disclosed risks from filings\n\n- Unfavorable general economic and geopolitical conditions could negatively impact financial results. ([KO 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm))\n- Supply chain disruptions, natural disasters, and geopolitical events could materially affect operations and financial performance. ([WMT 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm))\n- Competitive pressures and industry‑specific risks may adversely affect earnings. ([JNJ 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/200406/000020040626000016/jnj-20251228.htm)) ([XOM 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/34088/000003408826000045/xom-20251231.htm))\n\n## Caveats and limitations\n\nAll figures are based on historical data and model assumptions; actual future performance may differ.\n\n- All figures are historical estimates from daily data between 2016-11-01 and 2026-10-29; future losses can be larger.\n- Value at Risk and Expected Shortfall assume the past is representative of the future; the normal-distribution versions understate fat tails.\n- Monte Carlo results depend on the assumed annual return of 5.00% and resample past daily returns.\n- Regimes come from a hidden Markov model fitted to the benchmark; the current regime uses only data up to the last date.\n- Disclosed risks summarize the latest 10-K risk factors; ETFs and funds have none.\n- The prose was written by a language model. Every figure was inserted by code from computed results and checked by an automatic verifier.\n\n_Educational tool, not investment advice. Models are simplifications; historical risk measures can understate future losses._\n",
  "verification": {
   "ok": true,
   "violations": [],
-  "figures_traced": 49,
+  "figures_traced": 25,
   "facts_used": [
    "portfolio_name",
-   "n_holdings",
-   "holdings",
-   "benchmark",
-   "start_date",
-   "end_date",
    "cagr",
+   "benchmark_cagr",
    "ann_vol",
-   "max_drawdown",
-   "top_risk_contributor",
-   "top_risk_contributor_weight",
-   "top_risk_contributor_pct",
+   "benchmark_ann_vol",
    "sharpe",
    "sortino",
-   "rf_annual",
-   "benchmark_cagr",
-   "benchmark_ann_vol",
-   "benchmark_max_drawdown",
-   "beta",
+   "max_drawdown",
+   "max_drawdown_duration",
    "max_drawdown_peak",
    "max_drawdown_trough",
-   "max_drawdown_duration",
-   "effective_n_bets",
-   "skew",
-   "excess_kurtosis",
    "var_95_1d_hist",
    "es_95_1d_hist",
    "var_99_1d_hist",
    "es_99_1d_hist",
-   "var_99_1d_normal",
-   "var_95_10d_hist",
+   "kupiec_verdict_95_hist",
    "kupiec_exceptions_95_hist",
    "kupiec_expected_95_hist",
-   "kupiec_verdict_95_hist",
    "kupiec_verdict_99_hist",
-   "mc_horizon",
-   "mc_drift_annual",
-   "mc_p_loss",
-   "mc_median_terminal",
-   "mc_p_dd_20",
-   "stress_scenarios_run",
-   "worst_stress_scenario",
    "worst_stress_return",
    "worst_stress_benchmark_return",
+   "stress_vol_multiple",
    "regime_current",
    "regime_current_prob",
-   "stress_vol_multiple",
-   "vol_forecast_winner",
    "vol_forecast_current"
   ],
   "citations": [
    "KO-2025-1A-0001",
-   "WMT-2026-1A-0001",
-   "PFE-2025-1A-0001",
-   "WMT-2026-1A-0020"
+   "WMT-2026-1A-0020",
+   "JNJ-2025-1A-0001",
+   "XOM-2025-1A-0001"
   ],
   "unsupported_numbers": 0,
-  "word_count": 354
+  "word_count": 230
  },
  "attempts": [
   {
    "attempt": 1,
-   "raw": "{\n  \"summary\": \"The Defensive dividend portfolio has delivered a strong compound annual growth rate of 13.34% over the past decade, outperforming the benchmark SPY by a significant margin. However, it also carries notable risks, including a maximum drawdown of -28.29% and a 36.73% probability of a loss over the next year.\",\n  \"return_and_risk\": \"The portfolio has achieved a Sharpe ratio of 0.73, indicating a balance between return and risk. The Sortino ratio of 1.34 further highlights the portfolio's ability to manage downside risk. Despite a beta of 0.52, which suggests lower volatility compared to the market, the portfolio's maximum drawdown of -28.29% during the 2020-2020 period underscores the potential for significant losses.\",\n  \"tail_risk\": \"The portfolio's 1-day 95% Value at Risk (VaR) is 1.26%, and the 1-day 99% VaR is 2.36%, indicating the potential for extreme losses. The 1-day 99% Expected Shortfall (ES) is 3.85%, suggesting that the average loss in extreme scenarios could be substantial. The historical backtest for the 99% VaR shows that the model underestimates risk, with 141 days exceeding the VaR in the past.\",\n  \"stress_and_regimes\": \"The portfolio's performance during historical stress scenarios, such as the 2020 COVID crash, shows a maximum drawdown of -27.30%, which is slightly better than the benchmark's -33.72%. The current market regime is described as Calm, with a 90.37% probability, but the portfolio's volatility could increase by 5.5x during Stress regimes. The GARCH-t model is the best at forecasting volatility, with a forecasted annualized volatility of 17.56% for the next month.\",\n  \"caveats\": \"While these estimates provide valuable insights, they are based on historical data and assumptions and may not fully capture all potential risks.\",\n  \"disclosed_risks\": [\n    {\"text\": \"Unfavorable economic and geopolitical conditions could negatively impact the portfolio's financial results.\", \"chunk_ids\": [\"KO-2025-1A-0001\"]},\n    {\"text\": \"Natural disasters, climate change, and geopolitical events could disrupt operations and adversely affect financial performance.\", \"chunk_ids\": [\"WMT-2026-1A-0020\"]}\n  ]\n}",
+   "raw": "{\"summary\":\"The [[fact:portfolio_name]] strategy aims for steady income while limiting volatility. Compared with its benchmark, it has delivered solid growth over the analysis window.\",\"return_and_risk\":\"The portfolio’s compound annual growth rate is [[fact:cagr]] versus the benchmark’s [[fact:benchmark_cagr]]. Annualized volatility stands at [[fact:ann_vol]] compared with [[fact:benchmark_ann_vol]] for the benchmark, giving a Sharpe ratio of [[fact:sharpe]] and a Sortino ratio of [[fact:sortino]]. The maximum drawdown recorded was [[fact:max_drawdown]] over a period of [[fact:max_drawdown_duration]], with the worst peak on [[fact:max_drawdown_peak]] and trough on [[fact:max_drawdown_trough]].\",\"tail_risk\":\"One‑day 95% historical VaR is [[fact:var_95_1d_hist]] and the corresponding expected shortfall is [[fact:es_95_1d_hist]]. The 99% historical VaR is [[fact:var_99_1d_hist]] with expected shortfall [[fact:es_99_1d_hist]]. Back‑testing shows the 95% VaR is [[fact:kupiec_verdict_95_hist]] ([[fact:kupiec_exceptions_95_hist]] exceptions versus [[fact:kupiec_expected_95_hist]] expected). The 99% VaR back‑test indicates the model [[fact:kupiec_verdict_99_hist]].\",\"stress_and_regimes\":\"In the most severe historical stress scenario, the COVID crash, the portfolio lost [[fact:worst_stress_return]] while the benchmark fell [[fact:worst_stress_benchmark_return]]. Volatility in stress regimes is estimated at [[fact:stress_vol_multiple]] times the calm regime. The current market regime is identified as [[fact:regime_current]] with a probability of [[fact:regime_current_prob]]. The forecast for next‑month volatility is [[fact:vol_forecast_current]] using the GARCH‑t model, which outperformed LightGBM.\",\"disclosed_risks\":[{\"text\":\"Unfavorable general economic and geopolitical conditions could negatively impact financial results.\",\"chunk_ids\":[\"KO-2025-1A-0001\"]},{\"text\":\"Supply chain disruptions, natural disasters, and geopolitical events could materially affect operations and financial performance.\",\"chunk_ids\":[\"WMT-2026-1A-0020\"]},{\"text\":\"Competitive pressures and industry‑specific risks may adversely affect earnings.\",\"chunk_ids\":[\"JNJ-2025-1A-0001\",\"XOM-2025-1A-0001\"]}],\"caveats\":\"All figures are based on historical data and model assumptions; actual future performance may differ.\"}",
    "verification": {
-    "ok": false,
-    "violations": [
-     {
-      "kind": "stray_numeral",
-      "detail": "number '13.34%' outside a placeholder",
-      "field": "summary",
-      "snippet": "ompound annual growth rate of 13.34% over the past decade, outperf",
-      "token": "13.34%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '28.29%' outside a placeholder",
-      "field": "summary",
-      "snippet": "luding a maximum drawdown of -28.29% and a 36.73% probability of a",
-      "token": "28.29%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '36.73%' outside a placeholder",
-      "field": "summary",
-      "snippet": "mum drawdown of -28.29% and a 36.73% probability of a loss over th",
-      "token": "36.73%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '0.73' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "as achieved a Sharpe ratio of 0.73, indicating a balance between",
-      "token": "0.73"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '1.34' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "nd risk. The Sortino ratio of 1.34 further highlights the portfo",
-      "token": "1.34"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '0.52' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "nside risk. Despite a beta of 0.52, which suggests lower volatil",
-      "token": "0.52"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '28.29%' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "tfolio's maximum drawdown of -28.29% during the 2020-2020 period u",
-      "token": "28.29%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '1.26%' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "ay 95% Value at Risk (VaR) is 1.26%, and the 1-day 99% VaR is 2.3",
-      "token": "1.26%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '2.36%' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "26%, and the 1-day 99% VaR is 2.36%, indicating the potential for",
-      "token": "2.36%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '3.85%' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "9% Expected Shortfall (ES) is 3.85%, suggesting that the average",
-      "token": "3.85%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '141' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "del underestimates risk, with 141 days exceeding the VaR in the",
-      "token": "141"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '27.30%' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "shows a maximum drawdown of -27.30%, which is slightly better tha",
-      "token": "27.30%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '33.72%' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "better than the benchmark's -33.72%. The current market regime is",
-      "token": "33.72%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '90.37%' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "is described as Calm, with a 90.37% probability, but the portfoli",
-      "token": "90.37%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '5.5' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "volatility could increase by 5.5x during Stress regimes. The G",
-      "token": "5.5"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '17.56%' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "sted annualized volatility of 17.56% for the next month.",
-      "token": "17.56%"
-     }
-    ],
-    "figures_traced": 0,
-    "facts_used": [],
-    "citations": [
-     "KO-2025-1A-0001",
-     "WMT-2026-1A-0020"
-    ],
-    "unsupported_numbers": 16,
-    "word_count": 291
-   }
-  },
-  {
-   "attempt": 2,
-   "raw": "{\n  \"summary\": \"The Defensive dividend portfolio has shown strong performance with a compound annual growth rate of [[fact:cagr]] and a Sharpe ratio of [[fact:sharpe]], indicating a good balance between risk and return. However, the portfolio has faced significant drawdowns, with the worst peak-to-trough loss reaching [[fact:max_drawdown]].\",\n  \"return_and_risk\": \"Over the analysis period, the portfolio has delivered a [[fact:cagr]] of 13.34%, outperforming the benchmark SPY by a margin. The annualized volatility is 14.68%, and the portfolio's beta to the benchmark is 0.52, suggesting it is less volatile than the market. The Sortino ratio of 1.34 highlights the portfolio's ability to generate higher returns for the same level of downside risk compared to the Sharpe ratio.\",\n  \"tail_risk\": \"The portfolio's maximum drawdown of [[fact:max_drawdown]] and the length of the drawdown period (206 trading days) indicate significant tail risk. The historical Value at Risk (VaR) and Expected Shortfall (ES) measures, such as the 1-day 95% VaR of [[fact:var_95_1d_hist]] and the 1-day 99% ES of [[fact:es_99_1d_hist]], suggest that the portfolio is more prone to extreme losses than a normal distribution would predict.\",\n  \"stress_and_regimes\": \"The portfolio's performance in historical stress scenarios, such as the 2020 COVID crash, shows a return of [[fact:stress_covid_crash_return]], indicating a significant drawdown. The current market regime is identified as Calm with a probability of [[fact:regime_current_prob]], but the portfolio's volatility in Stress regimes is 5.5x higher than in Calm regimes, as indicated by [[fact:stress_vol_multiple]].\",\n  \"caveats\": \"While the portfolio's performance and risk measures are informative, they are based on historical data and may not fully capture all potential risks, especially those not explicitly disclosed in the filings.\",\n  \"disclosed_risks\": [\n    {\"text\": \"Unfavorable general economic and geopolitical conditions could negatively impact the portfolio's financial results.\", \"chunk_ids\": [\"KO-2025-1A-0001\"]},\n    {\"text\": \"Natural disasters, climate change, and geopolitical events could materially adversely affect the portfolio's financial performance.\", \"chunk_ids\": [\"WMT-2026-1A-0020\"]}\n  ]\n}",
-   "verification": {
-    "ok": false,
-    "violations": [
-     {
-      "kind": "stray_numeral",
-      "detail": "number '13.34%' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "delivered a [[fact:cagr]] of 13.34%, outperforming the benchmark",
-      "token": "13.34%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '14.68%' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "The annualized volatility is 14.68%, and the portfolio's beta to",
-      "token": "14.68%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '0.52' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "io's beta to the benchmark is 0.52, suggesting it is less volati",
-      "token": "0.52"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '1.34' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "market. The Sortino ratio of 1.34 highlights the portfolio's ab",
-      "token": "1.34"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '206' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "ength of the drawdown period (206 trading days) indicate signif",
-      "token": "206"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '5.5' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "latility in Stress regimes is 5.5x higher than in Calm regimes,",
-      "token": "5.5"
-     }
-    ],
-    "figures_traced": 10,
+    "ok": true,
+    "violations": [],
+    "figures_traced": 25,
     "facts_used": [
+     "portfolio_name",
      "cagr",
+     "benchmark_cagr",
+     "ann_vol",
+     "benchmark_ann_vol",
      "sharpe",
+     "sortino",
      "max_drawdown",
+     "max_drawdown_duration",
+     "max_drawdown_peak",
+     "max_drawdown_trough",
      "var_95_1d_hist",
+     "es_95_1d_hist",
+     "var_99_1d_hist",
      "es_99_1d_hist",
-     "stress_covid_crash_return",
+     "kupiec_verdict_95_hist",
+     "kupiec_exceptions_95_hist",
+     "kupiec_expected_95_hist",
+     "kupiec_verdict_99_hist",
+     "worst_stress_return",
+     "worst_stress_benchmark_return",
+     "stress_vol_multiple",
+     "regime_current",
      "regime_current_prob",
-     "stress_vol_multiple"
+     "vol_forecast_current"
     ],
     "citations": [
      "KO-2025-1A-0001",
-     "WMT-2026-1A-0020"
+     "WMT-2026-1A-0020",
+     "JNJ-2025-1A-0001",
+     "XOM-2025-1A-0001"
     ],
-    "unsupported_numbers": 6,
-    "word_count": 284
+    "unsupported_numbers": 0,
+    "word_count": 230
    }
   }
  ],
- "first_pass_ok": false,
- "retried": true,
- "fell_back": true,
- "fallback_reason": "2 drafts failed verification (6 violations in the last)",
+ "first_pass_ok": true,
+ "retried": false,
+ "fell_back": false,
+ "fallback_reason": null,
  "chunk_ids": [
   "KO-2025-1A-0001",
   "WMT-2026-1A-0001",
@@ -371,7 +180,7 @@
   "XOM-2025-1A-0001"
  ],
  "report_hash": "96fa809609ba040aeff1d3f7bc1e04b86d69c686e7d0828f6126620877412845",
- "cache_key": "b26f7493b2717bcaf4cfce7a46656daa14afb67846653167c9dbab76f9744843",
+ "cache_key": "344b586221355739e0ad5d5c4efd387365453b8210fb7fb84a3d02b70c21d644",
  "prompt_version": "m8-v1",
  "as_of": "2026-10-29"
 }

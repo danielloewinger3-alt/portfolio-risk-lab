@@ -1,66 +1,70 @@
 {
  "portfolio_name": "Tech heavy",
- "source": "template",
- "provider": "ollama",
- "model": "qwen2.5:7b",
+ "source": "llm",
+ "provider": "openai",
+ "model": "openai/gpt-oss-120b",
  "draft": {
-  "summary": "[[fact:portfolio_name]] holds [[fact:n_holdings]] positions ([[fact:holdings]]) and is compared with [[fact:benchmark]]. Between [[fact:start_date]] and [[fact:end_date]] it grew at [[fact:cagr]] a year with annualized volatility of [[fact:ann_vol]], and its worst peak-to-trough loss was [[fact:max_drawdown]]. [[fact:top_risk_contributor]] is [[fact:top_risk_contributor_weight]] of the weight but [[fact:top_risk_contributor_pct]] of the volatility.",
-  "return_and_risk": "The Sharpe ratio is [[fact:sharpe]] and the Sortino ratio is [[fact:sortino]], using a risk-free rate of [[fact:rf_annual]]. The benchmark grew at [[fact:benchmark_cagr]] a year with volatility of [[fact:benchmark_ann_vol]] and a maximum drawdown of [[fact:benchmark_max_drawdown]]. Beta to the benchmark is [[fact:beta]]. The maximum drawdown ran from [[fact:max_drawdown_peak]] to [[fact:max_drawdown_trough]] and lasted [[fact:max_drawdown_duration]] in total. The effective number of independent risk bets is [[fact:effective_n_bets]]. Daily returns have skewness of [[fact:skew]] and excess kurtosis of [[fact:excess_kurtosis]]; positive excess kurtosis means fatter tails than a normal distribution.",
-  "tail_risk": "On a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least [[fact:var_95_1d_hist]], and the average loss on those days is [[fact:es_95_1d_hist]]. At 99% confidence the historical VaR is [[fact:var_99_1d_hist]] and the Expected Shortfall [[fact:es_99_1d_hist]], against a normal-distribution VaR of [[fact:var_99_1d_normal]]. The 10-day 95% historical VaR is [[fact:var_95_10d_hist]]. In a rolling backtest the 95% historical VaR was exceeded on [[fact:kupiec_exceptions_95_hist]] days against [[fact:kupiec_expected_95_hist]] expected (Kupiec verdict: [[fact:kupiec_verdict_95_hist]]); at 99% the verdict is [[fact:kupiec_verdict_99_hist]]. Over the next [[fact:mc_horizon]], a simulation assuming [[fact:mc_drift_annual]] annual drift gives a [[fact:mc_p_loss]] chance of a loss, a median return of [[fact:mc_median_terminal]] and a [[fact:mc_p_dd_20]] chance of a drawdown deeper than one fifth of value.",
-  "stress_and_regimes": "Of [[fact:stress_scenarios_run]] historical stress scenarios with enough history, the worst was [[fact:worst_stress_scenario]]: the portfolio returned [[fact:worst_stress_return]] against [[fact:worst_stress_benchmark_return]] for the benchmark. A regime model on the benchmark puts the market in a [[fact:regime_current]] regime ([[fact:regime_current_prob]] probability); in Stress regimes this portfolio's volatility is [[fact:stress_vol_multiple]] its Calm level. In a walk-forward volatility test the best forecaster was [[fact:vol_forecast_winner]], which forecasts annualized volatility of [[fact:vol_forecast_current]] for the next month.",
+  "summary": "The [[fact:portfolio_name]] portfolio aims to capture growth in the technology sector while benchmarking against [[fact:benchmark]]. Over the analysis window from [[fact:start_date]] to [[fact:end_date]] it delivered a strong compound annual growth rate of [[fact:cagr]] with a Sharpe ratio of [[fact:sharpe]].",
+  "return_and_risk": "Annualized volatility of the portfolio was [[fact:ann_vol]], higher than the benchmark's [[fact:benchmark_ann_vol]]. The beta of [[fact:beta]] indicates greater sensitivity to market moves. downside risk is reflected in a maximum drawdown of [[fact:max_drawdown]] occurring between [[fact:max_drawdown_peak]] and [[fact:max_drawdown_trough]] and lasting [[fact:max_drawdown_duration]]. The Sortino ratio of [[fact:sortino]] and Calmar ratio of [[fact:calmar]] show how returns compare to downside volatility and drawdown respectively. The top risk contributor, [[fact:top_risk_contributor]], accounts for [[fact:top_risk_contributor_pct]] of portfolio volatility despite a weight of [[fact:top_risk_contributor_weight]].",
+  "tail_risk": "One‑day 95% historical VaR is [[fact:var_95_1d_hist]] with an expected shortfall of [[fact:es_95_1d_hist]]. The 99% historical VaR rises to [[fact:var_99_1d_hist]] and its expected shortfall to [[fact:es_99_1d_hist]]. Back‑testing shows the 95% VaR is [[fact:kupiec_verdict_95_hist]] ([[fact:kupiec_exceptions_95_hist]] exceptions versus [[fact:kupiec_expected_95_hist]] expected). The 99% VaR back‑test verdict is [[fact:kupiec_verdict_99_hist]]. Monte‑Carlo simulation suggests a [[fact:mc_p_loss]] chance of a loss over the next year and a [[fact:mc_p_dd_20]] chance of a drawdown worse than one fifth of value, with a median projected return of [[fact:mc_median_terminal]].",
+  "stress_and_regimes": "Historical stress testing across four scenarios shows the worst loss in the 2022 rate shock scenario at [[fact:worst_stress_return]], with the benchmark down [[fact:worst_stress_benchmark_return]]. Other stress returns were [[fact:stress_global_financial_crisis_return]], [[fact:stress_s2018_q4_selloff_return]], and [[fact:stress_covid_crash_return]]. The current market regime is identified as [[fact:regime_current]] with a probability of [[fact:regime_current_prob]]. In stress regimes volatility is expected to be [[fact:stress_vol_multiple]] higher than in calm periods. The best forecast model for next‑month volatility is [[fact:vol_forecast_winner]], which outperformed LightGBM, and the current forecast is [[fact:vol_forecast_current]].",
   "disclosed_risks": [
    {
-    "text": "Meta Platforms, Inc. (META) discloses a risk in its 10-K.",
+    "text": "Business and financial results could be materially affected by macroeconomic downturns, competitive pressures, and supply chain disruptions as described in the risk factors of the holdings.",
     "chunk_ids": [
-     "META-2025-1A-0001"
+     "META-2025-1A-0001",
+     "AAPL-2025-1A-0001",
+     "AMZN-2025-1A-0001",
+     "MSFT-2026-1A-0001",
+     "NVDA-2026-1A-0001"
     ]
    },
    {
-    "text": "Apple Inc. (AAPL) discloses a risk in its 10-K.",
+    "text": "Adverse economic conditions may lead to reduced liquidity, credit constraints, and lower demand for products, impacting portfolio performance.",
     "chunk_ids": [
-     "AAPL-2025-1A-0001"
-    ]
-   },
-   {
-    "text": "AMAZON COM INC (AMZN) discloses a risk in its 10-K.",
-    "chunk_ids": [
-     "AMZN-2025-1A-0001"
-    ]
-   },
-   {
-    "text": "MICROSOFT CORP (MSFT) discloses a risk in its 10-K.",
-    "chunk_ids": [
-     "MSFT-2026-1A-0001"
+     "AAPL-2025-1A-0003"
     ]
    }
   ],
-  "caveats": ""
+  "caveats": "All figures are based on historical data and model assumptions; actual future performance may differ."
  },
  "sections": {
-  "summary": "Tech heavy holds 6 positions (AAPL, MSFT, NVDA, GOOGL, AMZN, META) and is compared with SPY. Between 2016-11-01 and 2026-10-29 it grew at 33.90% a year with annualized volatility of 27.95%, and its worst peak-to-trough loss was -45.07%. NVDA is 20.00% of the weight but 29.80% of the volatility.",
-  "return_and_risk": "The Sharpe ratio is 1.08 and the Sortino ratio is 1.72, using a risk-free rate of 3.00%. The benchmark grew at 15.58% a year with volatility of 17.95% and a maximum drawdown of -33.72%. Beta to the benchmark is 1.33. The maximum drawdown ran from 2021-11-19 to 2022-11-03 and lasted 384 trading days in total. The effective number of independent risk bets is 5.26. Daily returns have skewness of -0.07 and excess kurtosis of 5.39; positive excess kurtosis means fatter tails than a normal distribution.",
-  "tail_risk": "On a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least 2.93%, and the average loss on those days is 4.10%. At 99% confidence the historical VaR is 4.85% and the Expected Shortfall 6.05%, against a normal-distribution VaR of 4.10%. The 10-day 95% historical VaR is 7.72%. In a rolling backtest the 95% historical VaR was exceeded on 122 days against 113.2 expected (Kupiec verdict: consistent); at 99% the verdict is model underestimates risk. Over the next 252 trading days, a simulation assuming 5.00% annual drift gives a 47.15% chance of a loss, a median return of 1.89% and a 65.89% chance of a drawdown deeper than one fifth of value.",
-  "stress_and_regimes": "Of 4 historical stress scenarios with enough history, the worst was 2022 rate shock: the portfolio returned -40.49% against -24.50% for the benchmark. A regime model on the benchmark puts the market in a Calm regime (90.37% probability); in Stress regimes this portfolio's volatility is 4.5x its Calm level. In a walk-forward volatility test the best forecaster was GARCH-t, which forecasts annualized volatility of 25.42% for the next month.",
-  "disclosed_risks": "- Meta Platforms, Inc. (META) discloses a risk in its 10-K. ([META 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm))\n- Apple Inc. (AAPL) discloses a risk in its 10-K. ([AAPL 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm))\n- AMAZON COM INC (AMZN) discloses a risk in its 10-K. ([AMZN 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm))\n- MICROSOFT CORP (MSFT) discloses a risk in its 10-K. ([MSFT 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm))",
-  "caveats": "- All figures are historical estimates from daily data between 2016-11-01 and 2026-10-29; future losses can be larger.\n- Value at Risk and Expected Shortfall assume the past is representative of the future; the normal-distribution versions understate fat tails.\n- Monte Carlo results depend on the assumed annual return of 5.00% and resample past daily returns.\n- Regimes come from a hidden Markov model fitted to the benchmark; the current regime uses only data up to the last date.\n- Disclosed risks summarize the latest 10-K risk factors; ETFs and funds have none."
+  "summary": "The Tech heavy portfolio aims to capture growth in the technology sector while benchmarking against SPY. Over the analysis window from 2016-11-01 to 2026-10-29 it delivered a strong compound annual growth rate of 33.90% with a Sharpe ratio of 1.08.",
+  "return_and_risk": "Annualized volatility of the portfolio was 27.95%, higher than the benchmark's 17.95%. The beta of 1.33 indicates greater sensitivity to market moves. downside risk is reflected in a maximum drawdown of -45.07% occurring between 2021-11-19 and 2022-11-03 and lasting 384 trading days. The Sortino ratio of 1.72 and Calmar ratio of 0.75 show how returns compare to downside volatility and drawdown respectively. The top risk contributor, NVDA, accounts for 29.80% of portfolio volatility despite a weight of 20.00%.",
+  "tail_risk": "One‑day 95% historical VaR is 2.93% with an expected shortfall of 4.10%. The 99% historical VaR rises to 4.85% and its expected shortfall to 6.05%. Back‑testing shows the 95% VaR is consistent (122 exceptions versus 113.2 expected). The 99% VaR back‑test verdict is model underestimates risk. Monte‑Carlo simulation suggests a 47.15% chance of a loss over the next year and a 65.89% chance of a drawdown worse than one fifth of value, with a median projected return of 1.89%.",
+  "stress_and_regimes": "Historical stress testing across four scenarios shows the worst loss in the 2022 rate shock scenario at -40.49%, with the benchmark down -24.50%. Other stress returns were -36.30%, -30.74%, and -27.77%. The current market regime is identified as Calm with a probability of 90.37%. In stress regimes volatility is expected to be 4.5x higher than in calm periods. The best forecast model for next‑month volatility is GARCH-t, which outperformed LightGBM, and the current forecast is 25.42%.",
+  "disclosed_risks": "- Business and financial results could be materially affected by macroeconomic downturns, competitive pressures, and supply chain disruptions as described in the risk factors of the holdings. ([META 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm)) ([AAPL 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm)) ([AMZN 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm)) ([MSFT 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm)) ([NVDA 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm))\n- Adverse economic conditions may lead to reduced liquidity, credit constraints, and lower demand for products, impacting portfolio performance. ([AAPL 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm))",
+  "caveats": "All figures are based on historical data and model assumptions; actual future performance may differ.\n\n- All figures are historical estimates from daily data between 2016-11-01 and 2026-10-29; future losses can be larger.\n- Value at Risk and Expected Shortfall assume the past is representative of the future; the normal-distribution versions understate fat tails.\n- Monte Carlo results depend on the assumed annual return of 5.00% and resample past daily returns.\n- Regimes come from a hidden Markov model fitted to the benchmark; the current regime uses only data up to the last date.\n- Disclosed risks summarize the latest 10-K risk factors; ETFs and funds have none.\n- The prose was written by a language model. Every figure was inserted by code from computed results and checked by an automatic verifier."
  },
  "disclosed_risks": [
   {
-   "text": "Meta Platforms, Inc. (META) discloses a risk in its 10-K.",
+   "text": "Business and financial results could be materially affected by macroeconomic downturns, competitive pressures, and supply chain disruptions as described in the risk factors of the holdings.",
    "chunk_ids": [
-    "META-2025-1A-0001"
+    "META-2025-1A-0001",
+    "AAPL-2025-1A-0001",
+    "AMZN-2025-1A-0001",
+    "MSFT-2026-1A-0001",
+    "NVDA-2026-1A-0001"
    ],
    "citations": [
-    "META 10-K FY2025, Item 1A"
+    "META 10-K FY2025, Item 1A",
+    "AAPL 10-K FY2025, Item 1A",
+    "AMZN 10-K FY2025, Item 1A",
+    "MSFT 10-K FY2026, Item 1A",
+    "NVDA 10-K FY2026, Item 1A"
    ],
    "urls": [
-    "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm"
+    "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm",
+    "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+    "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+    "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+    "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm"
    ]
   },
   {
-   "text": "Apple Inc. (AAPL) discloses a risk in its 10-K.",
+   "text": "Adverse economic conditions may lead to reduced liquidity, credit constraints, and lower demand for products, impacting portfolio performance.",
    "chunk_ids": [
-    "AAPL-2025-1A-0001"
+    "AAPL-2025-1A-0003"
    ],
    "citations": [
     "AAPL 10-K FY2025, Item 1A"
@@ -68,82 +72,48 @@
    "urls": [
     "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
    ]
-  },
-  {
-   "text": "AMAZON COM INC (AMZN) discloses a risk in its 10-K.",
-   "chunk_ids": [
-    "AMZN-2025-1A-0001"
-   ],
-   "citations": [
-    "AMZN 10-K FY2025, Item 1A"
-   ],
-   "urls": [
-    "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm"
-   ]
-  },
-  {
-   "text": "MICROSOFT CORP (MSFT) discloses a risk in its 10-K.",
-   "chunk_ids": [
-    "MSFT-2026-1A-0001"
-   ],
-   "citations": [
-    "MSFT 10-K FY2026, Item 1A"
-   ],
-   "urls": [
-    "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm"
-   ]
   }
  ],
- "markdown": "# Risk memo: Tech heavy\n\n_Deterministic template memo. Verified: 0 unsupported numbers, 49 figures traced to code._\n\n## Summary\n\nTech heavy holds 6 positions (AAPL, MSFT, NVDA, GOOGL, AMZN, META) and is compared with SPY. Between 2016-11-01 and 2026-10-29 it grew at 33.90% a year with annualized volatility of 27.95%, and its worst peak-to-trough loss was -45.07%. NVDA is 20.00% of the weight but 29.80% of the volatility.\n\n## Return and risk profile\n\nThe Sharpe ratio is 1.08 and the Sortino ratio is 1.72, using a risk-free rate of 3.00%. The benchmark grew at 15.58% a year with volatility of 17.95% and a maximum drawdown of -33.72%. Beta to the benchmark is 1.33. The maximum drawdown ran from 2021-11-19 to 2022-11-03 and lasted 384 trading days in total. The effective number of independent risk bets is 5.26. Daily returns have skewness of -0.07 and excess kurtosis of 5.39; positive excess kurtosis means fatter tails than a normal distribution.\n\n## Tail risk\n\nOn a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least 2.93%, and the average loss on those days is 4.10%. At 99% confidence the historical VaR is 4.85% and the Expected Shortfall 6.05%, against a normal-distribution VaR of 4.10%. The 10-day 95% historical VaR is 7.72%. In a rolling backtest the 95% historical VaR was exceeded on 122 days against 113.2 expected (Kupiec verdict: consistent); at 99% the verdict is model underestimates risk. Over the next 252 trading days, a simulation assuming 5.00% annual drift gives a 47.15% chance of a loss, a median return of 1.89% and a 65.89% chance of a drawdown deeper than one fifth of value.\n\n## Stress and regimes\n\nOf 4 historical stress scenarios with enough history, the worst was 2022 rate shock: the portfolio returned -40.49% against -24.50% for the benchmark. A regime model on the benchmark puts the market in a Calm regime (90.37% probability); in Stress regimes this portfolio's volatility is 4.5x its Calm level. In a walk-forward volatility test the best forecaster was GARCH-t, which forecasts annualized volatility of 25.42% for the next month.\n\n## Disclosed risks from filings\n\n- Meta Platforms, Inc. (META) discloses a risk in its 10-K. ([META 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm))\n- Apple Inc. (AAPL) discloses a risk in its 10-K. ([AAPL 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm))\n- AMAZON COM INC (AMZN) discloses a risk in its 10-K. ([AMZN 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm))\n- MICROSOFT CORP (MSFT) discloses a risk in its 10-K. ([MSFT 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm))\n\n## Caveats and limitations\n\n- All figures are historical estimates from daily data between 2016-11-01 and 2026-10-29; future losses can be larger.\n- Value at Risk and Expected Shortfall assume the past is representative of the future; the normal-distribution versions understate fat tails.\n- Monte Carlo results depend on the assumed annual return of 5.00% and resample past daily returns.\n- Regimes come from a hidden Markov model fitted to the benchmark; the current regime uses only data up to the last date.\n- Disclosed risks summarize the latest 10-K risk factors; ETFs and funds have none.\n\n_Educational tool, not investment advice. Models are simplifications; historical risk measures can understate future losses._\n",
+ "markdown": "# Risk memo: Tech heavy\n\n_Written by openai/gpt-oss-120b (openai). Verified: 0 unsupported numbers, 39 figures traced to code._\n\n## Summary\n\nThe Tech heavy portfolio aims to capture growth in the technology sector while benchmarking against SPY. Over the analysis window from 2016-11-01 to 2026-10-29 it delivered a strong compound annual growth rate of 33.90% with a Sharpe ratio of 1.08.\n\n## Return and risk profile\n\nAnnualized volatility of the portfolio was 27.95%, higher than the benchmark's 17.95%. The beta of 1.33 indicates greater sensitivity to market moves. downside risk is reflected in a maximum drawdown of -45.07% occurring between 2021-11-19 and 2022-11-03 and lasting 384 trading days. The Sortino ratio of 1.72 and Calmar ratio of 0.75 show how returns compare to downside volatility and drawdown respectively. The top risk contributor, NVDA, accounts for 29.80% of portfolio volatility despite a weight of 20.00%.\n\n## Tail risk\n\nOne‑day 95% historical VaR is 2.93% with an expected shortfall of 4.10%. The 99% historical VaR rises to 4.85% and its expected shortfall to 6.05%. Back‑testing shows the 95% VaR is consistent (122 exceptions versus 113.2 expected). The 99% VaR back‑test verdict is model underestimates risk. Monte‑Carlo simulation suggests a 47.15% chance of a loss over the next year and a 65.89% chance of a drawdown worse than one fifth of value, with a median projected return of 1.89%.\n\n## Stress and regimes\n\nHistorical stress testing across four scenarios shows the worst loss in the 2022 rate shock scenario at -40.49%, with the benchmark down -24.50%. Other stress returns were -36.30%, -30.74%, and -27.77%. The current market regime is identified as Calm with a probability of 90.37%. In stress regimes volatility is expected to be 4.5x higher than in calm periods. The best forecast model for next‑month volatility is GARCH-t, which outperformed LightGBM, and the current forecast is 25.42%.\n\n## Disclosed risks from filings\n\n- Business and financial results could be materially affected by macroeconomic downturns, competitive pressures, and supply chain disruptions as described in the risk factors of the holdings. ([META 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm)) ([AAPL 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm)) ([AMZN 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm)) ([MSFT 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm)) ([NVDA 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm))\n- Adverse economic conditions may lead to reduced liquidity, credit constraints, and lower demand for products, impacting portfolio performance. ([AAPL 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm))\n\n## Caveats and limitations\n\nAll figures are based on historical data and model assumptions; actual future performance may differ.\n\n- All figures are historical estimates from daily data between 2016-11-01 and 2026-10-29; future losses can be larger.\n- Value at Risk and Expected Shortfall assume the past is representative of the future; the normal-distribution versions understate fat tails.\n- Monte Carlo results depend on the assumed annual return of 5.00% and resample past daily returns.\n- Regimes come from a hidden Markov model fitted to the benchmark; the current regime uses only data up to the last date.\n- Disclosed risks summarize the latest 10-K risk factors; ETFs and funds have none.\n- The prose was written by a language model. Every figure was inserted by code from computed results and checked by an automatic verifier.\n\n_Educational tool, not investment advice. Models are simplifications; historical risk measures can understate future losses._\n",
  "verification": {
   "ok": true,
   "violations": [],
-  "figures_traced": 49,
+  "figures_traced": 39,
   "facts_used": [
    "portfolio_name",
-   "n_holdings",
-   "holdings",
    "benchmark",
    "start_date",
    "end_date",
    "cagr",
-   "ann_vol",
-   "max_drawdown",
-   "top_risk_contributor",
-   "top_risk_contributor_weight",
-   "top_risk_contributor_pct",
    "sharpe",
-   "sortino",
-   "rf_annual",
-   "benchmark_cagr",
+   "ann_vol",
    "benchmark_ann_vol",
-   "benchmark_max_drawdown",
    "beta",
+   "max_drawdown",
    "max_drawdown_peak",
    "max_drawdown_trough",
    "max_drawdown_duration",
-   "effective_n_bets",
-   "skew",
-   "excess_kurtosis",
+   "sortino",
+   "calmar",
+   "top_risk_contributor",
+   "top_risk_contributor_pct",
+   "top_risk_contributor_weight",
    "var_95_1d_hist",
    "es_95_1d_hist",
    "var_99_1d_hist",
    "es_99_1d_hist",
-   "var_99_1d_normal",
-   "var_95_10d_hist",
+   "kupiec_verdict_95_hist",
    "kupiec_exceptions_95_hist",
    "kupiec_expected_95_hist",
-   "kupiec_verdict_95_hist",
    "kupiec_verdict_99_hist",
-   "mc_horizon",
-   "mc_drift_annual",
    "mc_p_loss",
-   "mc_median_terminal",
    "mc_p_dd_20",
-   "stress_scenarios_run",
-   "worst_stress_scenario",
+   "mc_median_terminal",
    "worst_stress_return",
    "worst_stress_benchmark_return",
+   "stress_global_financial_crisis_return",
+   "stress_s2018_q4_selloff_return",
+   "stress_covid_crash_return",
    "regime_current",
    "regime_current_prob",
    "stress_vol_multiple",
@@ -154,189 +124,79 @@
    "META-2025-1A-0001",
    "AAPL-2025-1A-0001",
    "AMZN-2025-1A-0001",
-   "MSFT-2026-1A-0001"
+   "MSFT-2026-1A-0001",
+   "NVDA-2026-1A-0001",
+   "AAPL-2025-1A-0003"
   ],
   "unsupported_numbers": 0,
-  "word_count": 341
+  "word_count": 327
  },
  "attempts": [
   {
    "attempt": 1,
-   "raw": "{\n  \"summary\": \"The [[fact:portfolio_name]] has delivered impressive returns and outperformed the benchmark, but it also carries significant risk, particularly during market downturns. The portfolio's high Sharpe ratio and Sortino ratio indicate strong risk-adjusted returns, while the Calmar ratio suggests that the returns are not as consistent as the CAGR might suggest during periods of extreme market stress.\",\n  \"return_and_risk\": \"Over the analysis period, the portfolio achieved a compound annual growth rate (CAGR) of [[fact:cagr]], significantly outperforming the benchmark's CAGR of [[fact:benchmark_cagr]]. However, the annualized volatility of [[fact:ann_vol]] and the maximum drawdown of [[fact:max_drawdown]] highlight the substantial risk involved. The portfolio's beta of [[fact:beta]] indicates that it is more volatile than the market, and the high excess kurtosis of [[fact:excess_kurtosis]] suggests the presence of fat tails, meaning the portfolio is more susceptible to extreme events.\",\n  \"tail_risk\": \"The portfolio's 1-day 95% and 99% Value at Risk (VaR) and Expected Shortfall (ES) measures indicate the potential for significant losses. The 95% VaR of [[fact:var_95_1d_hist]] and the 99% VaR of [[fact:var_99_1d_hist]] suggest that there is a non-negligible chance of large losses. The historical backtests for these measures show that the portfolio's risk is well-estimated, but the 99% VaR model underestimates risk, as indicated by the Kupiec test verdict.\",\n  \"stress_and_regimes\": \"The portfolio's performance during historical stress scenarios, such as the 2022 rate shock, has been particularly poor, with a simulated loss of [[fact:mc_p_loss]] over the next year and a 65.89% probability of a drawdown worse than one fifth of the portfolio's value. The current market regime is described as Calm, with a 90.37% probability, but the portfolio's volatility is expected to increase by 4.5x during Stress regimes. The GARCH-t model is the best at forecasting volatility, with a forecast of [[fact:vol_forecast_current]] for the next month.\",\n  \"caveats\": \"While the portfolio's performance and risk measures are informative, they are based on historical data and assumptions, and actual outcomes may differ. The disclosed risks are based on the passages provided, which highlight potential risks related to economic conditions, industry competition, and geopolitical events.\",\n  \"disclosed_risks\": [\n    {\"text\": \"Potential outcomes include financial instability; inability to obtain credit to finance business operations; and insolvency.\", \"chunk_ids\": [\"AAPL-2025-1A-0001\"]},\n    {\"text\": \"The Company’s business can be impacted by political events, trade and other international disputes, geopolitical tensions, conflict, terrorism, natural disasters, public health issues, industrial accidents and other business interruptions.\", \"chunk_ids\": [\"AAPL-2025-1A-0003\"]}\n  ]\n}",
+   "raw": "{\"summary\":\"The [[fact:portfolio_name]] portfolio aims to capture growth in the technology sector while benchmarking against [[fact:benchmark]]. Over the analysis window from [[fact:start_date]] to [[fact:end_date]] it delivered a strong compound annual growth rate of [[fact:cagr]] with a Sharpe ratio of [[fact:sharpe]].\",\"return_and_risk\":\"Annualized volatility of the portfolio was [[fact:ann_vol]], higher than the benchmark's [[fact:benchmark_ann_vol]]. The beta of [[fact:beta]] indicates greater sensitivity to market moves. downside risk is reflected in a maximum drawdown of [[fact:max_drawdown]] occurring between [[fact:max_drawdown_peak]] and [[fact:max_drawdown_trough]] and lasting [[fact:max_drawdown_duration]]. The Sortino ratio of [[fact:sortino]] and Calmar ratio of [[fact:calmar]] show how returns compare to downside volatility and drawdown respectively. The top risk contributor, [[fact:top_risk_contributor]], accounts for [[fact:top_risk_contributor_pct]] of portfolio volatility despite a weight of [[fact:top_risk_contributor_weight]].\",\"tail_risk\":\"One‑day 95% historical VaR is [[fact:var_95_1d_hist]] with an expected shortfall of [[fact:es_95_1d_hist]]. The 99% historical VaR rises to [[fact:var_99_1d_hist]] and its expected shortfall to [[fact:es_99_1d_hist]]. Back‑testing shows the 95% VaR is [[fact:kupiec_verdict_95_hist]] ([[fact:kupiec_exceptions_95_hist]] exceptions versus [[fact:kupiec_expected_95_hist]] expected). The 99% VaR back‑test verdict is [[fact:kupiec_verdict_99_hist]]. Monte‑Carlo simulation suggests a [[fact:mc_p_loss]] chance of a loss over the next year and a [[fact:mc_p_dd_20]] chance of a drawdown worse than one fifth of value, with a median projected return of [[fact:mc_median_terminal]].\",\"stress_and_regimes\":\"Historical stress testing across four scenarios shows the worst loss in the 2022 rate shock scenario at [[fact:worst_stress_return]], with the benchmark down [[fact:worst_stress_benchmark_return]]. Other stress returns were [[fact:stress_global_financial_crisis_return]], [[fact:stress_s2018_q4_selloff_return]], and [[fact:stress_covid_crash_return]]. The current market regime is identified as [[fact:regime_current]] with a probability of [[fact:regime_current_prob]]. In stress regimes volatility is expected to be [[fact:stress_vol_multiple]] higher than in calm periods. The best forecast model for next‑month volatility is [[fact:vol_forecast_winner]], which outperformed LightGBM, and the current forecast is [[fact:vol_forecast_current]].\",\"disclosed_risks\":[{\"text\":\"Business and financial results could be materially affected by macroeconomic downturns, competitive pressures, and supply chain disruptions as described in the risk factors of the holdings.\",\"chunk_ids\":[\"META-2025-1A-0001\",\"AAPL-2025-1A-0001\",\"AMZN-2025-1A-0001\",\"MSFT-2026-1A-0001\",\"NVDA-2026-1A-0001\"]},{\"text\":\"Adverse economic conditions may lead to reduced liquidity, credit constraints, and lower demand for products, impacting portfolio performance.\",\"chunk_ids\":[\"AAPL-2025-1A-0003\"]}],\"caveats\":\"All figures are based on historical data and model assumptions; actual future performance may differ.\"}",
    "verification": {
-    "ok": false,
-    "violations": [
-     {
-      "kind": "stray_numeral",
-      "detail": "number '65.89%' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "ss]] over the next year and a 65.89% probability of a drawdown wor",
-      "token": "65.89%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '90.37%' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "is described as Calm, with a 90.37% probability, but the portfoli",
-      "token": "90.37%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '4.5' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "ty is expected to increase by 4.5x during Stress regimes. The G",
-      "token": "4.5"
-     }
-    ],
-    "figures_traced": 11,
+    "ok": true,
+    "violations": [],
+    "figures_traced": 39,
     "facts_used": [
      "portfolio_name",
+     "benchmark",
+     "start_date",
+     "end_date",
      "cagr",
-     "benchmark_cagr",
+     "sharpe",
      "ann_vol",
-     "max_drawdown",
+     "benchmark_ann_vol",
      "beta",
-     "excess_kurtosis",
+     "max_drawdown",
+     "max_drawdown_peak",
+     "max_drawdown_trough",
+     "max_drawdown_duration",
+     "sortino",
+     "calmar",
+     "top_risk_contributor",
+     "top_risk_contributor_pct",
+     "top_risk_contributor_weight",
      "var_95_1d_hist",
+     "es_95_1d_hist",
      "var_99_1d_hist",
+     "es_99_1d_hist",
+     "kupiec_verdict_95_hist",
+     "kupiec_exceptions_95_hist",
+     "kupiec_expected_95_hist",
+     "kupiec_verdict_99_hist",
      "mc_p_loss",
+     "mc_p_dd_20",
+     "mc_median_terminal",
+     "worst_stress_return",
+     "worst_stress_benchmark_return",
+     "stress_global_financial_crisis_return",
+     "stress_s2018_q4_selloff_return",
+     "stress_covid_crash_return",
+     "regime_current",
+     "regime_current_prob",
+     "stress_vol_multiple",
+     "vol_forecast_winner",
      "vol_forecast_current"
     ],
     "citations": [
-     "AAPL-2025-1A-0001",
-     "AAPL-2025-1A-0003"
-    ],
-    "unsupported_numbers": 3,
-    "word_count": 372
-   }
-  },
-  {
-   "attempt": 2,
-   "raw": "{\n  \"summary\": \"The [[fact:portfolio_name]] has delivered impressive returns and outperformed the benchmark, but it also carries significant risks, including potential large drawdowns and market volatility.\",\n  \"return_and_risk\": \"Over the analysis period, the portfolio achieved a [[fact:cagr]] of 33.90%, significantly higher than the benchmark's 15.58%. However, this comes with substantial risk, as the annualized volatility is 27.95%, and the maximum drawdown was -45.07%. The portfolio's beta of 1.33 indicates it is more volatile than the market.\",\n  \"tail_risk\": \"Tail risk is a key concern, as the 1-day 95% Value at Risk (VaR) is 2.93%, and the 1-day 99% VaR is 4.85%. The Expected Shortfall (ES) at 95% and 99% is 4.10% and 6.05%, respectively, indicating potential for larger losses than VaR suggests. Historical backtests show the 99% VaR model underestimates risk.\",\n  \"stress_and_regimes\": \"The portfolio's performance in historical stress scenarios, such as the 2022 rate shock, was particularly poor, with a return of -40.49%. The current market regime is identified as Calm, with a 90.37% probability, but the portfolio's volatility in Stress regimes is 4.5x higher than in Calm regimes.\",\n  \"caveats\": \"These estimates are based on historical data and models, which may not fully capture future market conditions.\",\n  \"disclosed_risks\": [\n    {\"text\": \"Potential for large drawdowns and market volatility, as evidenced by the maximum drawdown of -45.07% and the 1-day 99% VaR of 4.85%.\", \"chunk_ids\": [\"AAPL-2025-1A-0001\", \"AMZN-2025-1A-0001\", \"MSFT-2026-1A-0001\", \"NVDA-2026-1A-0001\", \"META-2025-1A-0001\"]},\n    {\"text\": \"Political events, trade disputes, and natural disasters can significantly impact the portfolio, as highlighted by the potential for financial instability and credit risk.\", \"chunk_ids\": [\"AAPL-2025-1A-0003\"]}\n  ]\n}",
-   "verification": {
-    "ok": false,
-    "violations": [
-     {
-      "kind": "stray_numeral",
-      "detail": "number '33.90%' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "o achieved a [[fact:cagr]] of 33.90%, significantly higher than th",
-      "token": "33.90%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '15.58%' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "y higher than the benchmark's 15.58%. However, this comes with sub",
-      "token": "15.58%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '27.95%' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "the annualized volatility is 27.95%, and the maximum drawdown was",
-      "token": "27.95%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '45.07%' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "and the maximum drawdown was -45.07%. The portfolio's beta of 1.33",
-      "token": "45.07%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '1.33' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": ".07%. The portfolio's beta of 1.33 indicates it is more volatile",
-      "token": "1.33"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '2.93%' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "ay 95% Value at Risk (VaR) is 2.93%, and the 1-day 99% VaR is 4.8",
-      "token": "2.93%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '4.85%' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "93%, and the 1-day 99% VaR is 4.85%. The Expected Shortfall (ES)",
-      "token": "4.85%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '4.10%' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "rtfall (ES) at 95% and 99% is 4.10% and 6.05%, respectively, indi",
-      "token": "4.10%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '6.05%' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": ") at 95% and 99% is 4.10% and 6.05%, respectively, indicating pot",
-      "token": "6.05%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '40.49%' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "larly poor, with a return of -40.49%. The current market regime is",
-      "token": "40.49%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '90.37%' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "is identified as Calm, with a 90.37% probability, but the portfoli",
-      "token": "90.37%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '4.5' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "latility in Stress regimes is 4.5x higher than in Calm regimes.",
-      "token": "4.5"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '45.07%' outside a placeholder",
-      "field": "disclosed_risks[0]",
-      "snippet": "d by the maximum drawdown of -45.07% and the 1-day 99% VaR of 4.85",
-      "token": "45.07%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '4.85%' outside a placeholder",
-      "field": "disclosed_risks[0]",
-      "snippet": ".07% and the 1-day 99% VaR of 4.85%.",
-      "token": "4.85%"
-     }
-    ],
-    "figures_traced": 2,
-    "facts_used": [
-     "portfolio_name",
-     "cagr"
-    ],
-    "citations": [
+     "META-2025-1A-0001",
      "AAPL-2025-1A-0001",
      "AMZN-2025-1A-0001",
      "MSFT-2026-1A-0001",
      "NVDA-2026-1A-0001",
-     "META-2025-1A-0001",
      "AAPL-2025-1A-0003"
     ],
-    "unsupported_numbers": 14,
-    "word_count": 233
+    "unsupported_numbers": 0,
+    "word_count": 327
    }
   }
  ],
- "first_pass_ok": false,
- "retried": true,
- "fell_back": true,
- "fallback_reason": "2 drafts failed verification (14 violations in the last)",
+ "first_pass_ok": true,
+ "retried": false,
+ "fell_back": false,
+ "fallback_reason": null,
  "chunk_ids": [
   "META-2025-1A-0001",
   "AAPL-2025-1A-0001",
@@ -346,7 +206,7 @@
   "AAPL-2025-1A-0003"
  ],
  "report_hash": "b94f838373b891ca945184b1e7c9ffe2e213db7d296447a2069365df9fb879d6",
- "cache_key": "80457f73eca8a662bcc25f35de7220910f0a660429bb71a102f73027b5710c9e",
+ "cache_key": "c33ec914fcac93c335fc859ac4e831d6f7b6d8232f36d0672dbf4375047992ef",
  "prompt_version": "m8-v1",
  "as_of": "2026-10-29"
 }

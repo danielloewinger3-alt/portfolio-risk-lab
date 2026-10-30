@@ -42,6 +42,9 @@ OLLAMA_NUM_CTX = 8192
 TRANSIENT_STATUS = frozenset({408, 409, 425, 429, 500, 502, 503, 504, 529})
 MAX_RETRY_AFTER = 30.0
 """Longest ``Retry-After`` wait honored on a 429 (free tiers rate-limit per minute)."""
+REASONING_HEADROOM = 1024
+"""Extra completion tokens for hosted reasoning models (e.g. ``gpt-oss``), whose hidden
+reasoning counts against ``max_tokens``; without it the visible JSON is cut off."""
 
 
 @runtime_checkable
@@ -181,9 +184,12 @@ class OpenAICompatClient:
     Works with Groq (the default), OpenRouter, Together and similar hosts. Temperature 0
     and a fixed seed (hosts may treat the seed as best effort). ``json_schema`` asks for
     ``response_format={"type": "json_object"}``, which is widely supported, and puts the
-    schema in the system prompt; if the host rejects ``response_format``, the request is
-    retried once without it. Transient failures are retried with exponential backoff; a
-    429 waits for the host's ``Retry-After`` (capped at :data:`MAX_RETRY_AFTER`).
+    schema in the system prompt. Reasoning models spend hidden tokens from the same budget,
+    so requests ask for ``reasoning_effort`` (default ``"low"``) and add
+    ``reasoning_headroom`` tokens. If the host rejects these optional parameters (HTTP
+    400), the request is retried once without them. Transient failures are retried with
+    exponential backoff; a 429 waits for the host's ``Retry-After`` (capped at
+    :data:`MAX_RETRY_AFTER`).
     """
 
     provider = "openai"
@@ -197,6 +203,8 @@ class OpenAICompatClient:
         timeout: float = 120.0,
         seed: int = DEFAULT_SEED,
         temperature: float = DEFAULT_TEMPERATURE,
+        reasoning_effort: str | None = "low",
+        reasoning_headroom: int = REASONING_HEADROOM,
         max_retries: int = 3,
         backoff: float = 1.0,
         session: requests.Session | None = None,
@@ -206,12 +214,16 @@ class OpenAICompatClient:
         self.timeout = timeout
         self.seed = seed
         self.temperature = temperature
+        self.reasoning_effort = reasoning_effort
+        self.reasoning_headroom = reasoning_headroom
         self.max_retries = max_retries
         self.backoff = backoff
         self._headers = {"Authorization": f"Bearer {api_key}"}
         self._session = session or requests.Session()
 
-    def _payload(self, system: str, user: str, max_tokens: int, json_mode: bool) -> dict[str, Any]:
+    def _payload(
+        self, system: str, user: str, max_tokens: int, json_mode: bool, optional: bool
+    ) -> dict[str, Any]:
         payload: dict[str, Any] = {
             "model": self.model,
             "messages": [
@@ -220,10 +232,12 @@ class OpenAICompatClient:
             ],
             "temperature": self.temperature,
             "seed": self.seed,
-            "max_tokens": max_tokens,
+            "max_tokens": max_tokens + self.reasoning_headroom,
         }
-        if json_mode:
+        if optional and json_mode:
             payload["response_format"] = {"type": "json_object"}
+        if optional and self.reasoning_effort:
+            payload["reasoning_effort"] = self.reasoning_effort
         return payload
 
     def _wait(self, resp: requests.Response | None, attempt: int) -> float:
@@ -272,18 +286,22 @@ class OpenAICompatClient:
                 f"matching this JSON schema:\n{json.dumps(json_schema)}"
             )
         t0 = time.perf_counter()
-        resp = self._post(self._payload(system, user, max_tokens, json_schema is not None))
-        if resp.status_code == 400 and json_schema is not None:
-            logger.info("openai-compat: response_format rejected, retrying without it")
-            resp = self._post(self._payload(system, user, max_tokens, False))
+        json_mode = json_schema is not None
+        resp = self._post(self._payload(system, user, max_tokens, json_mode, optional=True))
+        if resp.status_code == 400 and (json_mode or self.reasoning_effort):
+            logger.info("openai-compat: optional parameters rejected, retrying without them")
+            resp = self._post(self._payload(system, user, max_tokens, json_mode, optional=False))
         if resp.status_code in (401, 403):
             raise LLMUnavailableError(f"LLM API rejected the API key (HTTP {resp.status_code})")
         if resp.status_code != 200:
             raise LLMUnavailableError(f"LLM API returned HTTP {resp.status_code}")
         try:
-            content = resp.json()["choices"][0]["message"]["content"]
+            choice = resp.json()["choices"][0]
+            content = choice["message"]["content"]
         except (ValueError, KeyError, IndexError, TypeError) as exc:
             raise LLMUnavailableError("LLM API returned an unexpected response body") from exc
+        if choice.get("finish_reason") == "length":
+            logger.warning("openai-compat %s: output hit the token limit", self.model)
         logger.info("openai-compat %s: %.1fs", self.model, time.perf_counter() - t0)
         return str(content or "")
 

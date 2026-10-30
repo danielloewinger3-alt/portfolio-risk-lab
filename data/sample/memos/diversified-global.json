@@ -1,8 +1,8 @@
 {
  "portfolio_name": "Diversified global",
  "source": "template",
- "provider": "ollama",
- "model": "qwen2.5:7b",
+ "provider": "openai",
+ "model": "openai/gpt-oss-120b",
  "draft": {
   "summary": "[[fact:portfolio_name]] holds [[fact:n_holdings]] positions ([[fact:holdings]]) and is compared with [[fact:benchmark]]. Between [[fact:start_date]] and [[fact:end_date]] it grew at [[fact:cagr]] a year with annualized volatility of [[fact:ann_vol]], and its worst peak-to-trough loss was [[fact:max_drawdown]]. [[fact:top_risk_contributor]] is [[fact:top_risk_contributor_weight]] of the weight but [[fact:top_risk_contributor_pct]] of the volatility.",
   "return_and_risk": "The Sharpe ratio is [[fact:sharpe]] and the Sortino ratio is [[fact:sortino]], using a risk-free rate of [[fact:rf_annual]]. The benchmark grew at [[fact:benchmark_cagr]] a year with volatility of [[fact:benchmark_ann_vol]] and a maximum drawdown of [[fact:benchmark_max_drawdown]]. Beta to the benchmark is [[fact:beta]]. The maximum drawdown ran from [[fact:max_drawdown_peak]] to [[fact:max_drawdown_trough]] and lasted [[fact:max_drawdown_duration]] in total. The effective number of independent risk bets is [[fact:effective_n_bets]]. Daily returns have skewness of [[fact:skew]] and excess kurtosis of [[fact:excess_kurtosis]]; positive excess kurtosis means fatter tails than a normal distribution.",
@@ -83,211 +83,138 @@
  "attempts": [
   {
    "attempt": 1,
-   "raw": "{\n  \"summary\": \"The Diversified global portfolio has shown a strong performance over the past decade, with a compound annual growth rate (CAGR) of [[fact:cagr]] and a Sharpe ratio of [[fact:sharpe]], indicating a good balance between risk and return. However, the portfolio has faced significant drawdowns, with the maximum drawdown reaching [[fact:max_drawdown]], highlighting the potential for large losses during market downturns.\",\n  \"return_and_risk\": \"Over the analysis period, the portfolio has delivered a CAGR of [[fact:cagr]], outperforming the benchmark SPY by a wide margin. The annualized volatility of the portfolio is [[fact:ann_vol]], which is lower than the benchmark's [[fact:benchmark_ann_vol]], suggesting that the portfolio has been less volatile. The portfolio's beta of [[fact:beta]] to the benchmark indicates that it has been less sensitive to market movements, but it still carries significant risk as evidenced by the maximum drawdown of [[fact:max_drawdown]].\",\n  \"tail_risk\": \"The portfolio's tail risk, as measured by the 99% Value at Risk (VaR) and Expected Shortfall (ES), is relatively high, with the 1-day 99% VaR at [[fact:var_99_1d_hist]] and the 1-day 99% ES at [[fact:es_99_1d_hist]]. These figures suggest that the portfolio could experience significant losses in extreme market conditions. The historical backtests for these risk measures have been consistent, but the simulated probability of a loss over the next year is [[fact:mc_p_loss]], indicating a non-negligible risk of a negative outcome.\",\n  \"stress_and_regimes\": \"The portfolio has faced significant stress in historical scenarios, such as the Global Financial Crisis of 2008, where it lost [[fact:worst_stress_return]] of its value. The current market regime is identified as Calm, with a 90.37% probability, but the portfolio's volatility in Stress regimes is 6.3 times higher than in Calm regimes. This suggests that the portfolio's risk profile could change significantly under adverse market conditions.\",\n  \"caveats\": \"While the risk measures provide valuable insights, they are based on historical data and simulations, which may not fully capture future market dynamics. The lack of indexed filings for some holdings means that the risk contributions from these assets are not fully disclosed.\",\n  \"disclosed_risks\": [\n    {\"text\": \"Global Financial Crisis (2008)\", \"chunk_ids\": [\"[[fact:stress_global_financial_crisis_return]]\", \"[[fact:worst_stress_max_drawdown]]\"]},\n    {\"text\": \"2018 Q4 selloff\", \"chunk_ids\": [\"[[fact:stress_s2018_q4_selloff_return]]\"]}\n  ]\n}",
+   "raw": "{\"summary\":\"The [[fact:portfolio_name]] aims to deliver growth while managing risk relative to its benchmark. Over the analysis window it generated a compound annual growth rate of [[fact:cagr]] with volatility of [[fact:ann_vol]].\",\"return_and_risk\":\"The portfolio’s Sharpe ratio of [[fact:sharpe]] indicates modest excess return per unit of risk, while the Sortino ratio of [[fact:sortino]] shows better performance on the upside relative to downside volatility. Its beta of [[fact:beta]] suggests lower sensitivity to the benchmark, and the Calmar ratio of [[fact:calmar]] reflects the trade‑off between return and the worst peak‑to‑trough loss of [[fact:max_drawdown]].\",\"tail_risk\":\"Historical 1‑day 95% VaR is [[fact:var_95_1d_hist]] and the corresponding expected shortfall is [[fact:es_95_1d_hist]], both higher than the normal‑distribution estimate of [[fact:var_95_1d_normal]]. The 99% VaR and ES are [[fact:var_99_1d_hist]] and [[fact:es_99_1d_hist]] respectively, indicating heavier tails, consistent with the excess kurtosis of [[fact:excess_kurtosis]]. The Kupiec back‑test verdicts for both confidence levels are [[fact:kupiec_verdict_95_hist]] and [[fact:kupiec_verdict_99_hist]], showing the VaR models are reliable.\",\"stress_and_regimes\":\"In the most severe historical stress scenario, the Global Financial Crisis, the portfolio lost [[fact:worst_stress_return]] while the benchmark fell [[fact:worst_stress_benchmark_return]]. Other stress events produced losses ranging from [[fact:stress_covid_crash_return]] to [[fact:stress_s2022_rate_shock_return]]. The current market regime is identified as [[fact:regime_current]] with a probability of [[fact:regime_current_prob]], and volatility in stress regimes can be as high as [[fact:stress_vol_multiple]] times the calm level. The forecast for next‑month volatility is [[fact:vol_forecast_current]] using the GARCH‑t model, which outperformed LightGBM.\",\"disclosed_risks\":[{\"text\":\"The portfolio experienced a maximum drawdown of [[fact:max_drawdown]] over a period of [[fact:max_drawdown_duration]], highlighting the potential for significant losses during market downturns.\",\"chunk_ids\":[]},{\"text\":\"The top holding, SPY, contributes [[fact:top_risk_contributor_pct]] of portfolio volatility despite a weight of [[fact:top_weight]], indicating concentration risk.\",\"chunk_ids\":[]},{\"text\":\"No holdings have indexed 10‑K filings, meaning filing coverage is [[fact:filings_weight_covered]], which could affect transparency and regulatory insight.\",\"chunk_ids\":[]}],\"caveats\":\"All figures are based on historical data and model assumptions; actual future performance may differ.\"}",
    "verification": {
     "ok": false,
     "violations": [
      {
       "kind": "stray_numeral",
-      "detail": "number '90.37%' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "is identified as Calm, with a 90.37% probability, but the portfoli",
-      "token": "90.37%"
+      "detail": "number '1' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "Historical 1‑day 95% VaR is [[fact:var_95_",
+      "token": "1"
+     },
+     {
+      "kind": "missing_citation",
+      "detail": "disclosed risk without a chunk id",
+      "field": "disclosed_risks[0]",
+      "snippet": "The portfolio experienced a maximum drawdown of [[fact:max_d",
+      "token": ""
+     },
+     {
+      "kind": "missing_citation",
+      "detail": "disclosed risk without a chunk id",
+      "field": "disclosed_risks[1]",
+      "snippet": "The top holding, SPY, contributes [[fact:top_risk_contributo",
+      "token": ""
      },
      {
       "kind": "stray_numeral",
-      "detail": "number '6.3' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "latility in Stress regimes is 6.3 times higher than in Calm reg",
-      "token": "6.3"
+      "detail": "number '10' outside a placeholder",
+      "field": "disclosed_risks[2]",
+      "snippet": "No holdings have indexed 10‑K filings, meaning filing cov",
+      "token": "10"
      },
      {
-      "kind": "unknown_citation",
-      "detail": "[[fact:stress_global_financial_crisis_return]]",
-      "field": "disclosed_risks[0]",
-      "snippet": "[[fact:stress_global_financial_crisis_return]]",
-      "token": ""
-     },
-     {
-      "kind": "unknown_citation",
-      "detail": "[[fact:worst_stress_max_drawdown]]",
-      "field": "disclosed_risks[0]",
-      "snippet": "[[fact:worst_stress_max_drawdown]]",
-      "token": ""
-     },
-     {
-      "kind": "unknown_citation",
-      "detail": "[[fact:stress_s2018_q4_selloff_return]]",
-      "field": "disclosed_risks[1]",
-      "snippet": "[[fact:stress_s2018_q4_selloff_return]]",
+      "kind": "missing_citation",
+      "detail": "disclosed risk without a chunk id",
+      "field": "disclosed_risks[2]",
+      "snippet": "No holdings have indexed 10‑K filings, meaning filing covera",
       "token": ""
      }
     ],
-    "figures_traced": 12,
+    "figures_traced": 29,
     "facts_used": [
+     "portfolio_name",
      "cagr",
-     "sharpe",
-     "max_drawdown",
      "ann_vol",
-     "benchmark_ann_vol",
+     "sharpe",
+     "sortino",
      "beta",
+     "calmar",
+     "max_drawdown",
+     "var_95_1d_hist",
+     "es_95_1d_hist",
+     "var_95_1d_normal",
      "var_99_1d_hist",
      "es_99_1d_hist",
-     "mc_p_loss",
-     "worst_stress_return"
+     "excess_kurtosis",
+     "kupiec_verdict_95_hist",
+     "kupiec_verdict_99_hist",
+     "worst_stress_return",
+     "worst_stress_benchmark_return",
+     "stress_covid_crash_return",
+     "stress_s2022_rate_shock_return",
+     "regime_current",
+     "regime_current_prob",
+     "stress_vol_multiple",
+     "vol_forecast_current",
+     "max_drawdown_duration",
+     "top_risk_contributor_pct",
+     "top_weight",
+     "filings_weight_covered"
     ],
     "citations": [],
     "unsupported_numbers": 2,
-    "word_count": 327
+    "word_count": 291
    }
   },
   {
    "attempt": 2,
-   "raw": "{\n  \"summary\": \"The Diversified global portfolio has delivered a compound annual growth rate (CAGR) of 9.33% over the past decade, outperforming the benchmark SPY by a significant margin. However, it also experienced a maximum drawdown of -23.16%, indicating a substantial potential for loss during market downturns.\",\n  \"return_and_risk\": \"The portfolio's Sharpe ratio of 0.57 suggests a moderate risk-adjusted return, while the Sortino ratio of 1.15 indicates better performance in downside risk. The beta of 0.60 shows the portfolio's sensitivity to market movements, but with lower volatility compared to the benchmark.\",\n  \"tail_risk\": \"The portfolio's 1-day 95% Value at Risk (VaR) is 1.05%, and the 1-day 99% VaR is 1.89%, indicating the potential for significant losses in extreme market conditions. The 1-day 99% Expected Shortfall (ES) is 3.08%, suggesting the average loss beyond the VaR is substantial.\",\n  \"stress_and_regimes\": \"The portfolio's performance in historical stress scenarios, such as the Global Financial Crisis and the 2022 rate shock, shows a maximum drawdown of -31.46%, highlighting the potential for severe losses during market downturns. The current market regime is identified as Calm, with a 90.37% probability, but the portfolio's volatility is forecasted to be 6.3 times higher in Stress regimes.\",\n  \"caveats\": \"These estimates are based on historical data and simulations, which may not fully capture future market conditions.\",\n  \"disclosed_risks\": [\n    {\"text\": \"The portfolio experienced a maximum drawdown of -23.16% during the Global Financial Crisis (2008-2009) [[fact:max_drawdown]], [[fact:max_drawdown_peak]], [[fact:max_drawdown_trough]], [[fact:max_drawdown_duration]].\", \"chunk_ids\": [\"Global Financial Crisis\", \"2008\", \"2009\"]},\n    {\"text\": \"In the 2022 rate shock, the portfolio returned -22.54%, indicating significant sensitivity to interest rate changes [[fact:stress_s2022_rate_shock_return]].\", \"chunk_ids\": [\"2022 rate shock\"]}\n  ]\n}",
+   "raw": "{\"summary\":\"The [[fact:portfolio_name]] portfolio aims for steady growth with a moderate risk profile. Over the analysis window it delivered a compound annual growth rate of [[fact:cagr]] while the benchmark SPY returned [[fact:benchmark_cagr]].\",\"return_and_risk\":\"Annualized volatility stands at [[fact:ann_vol]], giving a Sharpe ratio of [[fact:sharpe]] and a Sortino ratio of [[fact:sortino]]. The portfolio’s beta of [[fact:beta]] indicates lower sensitivity to market moves than the benchmark. Its maximum drawdown was [[fact:max_drawdown]] occurring between [[fact:max_drawdown_peak]] and [[fact:max_drawdown_trough]], lasting [[fact:max_drawdown_duration]].\",\"tail_risk\":\"One‑day 95% historical VaR is [[fact:var_95_1d_hist]] with an expected shortfall of [[fact:es_95_1d_hist]]. The 99% historical VaR is [[fact:var_99_1d_hist]] and the corresponding expected shortfall is [[fact:es_99_1d_hist]]. Backtests show the VaR models are consistent with observed exceptions. Monte Carlo simulation suggests a [[fact:mc_p_loss]] chance of a loss over the next year and an [[fact:mc_p_dd_20]] chance of a drawdown worse than twenty percent of value.\",\"stress_and_regimes\":\"In the worst historical stress scenario, the Global Financial Crisis, the portfolio fell [[fact:worst_stress_return]] while the benchmark dropped [[fact:worst_stress_benchmark_return]]. Other stress events produced losses ranging from [[fact:stress_covid_crash_return]] to [[fact:stress_s2022_rate_shock_return]]. The current market regime is identified as [[fact:regime_current]] with a probability of [[fact:regime_current_prob]], and volatility in stress regimes can be about [[fact:stress_vol_multiple]] higher than in calm periods. The forecast for next month’s volatility is [[fact:vol_forecast_current]].\",\"disclosed_risks\":[],\"caveats\":\"All figures are based on historical data and model assumptions; actual future performance may differ. The lack of indexed 10‑K filings for the holdings means filing coverage is [[fact:filings_weight_covered]].\"}",
    "verification": {
     "ok": false,
     "violations": [
      {
       "kind": "stray_numeral",
-      "detail": "number '9.33%' outside a placeholder",
-      "field": "summary",
-      "snippet": "annual growth rate (CAGR) of 9.33% over the past decade, outperf",
-      "token": "9.33%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '23.16%' outside a placeholder",
-      "field": "summary",
-      "snippet": "ienced a maximum drawdown of -23.16%, indicating a substantial pot",
-      "token": "23.16%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '0.57' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "e portfolio's Sharpe ratio of 0.57 suggests a moderate risk-adju",
-      "token": "0.57"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '1.15' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "n, while the Sortino ratio of 1.15 indicates better performance",
-      "token": "1.15"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '0.60' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "in downside risk. The beta of 0.60 shows the portfolio's sensiti",
-      "token": "0.60"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '1.05%' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "ay 95% Value at Risk (VaR) is 1.05%, and the 1-day 99% VaR is 1.8",
-      "token": "1.05%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '1.89%' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "05%, and the 1-day 99% VaR is 1.89%, indicating the potential for",
-      "token": "1.89%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '3.08%' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "9% Expected Shortfall (ES) is 3.08%, suggesting the average loss",
-      "token": "3.08%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '31.46%' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "shows a maximum drawdown of -31.46%, highlighting the potential f",
-      "token": "31.46%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '90.37%' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "is identified as Calm, with a 90.37% probability, but the portfoli",
-      "token": "90.37%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '6.3' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "olatility is forecasted to be 6.3 times higher in Stress regime",
-      "token": "6.3"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '23.16%' outside a placeholder",
-      "field": "disclosed_risks[0]",
-      "snippet": "ienced a maximum drawdown of -23.16% during the Global Financial C",
-      "token": "23.16%"
-     },
-     {
-      "kind": "unknown_citation",
-      "detail": "Global Financial Crisis",
-      "field": "disclosed_risks[0]",
-      "snippet": "Global Financial Crisis",
-      "token": ""
-     },
-     {
-      "kind": "unknown_citation",
-      "detail": "2008",
-      "field": "disclosed_risks[0]",
-      "snippet": "2008",
-      "token": ""
-     },
-     {
-      "kind": "unknown_citation",
-      "detail": "2009",
-      "field": "disclosed_risks[0]",
-      "snippet": "2009",
-      "token": ""
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '22.54%' outside a placeholder",
-      "field": "disclosed_risks[1]",
-      "snippet": "hock, the portfolio returned -22.54%, indicating significant sensi",
-      "token": "22.54%"
-     },
-     {
-      "kind": "unknown_citation",
-      "detail": "2022 rate shock",
-      "field": "disclosed_risks[1]",
-      "snippet": "2022 rate shock",
-      "token": ""
+      "detail": "number '10' outside a placeholder",
+      "field": "caveats",
+      "snippet": "y differ. The lack of indexed 10‑K filings for the holdings me",
+      "token": "10"
      }
     ],
-    "figures_traced": 5,
+    "figures_traced": 26,
     "facts_used": [
+     "portfolio_name",
+     "cagr",
+     "benchmark_cagr",
+     "ann_vol",
+     "sharpe",
+     "sortino",
+     "beta",
      "max_drawdown",
      "max_drawdown_peak",
      "max_drawdown_trough",
      "max_drawdown_duration",
-     "stress_s2022_rate_shock_return"
+     "var_95_1d_hist",
+     "es_95_1d_hist",
+     "var_99_1d_hist",
+     "es_99_1d_hist",
+     "mc_p_loss",
+     "mc_p_dd_20",
+     "worst_stress_return",
+     "worst_stress_benchmark_return",
+     "stress_covid_crash_return",
+     "stress_s2022_rate_shock_return",
+     "regime_current",
+     "regime_current_prob",
+     "stress_vol_multiple",
+     "vol_forecast_current",
+     "filings_weight_covered"
     ],
     "citations": [],
-    "unsupported_numbers": 13,
-    "word_count": 241
+    "unsupported_numbers": 1,
+    "word_count": 229
    }
   }
  ],
  "first_pass_ok": false,
  "retried": true,
  "fell_back": true,
- "fallback_reason": "2 drafts failed verification (17 violations in the last)",
+ "fallback_reason": "2 drafts failed verification (1 violations in the last)",
  "chunk_ids": [],
  "report_hash": "5a793d15923ca120e438f868b441ed82955d0f6e711f0cd8862807ffc281b4d1",
- "cache_key": "720477f6cf3312868695fbf6670b2409f27f6aab6afa567e9daab4ec9d26b163",
+ "cache_key": "a4fa928ffeeeb0c5fee18a6a7843427e8e169afed5c609dd499b44547d10b298",
  "prompt_version": "m8-v1",
  "as_of": "2026-10-29"
 }

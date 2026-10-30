@@ -145,8 +145,11 @@ def test_memo_generate_without_llm_matches_committed() -> None:
     # Same inputs as scripts/generate_memos.py, so the committed memo is returned.
     assert not any("committed memo" in i.value for i in at.info)
     assert any(s.value.startswith("Verified: 0 unsupported numbers") for s in at.success)
-    # Only the committed memo carries the rejected-draft label when no LLM is configured.
-    assert any("LLM draft rejected" in m.value for m in at.markdown)
+    # The source label is the committed memo's (an LLM-written memo, or a template that
+    # records the rejected drafts), never a fresh template built without an LLM.
+    committed = memo_mod.pregenerated_memo("Tech heavy")
+    assert committed is not None
+    assert any(committed.source_label in m.value for m in at.markdown)
 
 
 def test_memo_custom_portfolio_needs_generate() -> None:
