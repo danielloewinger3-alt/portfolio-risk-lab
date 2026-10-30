@@ -3,7 +3,7 @@
 **How can this portfolio fail?** A Streamlit app that stress-tests a stock and ETF portfolio with classical risk analytics, machine learning that is measured against simple baselines, and LLM features that are not allowed to type a single number.
 
 [![CI](https://github.com/danielloewinger3-alt/portfolio-risk-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/danielloewinger3-alt/portfolio-risk-lab/actions/workflows/ci.yml)
-&nbsp;**Live demo:** _LIVE URL PLACEHOLDER: add the Streamlit Community Cloud link after deploying (see [`docs/PROGRESS.md`](docs/PROGRESS.md#morning-handoff-finalized-at-m9))_
+&nbsp;**Live demo:** [portfolio-risk-lab-dl.streamlit.app](https://portfolio-risk-lab-dl.streamlit.app) (Streamlit Community Cloud; the first visit after a quiet spell takes about 30 seconds to wake the app)
 
 ![Overview page for the Classic 60/40 sample portfolio](docs/screenshots/1_overview.png)
 
