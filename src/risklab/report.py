@@ -546,3 +546,7 @@ def _add_ml(
         add_ml_facts(rep, vol=vol)
     except InsufficientDataError as exc:
         logger.info("build_report: volatility bake-off skipped (%s)", exc)
+    except (ImportError, OSError) as exc:
+        # LightGBM's native library needs OpenMP (libomp on macOS, libgomp on Linux); a
+        # host without it still gets every other fact rather than no memo at all.
+        logger.warning("build_report: volatility bake-off skipped, LightGBM unavailable (%s)", exc)

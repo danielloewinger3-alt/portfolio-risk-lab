@@ -90,13 +90,10 @@ if without:
     )
 if not scope:
     st.info(
-        "None of the selected companies are in the filings index. "
-        + (
-            "This portfolio holds no indexed companies, so pick some above (for example "
-            "the holdings of the Tech heavy sample) to search their 10-K filings."
-            if not holdings_with_filings
-            else "Pick at least one company above."
-        ),
+        "This portfolio holds no companies with an indexed 10-K, so pick some above (for "
+        "example the holdings of the Tech heavy sample) to search their filings."
+        if not holdings_with_filings
+        else "Pick at least one company above to search its filings.",
         icon=":material/info:",
     )
 

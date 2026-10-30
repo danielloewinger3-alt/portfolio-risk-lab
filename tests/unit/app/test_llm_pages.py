@@ -87,7 +87,7 @@ def test_qa_etf_portfolio_asks_for_companies() -> None:
     at = _app(QA, _sample("Classic 60/40")).run()
     _ok(at, "Filings Q&A")
     assert at.multiselect[0].value == []
-    assert any("holds no indexed companies" in i.value for i in at.info)
+    assert any("no companies with an indexed 10-K" in i.value for i in at.info)
     assert any("No 10-K for SPY" in c.value for c in at.caption)
 
 

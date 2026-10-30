@@ -160,7 +160,12 @@ def test_methodology() -> None:
     _common(at, "Methodology and validation")
     assert any(s.value == "Assumptions" for s in at.subheader)
     assert any(s.value == "Known limitations" for s in at.subheader)
-    assert len(at.table) == 2  # committed backtest and bake-off summaries
+    # docs/VALIDATION.md: summary bullets visible, each detailed section in an expander.
+    assert any("**VaR backtests**" in m.value for m in at.markdown)
+    labels = [e.label for e in at.expander]
+    assert any(label.startswith("1. VaR backtests") for label in labels)
+    assert any(label.startswith("7. Reproducibility") for label in labels)
+    assert not any("<details>" in m.value for m in at.markdown)
     calmar = next(m.value for m in at.markdown if "Calmar" in m.value)
     assert "CAGR / \\|max drawdown\\|" in calmar  # pipes escaped inside the table cell
 

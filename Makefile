@@ -16,7 +16,8 @@ typecheck:
 	uv run mypy src
 
 test:
-	uv run pytest -m "not network" --cov=src/risklab --cov-report=term-missing
+	uv run pytest -m "not network" --cov=src/risklab --cov-report=term-missing --cov-report=json:coverage.json
+	uv run python scripts/dev/check_coverage.py coverage.json
 
 check: lint typecheck test
 
@@ -36,5 +37,8 @@ index:
 validate:
 	uv run python scripts/make_validation_report.py
 
+# requirements.txt for pip users; app/requirements.txt (identical) sits next to the entry
+# point so Streamlit Community Cloud uses it instead of the root uv.lock.
 export-reqs:
 	uv export --no-dev --no-hashes --no-emit-project -o requirements.txt
+	cp requirements.txt app/requirements.txt

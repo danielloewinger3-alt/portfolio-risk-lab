@@ -8,7 +8,7 @@ import streamlit as st
 import _bootstrap  # noqa: F401
 from components import data as cached
 from components.kpi import Tile, kpi_row
-from components.layout import disclaimer_footer, how_calculated
+from components.layout import disclaimer_footer, friendly_error, how_calculated
 from components.llm import calls_text, llm_status, provider_line, session_llm
 from components.page import start_page
 from components.state import cov_method
@@ -81,8 +81,8 @@ if generate:
             report = cached.risk_report(p, offline, cov)
             chunks = cached.memo_passages(tuple(p.tickers))
             memo = generate_memo(report, chunks, llm, cache=default_memo_cache())
-    except (RiskLabError, ValueError) as exc:
-        st.error(f"Could not build the risk report: {exc}.", icon=":material/error:")
+    except (RiskLabError, ValueError, ImportError, OSError) as exc:
+        friendly_error(exc, what="the risk report")
     else:
         st.session_state[MEMO_KEY] = (memo_id, memo)
         st.rerun()  # redraw so the sidebar call counter includes this memo

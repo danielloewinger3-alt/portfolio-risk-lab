@@ -6,7 +6,7 @@
 # The clean alternative is `brew install libomp` with an arm64 Homebrew.
 set -euo pipefail
 [[ "$(uname -s)" == "Darwin" ]] || exit 0
-PY=".venv/bin/python"
+PY="${1:-.venv/bin/python}"  # optional argument: another venv's python
 [[ -x "$PY" ]] || { echo "no .venv yet; run uv sync first" >&2; exit 1; }
 if "$PY" -c "import lightgbm" 2>/dev/null; then exit 0; fi
 SITE=$("$PY" -c "import sysconfig; print(sysconfig.get_paths()['purelib'])")

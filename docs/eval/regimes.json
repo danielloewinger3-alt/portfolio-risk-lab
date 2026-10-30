@@ -1,0 +1,368 @@
+{
+  "description": "3-state Gaussian HMM on benchmark daily returns (percent), states sorted by variance. Viterbi labels and per-regime statistics are in-sample and descriptive; the current regime uses filtered probabilities (no future data).",
+  "generated_utc": "2026-10-30T14:48:57+00:00",
+  "git_commit": "e8f92ce",
+  "data": {
+    "snapshot_date": "2026-10-29",
+    "window_years": 10
+  },
+  "settings": {
+    "n_states": 3,
+    "n_init": 10,
+    "seed": 42
+  },
+  "versions": {
+    "hmmlearn": "0.3.3",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0"
+  },
+  "portfolios": [
+    {
+      "portfolio": "Classic 60/40",
+      "benchmark": "SPY",
+      "window": {
+        "start": "2016-11-01",
+        "end": "2026-10-29",
+        "n_obs": 2514
+      },
+      "converged": true,
+      "benchmark_states": {
+        "Calm": {
+          "ann_vol": 0.0824,
+          "mean_daily": 0.001321,
+          "expected_duration_days": 33.7
+        },
+        "Transition": {
+          "ann_vol": 0.1907,
+          "mean_daily": 0.0002,
+          "expected_duration_days": 20.9
+        },
+        "Stress": {
+          "ann_vol": 0.6012,
+          "mean_daily": -0.004521,
+          "expected_duration_days": 9.0
+        }
+      },
+      "transition_matrix": {
+        "Calm": {
+          "Calm": 0.9703,
+          "Transition": 0.0297,
+          "Stress": 0.0
+        },
+        "Transition": {
+          "Calm": 0.0387,
+          "Transition": 0.9521,
+          "Stress": 0.0092
+        },
+        "Stress": {
+          "Calm": 0.0,
+          "Transition": 0.1107,
+          "Stress": 0.8893
+        }
+      },
+      "portfolio_by_regime": {
+        "Calm": {
+          "share_of_time": 0.5525,
+          "ann_vol": 0.0572,
+          "var_95": 0.0052
+        },
+        "Transition": {
+          "share_of_time": 0.4165,
+          "ann_vol": 0.1206,
+          "var_95": 0.0126
+        },
+        "Stress": {
+          "share_of_time": 0.031,
+          "ann_vol": 0.3687,
+          "var_95": 0.0405
+        }
+      },
+      "stress_vol_multiple": 6.44,
+      "current_regime": "Calm",
+      "current_probs": {
+        "Calm": 0.9037,
+        "Transition": 0.096,
+        "Stress": 0.0004
+      },
+      "as_of": "2026-10-29",
+      "runtime_seconds": 2.0
+    },
+    {
+      "portfolio": "Tech heavy",
+      "benchmark": "SPY",
+      "window": {
+        "start": "2016-11-01",
+        "end": "2026-10-29",
+        "n_obs": 2514
+      },
+      "converged": true,
+      "benchmark_states": {
+        "Calm": {
+          "ann_vol": 0.0824,
+          "mean_daily": 0.001321,
+          "expected_duration_days": 33.7
+        },
+        "Transition": {
+          "ann_vol": 0.1907,
+          "mean_daily": 0.0002,
+          "expected_duration_days": 20.9
+        },
+        "Stress": {
+          "ann_vol": 0.6012,
+          "mean_daily": -0.004521,
+          "expected_duration_days": 9.0
+        }
+      },
+      "transition_matrix": {
+        "Calm": {
+          "Calm": 0.9703,
+          "Transition": 0.0297,
+          "Stress": 0.0
+        },
+        "Transition": {
+          "Calm": 0.0387,
+          "Transition": 0.9521,
+          "Stress": 0.0092
+        },
+        "Stress": {
+          "Calm": 0.0,
+          "Transition": 0.1107,
+          "Stress": 0.8893
+        }
+      },
+      "portfolio_by_regime": {
+        "Calm": {
+          "share_of_time": 0.5525,
+          "ann_vol": 0.1717,
+          "var_95": 0.0153
+        },
+        "Transition": {
+          "share_of_time": 0.4165,
+          "ann_vol": 0.3214,
+          "var_95": 0.0343
+        },
+        "Stress": {
+          "share_of_time": 0.031,
+          "ann_vol": 0.7734,
+          "var_95": 0.0673
+        }
+      },
+      "stress_vol_multiple": 4.5,
+      "current_regime": "Calm",
+      "current_probs": {
+        "Calm": 0.9037,
+        "Transition": 0.096,
+        "Stress": 0.0004
+      },
+      "as_of": "2026-10-29",
+      "runtime_seconds": 1.5
+    },
+    {
+      "portfolio": "Diversified global",
+      "benchmark": "SPY",
+      "window": {
+        "start": "2016-11-01",
+        "end": "2026-10-29",
+        "n_obs": 2514
+      },
+      "converged": true,
+      "benchmark_states": {
+        "Calm": {
+          "ann_vol": 0.0824,
+          "mean_daily": 0.001321,
+          "expected_duration_days": 33.7
+        },
+        "Transition": {
+          "ann_vol": 0.1907,
+          "mean_daily": 0.0002,
+          "expected_duration_days": 20.9
+        },
+        "Stress": {
+          "ann_vol": 0.6012,
+          "mean_daily": -0.004521,
+          "expected_duration_days": 9.0
+        }
+      },
+      "transition_matrix": {
+        "Calm": {
+          "Calm": 0.9703,
+          "Transition": 0.0297,
+          "Stress": 0.0
+        },
+        "Transition": {
+          "Calm": 0.0387,
+          "Transition": 0.9521,
+          "Stress": 0.0092
+        },
+        "Stress": {
+          "Calm": 0.0,
+          "Transition": 0.1107,
+          "Stress": 0.8893
+        }
+      },
+      "portfolio_by_regime": {
+        "Calm": {
+          "share_of_time": 0.5525,
+          "ann_vol": 0.0649,
+          "var_95": 0.0061
+        },
+        "Transition": {
+          "share_of_time": 0.4165,
+          "ann_vol": 0.1221,
+          "var_95": 0.013
+        },
+        "Stress": {
+          "share_of_time": 0.031,
+          "ann_vol": 0.4078,
+          "var_95": 0.0483
+        }
+      },
+      "stress_vol_multiple": 6.28,
+      "current_regime": "Calm",
+      "current_probs": {
+        "Calm": 0.9037,
+        "Transition": 0.096,
+        "Stress": 0.0004
+      },
+      "as_of": "2026-10-29",
+      "runtime_seconds": 1.5
+    },
+    {
+      "portfolio": "Defensive dividend",
+      "benchmark": "SPY",
+      "window": {
+        "start": "2016-11-01",
+        "end": "2026-10-29",
+        "n_obs": 2514
+      },
+      "converged": true,
+      "benchmark_states": {
+        "Calm": {
+          "ann_vol": 0.0824,
+          "mean_daily": 0.001321,
+          "expected_duration_days": 33.7
+        },
+        "Transition": {
+          "ann_vol": 0.1907,
+          "mean_daily": 0.0002,
+          "expected_duration_days": 20.9
+        },
+        "Stress": {
+          "ann_vol": 0.6012,
+          "mean_daily": -0.004521,
+          "expected_duration_days": 9.0
+        }
+      },
+      "transition_matrix": {
+        "Calm": {
+          "Calm": 0.9703,
+          "Transition": 0.0297,
+          "Stress": 0.0
+        },
+        "Transition": {
+          "Calm": 0.0387,
+          "Transition": 0.9521,
+          "Stress": 0.0092
+        },
+        "Stress": {
+          "Calm": 0.0,
+          "Transition": 0.1107,
+          "Stress": 0.8893
+        }
+      },
+      "portfolio_by_regime": {
+        "Calm": {
+          "share_of_time": 0.5525,
+          "ann_vol": 0.0922,
+          "var_95": 0.0088
+        },
+        "Transition": {
+          "share_of_time": 0.4165,
+          "ann_vol": 0.1447,
+          "var_95": 0.0146
+        },
+        "Stress": {
+          "share_of_time": 0.031,
+          "ann_vol": 0.5097,
+          "var_95": 0.0528
+        }
+      },
+      "stress_vol_multiple": 5.53,
+      "current_regime": "Calm",
+      "current_probs": {
+        "Calm": 0.9037,
+        "Transition": 0.096,
+        "Stress": 0.0004
+      },
+      "as_of": "2026-10-29",
+      "runtime_seconds": 1.5
+    }
+  ],
+  "label_stability": [
+    {
+      "benchmark": "SPY",
+      "reference_seed": 42,
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "per_seed": [
+        {
+          "seed": 1,
+          "viterbi_agreement": 1.0,
+          "filtered_agreement": 1.0,
+          "ann_vol_by_state": {
+            "Calm": 0.0824,
+            "Transition": 0.1907,
+            "Stress": 0.6012
+          }
+        },
+        {
+          "seed": 2,
+          "viterbi_agreement": 1.0,
+          "filtered_agreement": 1.0,
+          "ann_vol_by_state": {
+            "Calm": 0.0824,
+            "Transition": 0.1907,
+            "Stress": 0.6012
+          }
+        },
+        {
+          "seed": 3,
+          "viterbi_agreement": 1.0,
+          "filtered_agreement": 0.9992,
+          "ann_vol_by_state": {
+            "Calm": 0.0825,
+            "Transition": 0.1909,
+            "Stress": 0.6023
+          }
+        },
+        {
+          "seed": 4,
+          "viterbi_agreement": 1.0,
+          "filtered_agreement": 1.0,
+          "ann_vol_by_state": {
+            "Calm": 0.0824,
+            "Transition": 0.1907,
+            "Stress": 0.6012
+          }
+        },
+        {
+          "seed": 5,
+          "viterbi_agreement": 1.0,
+          "filtered_agreement": 1.0,
+          "ann_vol_by_state": {
+            "Calm": 0.0824,
+            "Transition": 0.1908,
+            "Stress": 0.6012
+          }
+        }
+      ],
+      "min_viterbi_agreement": 1.0,
+      "min_filtered_agreement": 0.9992
+    }
+  ]
+}

@@ -122,3 +122,20 @@ def test_report_hash_and_value() -> None:
 )
 def test_scenario_slug(name: str, slug: str) -> None:
     assert scenario_slug(name) == slug and FACT_NAME_RE.match(slug)
+
+
+def test_build_report_without_lightgbm_runtime(
+    synthetic_bundle: pd.DataFrame, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A host whose LightGBM cannot load (no OpenMP runtime) still gets a verified memo."""
+    import risklab.ml.volatility as vol_mod
+
+    def broken(*args: object, **kwargs: object) -> None:
+        raise OSError("dlopen lib_lightgbm: Library not loaded: libomp.dylib (simulated)")
+
+    monkeypatch.setattr(vol_mod, "walk_forward_vol", broken)
+    rep = build_report(_portfolio(), offline=True, n_paths=500)
+    assert FactName.REGIME_CURRENT in rep  # regimes do not need LightGBM
+    assert "vol_forecast_current" not in rep
+    memo = generate_memo(rep, [], None)
+    assert memo.verification.ok

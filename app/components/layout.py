@@ -81,6 +81,13 @@ def friendly_error(exc: Exception, *, what: str) -> None:
             "bundled snapshot on Home, or use tickers from the demo universe.",
             icon=":material/cloud_off:",
         )
+    elif isinstance(exc, ImportError | OSError):
+        st.error(
+            f"Could not compute {what}: a numerical library failed to load on this server "
+            f"({type(exc).__name__}). The other pages still work; see the README's run "
+            "instructions for the OpenMP runtime LightGBM needs.",
+            icon=":material/error:",
+        )
     elif isinstance(exc, RiskLabError | ValueError):
         st.error(f"Could not compute {what}: {exc}.", icon=":material/error:")
     else:  # pragma: no cover - defensive; unexpected errors are logged by Streamlit
@@ -95,6 +102,6 @@ def guarded[T](what: str, fn: Callable[[], T]) -> T | None:
     """Run ``fn``; on a known error show a friendly message and return ``None``."""
     try:
         return fn()
-    except (RiskLabError, ValueError) as exc:
+    except (RiskLabError, ValueError, ImportError, OSError) as exc:
         friendly_error(exc, what=what)
         return None

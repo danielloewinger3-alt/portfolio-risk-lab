@@ -18,3 +18,4 @@ data/filings/
 
 # Parallel-agent git worktrees
 .worktrees/
+coverage.json

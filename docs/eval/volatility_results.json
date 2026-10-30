@@ -1,7 +1,7 @@
 {
   "meta": {
     "script": "scripts/run_walkforward.py",
-    "git_commit": "c87d031",
+    "git_commit": "e8f92ce",
     "data_snapshot_date": "2026-10-29",
     "data_sha256": "19312fea67af813e88f99c7908a63fbe1dd0197443e55123743878e39ccc2e1f",
     "window_years": 10,
@@ -272,7 +272,7 @@
         "max_purge_violation_days": 0,
         "clean": true
       },
-      "runtime_seconds": 2.4
+      "runtime_seconds": 2.3
     },
     {
       "portfolio": "Diversified global",
@@ -398,7 +398,7 @@
         "max_purge_violation_days": 0,
         "clean": true
       },
-      "runtime_seconds": 2.4
+      "runtime_seconds": 2.3
     },
     {
       "portfolio": "Defensive dividend",
@@ -523,7 +523,7 @@
         "max_purge_violation_days": 0,
         "clean": true
       },
-      "runtime_seconds": 2.5
+      "runtime_seconds": 2.2
     }
   ],
   "caveats": [
