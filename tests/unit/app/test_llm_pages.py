@@ -209,3 +209,21 @@ def test_memo_with_fake_llm_clean_draft_is_llm_written() -> None:
         "Written by fake-clean (fake), verified on the first pass" in m.value for m in at.markdown
     )
     assert any("1 of 20 LLM calls used" in c.value for c in at.sidebar.caption)
+
+
+def test_qa_risk_theme_map_tab() -> None:
+    at = _app(QA, _sample("Tech heavy")).run()
+    _ok(at, "Filings Q&A")
+    assert [t.label for t in at.tabs] == ["Ask the filings", "Risk theme map"]
+    assert len(at.get("plotly_chart")) == 1  # theme heatmap
+    top = at.table[0].value
+    assert len(top) == 9 and set(top["Company"]) <= set(TECH)
+    at.selectbox[0].select("Artificial intelligence").run()
+    assert not at.exception
+    assert any("top-3 mean" in c.value for c in at.caption)
+
+
+def test_qa_theme_map_needs_two_companies() -> None:
+    at = _app(QA, _sample("Classic 60/40")).run()
+    assert not at.get("plotly_chart")
+    assert any("at least two companies" in i.value for i in at.info)

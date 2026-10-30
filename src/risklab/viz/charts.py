@@ -648,3 +648,45 @@ def forecast_vs_realized_chart(
         y_title="Annualized volatility, next 21 days (%)",
         height=HERO_HEIGHT,
     )
+
+
+def theme_heatmap(scores: pd.DataFrame, relative: pd.DataFrame) -> go.Figure:
+    """Companies x risk themes: colour = similarity relative to the theme's average over
+    the companies shown (diverging at 0), cell text = the raw similarity score."""
+    tickers = [str(t) for t in scores.index]
+    themes = [str(c) for c in scores.columns]
+    z = relative.to_numpy(dtype="float64")
+    raw = scores.to_numpy(dtype="float64")
+    finite = np.abs(z[np.isfinite(z)])
+    span = float(finite.max()) if finite.size and finite.max() > 0 else 1.0
+    text = [[f"{v:.2f}" if np.isfinite(v) else "" for v in row] for row in raw]
+    fig = go.Figure(
+        go.Heatmap(
+            z=z,
+            x=themes,
+            y=tickers,
+            text=text,
+            customdata=raw,
+            texttemplate="%{text}" if len(tickers) * len(themes) <= 150 else None,
+            colorscale=DIVERGING_CORR,
+            zmid=0.0,
+            zmin=-span,
+            zmax=span,
+            colorbar={"title": {"text": "vs theme<br>average"}},
+            hovertemplate=(
+                "%{y} · %{x}<br>Similarity: %{customdata:.3f}<br>"
+                "vs average of companies shown: %{z:+.3f}<extra></extra>"
+            ),
+            xgap=2,
+            ygap=2,
+        )
+    )
+    fig.update_yaxes(autorange="reversed", showgrid=False, type="category")
+    fig.update_xaxes(showgrid=False, type="category", tickangle=-30)
+    return apply_theme(
+        fig,
+        title="How strongly each 10-K discusses each risk theme",
+        x_title="Risk theme",
+        y_title="Company",
+        height=max(CHART_HEIGHT, min(420, 36 * len(tickers) + 200)),
+    )

@@ -154,3 +154,15 @@ def test_template_registration_is_idempotent() -> None:
     assert theme.register_template() == theme.TEMPLATE_NAME
     assert theme.TEMPLATE_NAME in pio.templates
     assert theme.REGIME_COLORS == {"Calm": "#10B981", "Transition": "#F59E0B", "Stress": "#EF4444"}
+
+
+def test_theme_heatmap_relative_colour_raw_text() -> None:
+    scores = pd.DataFrame({"Cyber": [0.70, 0.60], "Rates": [0.65, np.nan]}, index=["AAA", "BBB"])
+    relative = scores - scores.mean(axis=0)
+    fig = charts.theme_heatmap(scores, relative)
+    hm = fig.data[0]
+    assert list(hm.y) == ["AAA", "BBB"] and list(hm.x) == ["Cyber", "Rates"]
+    assert hm.zmid == 0.0 and hm.zmax == pytest.approx(0.05)
+    assert hm.text[0][0] == "0.70" and hm.text[1][1] == ""
+    assert fig.layout.title.text.startswith("How strongly")
+    assert fig.layout.xaxis.title.text and fig.layout.yaxis.title.text

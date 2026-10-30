@@ -25,7 +25,7 @@
 | ![Monte Carlo](docs/screenshots/4_monte_carlo.png) | ![Stress tests](docs/screenshots/5_stress_tests.png) |
 | **Stress tests**: GFC, 2018 Q4, COVID crash, 2022 rate shock on today's weights, with coverage rules for late-listing holdings | **Regimes and volatility**: 3-state HMM with filtered (not smoothed) current-regime probabilities; walk-forward bake-off of rolling, EWMA, GARCH-t and LightGBM forecasts |
 | ![Regimes](docs/screenshots/6_regimes.png) | ![Volatility bake-off](docs/screenshots/6_volatility.png) |
-| **Filings Q&A**: hybrid retrieval (dense + BM25, reciprocal rank fusion) over the holdings' latest 10-K risk factors; cited answers, or the source passages in retrieval-only mode | **Risk memo**: verified memo with a "figures traced to code" badge and Markdown download |
+| **Filings Q&A**: hybrid retrieval (dense + BM25, reciprocal rank fusion) over the holdings' latest 10-K risk factors; cited answers, or the source passages in retrieval-only mode. A **risk theme map** tab ([screenshot](docs/screenshots/7_theme_map.png)) scores how much each 10-K discusses China, rates, supply chain, cyber, AI and other themes | **Risk memo**: verified memo with a "figures traced to code" badge and Markdown download |
 | ![Filings Q&A](docs/screenshots/7_filings_qa.png) | ![Risk memo](docs/screenshots/8_risk_memo.png) |
 
 The **Methodology and validation** page renders every formula, assumption and limitation, plus [`docs/VALIDATION.md`](docs/VALIDATION.md).

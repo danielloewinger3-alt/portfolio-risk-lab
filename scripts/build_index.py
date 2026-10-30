@@ -23,7 +23,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from risklab.config import get_settings
 from risklab.data.universe import EQUITIES
-from risklab.rag.index import build_index, chroma_path
+from risklab.rag.index import (
+    FastEmbedEmbedder,
+    add_query_embeddings,
+    build_index,
+    cached_questions,
+    chroma_path,
+)
 
 MIN_INDEXED = 15
 """Acceptance threshold from docs/09 (M7): at least 15 of the 22 equities."""
@@ -37,8 +43,17 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--tickers", nargs="*", default=list(EQUITIES))
     parser.add_argument("--force", action="store_true", help="delete and rebuild the index")
+    parser.add_argument(
+        "--queries-only",
+        action="store_true",
+        help="only add missing sample-question and risk-theme embeddings to the query cache",
+    )
     args = parser.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
+    if args.queries_only:
+        added = add_query_embeddings(FastEmbedEmbedder(), cached_questions())
+        print(f"added {added} query embeddings to the cache")
+        return 0
     logging.getLogger("httpx").setLevel(logging.WARNING)
 
     manifest = build_index(args.tickers, force=args.force)

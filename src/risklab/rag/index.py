@@ -264,6 +264,43 @@ def write_query_cache(
     _write_json(query_cache_path(settings), json.dumps(payload, indent=0))
 
 
+def cached_questions() -> tuple[str, ...]:
+    """Queries whose embeddings belong in the committed cache: the UI's sample questions
+    and the risk-theme queries (``risklab.rag.themes.THEMES``)."""
+    from risklab.rag.themes import THEMES
+
+    return (*SAMPLE_QUESTIONS, *THEMES.values())
+
+
+def add_query_embeddings(
+    embedder: Embedder,
+    queries: Sequence[str],
+    *,
+    settings: Settings | None = None,
+) -> int:
+    """Add embeddings for ``queries`` to the query cache, keeping every existing entry.
+
+    Returns the number of queries added. A cache written for another embedding model is
+    replaced (its vectors would be meaningless for this one).
+    """
+    path = query_cache_path(settings)
+    payload: dict[str, Any] = {}
+    if path.is_file():
+        try:
+            payload = json.loads(path.read_text())
+        except ValueError:
+            payload = {}
+    if payload.get("embedding_model") != embedder.model_name:
+        payload = {"embedding_model": embedder.model_name, "query_prefix": QUERY_PREFIX}
+    known: dict[str, list[float]] = payload.setdefault("queries", {})
+    new = [q for q in dict.fromkeys(queries) if q not in known]
+    for q in new:
+        known[q] = [round(float(x), 7) for x in embedder.embed_query(q)]
+    if new:
+        _write_json(path, json.dumps(payload, indent=0))
+    return len(new)
+
+
 def build_index(
     tickers: Sequence[str],
     *,
@@ -349,7 +386,7 @@ def build_index(
     manifest.total_chunks = sum(f.n_chunks for f in manifest.filings.values())
     manifest.build_date = datetime.now().isoformat(timespec="seconds")
     _write_json(manifest_path(s), manifest.model_dump_json(indent=2))
-    write_query_cache(emb, settings=s)
+    write_query_cache(emb, cached_questions(), settings=s)
     open_index.cache_clear()
     return manifest
 
@@ -404,6 +441,7 @@ class RagIndex:
             raise DataUnavailableError(f"no filings index at {path}: {exc}") from exc
         self._embedder = embedder
         self._query_cache = dict(query_cache or {})
+        self._emb_cache: dict[str, tuple[list[str], np.ndarray]] = {}
         got = self._col.get(include=["documents", "metadatas"])
         chunks = [
             Chunk.from_metadata(doc or "", meta or {})
@@ -426,6 +464,23 @@ class RagIndex:
         for t in sorted({t.upper() for t in tickers}):
             out.extend(self._by_ticker.get(t, []))
         return out
+
+    def embeddings_for(self, ticker: str) -> tuple[list[str], np.ndarray]:
+        """Chunk ids (sorted) and their stored passage embeddings ``(n, d)`` for ``ticker``.
+
+        Read from the vector store once per ticker and kept in memory (a few hundred KB).
+        Unknown tickers give ``([], empty (0, 0) array)``.
+        """
+        t = ticker.upper()
+        if t not in self._by_ticker:
+            return [], np.zeros((0, 0), dtype=np.float32)
+        if t not in self._emb_cache:
+            got = self._col.get(where={"ticker": t}, include=["embeddings"])
+            pairs = sorted(zip(got["ids"], got["embeddings"], strict=True), key=lambda p: p[0])
+            ids = [str(i) for i, _ in pairs]
+            mat = np.asarray([e for _, e in pairs], dtype=np.float32)
+            self._emb_cache[t] = (ids, mat)
+        return self._emb_cache[t]
 
     def embed_query(self, query: str) -> np.ndarray:
         """Cached sample-question embedding, else a live embedding."""

@@ -34,8 +34,9 @@ from risklab.portfolio import (
     load_portfolio_data,
 )
 from risklab.rag.chunking import Chunk
-from risklab.rag.index import indexed_tickers
+from risklab.rag.index import indexed_tickers, open_index
 from risklab.rag.retrieve import RetrievalResult, retrieve_detailed
+from risklab.rag.themes import ThemeMap, theme_scores
 from risklab.report import RiskReport, build_report
 from risklab.risk.attribution import (
     ConcentrationSummary,
@@ -264,3 +265,17 @@ def memo_passages(tickers: tuple[str, ...]) -> list[Chunk]:
 def committed_memo(name: str) -> Memo | None:
     """The committed memo for a sample portfolio (``data/sample/memos``), if present."""
     return pregenerated_memo(name)
+
+
+@st.cache_data(show_spinner=False, max_entries=32)
+def theme_map(tickers: tuple[str, ...]) -> ThemeMap:
+    """Risk-theme similarity map for ``tickers`` (cached theme queries; works offline)."""
+    return theme_scores(list(tickers), open_index())
+
+
+def chunk_by_id(chunk_id: str) -> Chunk | None:
+    """One indexed passage by id (``None`` if unknown or no index)."""
+    try:
+        return open_index().chunks.get(chunk_id)
+    except RiskLabError:
+        return None

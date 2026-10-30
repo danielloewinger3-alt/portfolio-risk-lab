@@ -4,11 +4,12 @@ from __future__ import annotations
 
 from typing import Any
 
+import pandas as pd
 import streamlit as st
 
 import _bootstrap  # noqa: F401
 from components import data as cached
-from components.layout import disclaimer_footer, how_calculated
+from components.layout import chart, disclaimer_footer, guarded, how_calculated
 from components.llm import calls_text, llm_status, provider_line, session_llm
 from components.page import start_page
 from risklab.errors import RiskLabError
@@ -16,6 +17,8 @@ from risklab.formatting import fmt_number
 from risklab.rag.answer import Answer, answer
 from risklab.rag.chunking import Chunk
 from risklab.rag.index import SAMPLE_QUESTIONS
+from risklab.rag.themes import THEMES, strongest_by_theme
+from risklab.viz import charts
 
 HISTORY_KEY = "qa_history"
 PENDING_KEY = "qa_pending"
@@ -97,125 +100,173 @@ if not scope:
         icon=":material/info:",
     )
 
-st.pills(
-    "Sample questions",
-    list(SAMPLE_QUESTIONS),
-    key=SAMPLE_WIDGET,
-    on_change=_queue_sample,
-    disabled=not scope,
-)
-with st.container():  # inline under the chips, not pinned to the page bottom
-    typed = st.chat_input(
-        "Ask about the risks these companies disclose",
-        key=INPUT_WIDGET,
+qa_tab, theme_tab = st.tabs(["Ask the filings", "Risk theme map"])
+
+with qa_tab:
+    st.pills(
+        "Sample questions",
+        list(SAMPLE_QUESTIONS),
+        key=SAMPLE_WIDGET,
+        on_change=_queue_sample,
         disabled=not scope,
     )
-query = typed or st.session_state.pop(PENDING_KEY, None)
+    with st.container():  # inline under the chips, not pinned to the page bottom
+        typed = st.chat_input(
+            "Ask about the risks these companies disclose",
+            key=INPUT_WIDGET,
+            disabled=not scope,
+        )
+    query = typed or st.session_state.pop(PENDING_KEY, None)
 
+    # ---------------------------------------------------------------- answer
+    def _ask(question: str, tickers: list[str]) -> dict[str, Any]:
+        result = cached.retrieval(question, tuple(tickers))
+        ans = answer(question, result.chunks, llm)
+        return {"answer": ans, "retrieval_mode": result.mode, "warnings": list(result.warnings)}
 
-# ---------------------------------------------------------------- answer
-def _ask(question: str, tickers: list[str]) -> dict[str, Any]:
-    result = cached.retrieval(question, tuple(tickers))
-    ans = answer(question, result.chunks, llm)
-    return {"answer": ans, "retrieval_mode": result.mode, "warnings": list(result.warnings)}
-
-
-if query and scope:
-    spinner = (
-        "Retrieving passages..."
-        if llm is None
-        else f"Retrieving passages and asking {getattr(llm, 'model', 'the model')}..."
-    )
-    try:
-        with st.spinner(spinner):
-            entry = _ask(str(query), scope)
-    except (RiskLabError, ValueError) as exc:
-        st.error(f"Could not search the filings: {exc}.", icon=":material/error:")
-    else:
-        history = [entry, *st.session_state.get(HISTORY_KEY, [])][:MAX_HISTORY]
-        st.session_state[HISTORY_KEY] = history
-        st.rerun()  # redraw so the sidebar call counter includes this answer
-
-
-def _citation_link(c: Chunk) -> str:
-    return f"[{c.citation}]({c.source_url})"
-
-
-def _render_sources(ans: Answer, *, expand_first: int) -> None:
-    for i, c in enumerate(ans.chunks, start=1):
-        heading = c.heading.strip()
-        if len(heading) > 90:
-            heading = heading[:90].rsplit(" ", 1)[0].rstrip(",;:") + " …"
-        label = f"[{i}] {c.citation}" + (f": {heading}" if heading else "")
-        with st.expander(_md(label), expanded=i <= expand_first, icon=":material/description:"):
-            st.caption(
-                f"{_md(c.company)} ({c.ticker}) · {c.form} filed {c.filing_date} · fiscal "
-                f"year {c.fiscal_year} · Item {c.item} · passage {c.chunk_id} · fusion "
-                f"score {c.score:.4f} · [open filing on SEC EDGAR]({c.source_url})"
-            )
-            st.markdown(_md(c.text))
-
-
-def _render(entry: dict[str, Any]) -> None:
-    ans: Answer = entry["answer"]
-    with st.chat_message("user"):
-        st.markdown(_md(ans.query))
-    with st.chat_message("assistant"):
-        if ans.mode == "llm":
-            if ans.answer:
-                st.markdown(_md(ans.answer))
-            for claim in ans.claims:
-                cites = ", ".join(
-                    _citation_link(c) for i in claim.chunk_ids if (c := ans.chunk(i)) is not None
-                )
-                st.markdown(f"- {_md(claim.text)} ({cites})")
-            if ans.insufficient_evidence:
-                st.caption("The model judged the retrieved passages insufficient to answer fully.")
-            first = "verified on the first pass" if ans.first_pass_ok else "verified after a retry"
-            st.caption(
-                f"Answer by {ans.model}; {first}; {fmt_number(len(ans.claims))} claims kept, "
-                f"{fmt_number(len(ans.dropped_claims))} dropped; every citation resolves to a "
-                "retrieved passage."
-            )
-            if ans.dropped_claims:
-                with st.expander(
-                    f"{len(ans.dropped_claims)} claims dropped by the verifier",
-                    icon=":material/block:",
-                ):
-                    for dc in ans.dropped_claims:
-                        st.markdown(f"- {_md(dc.text)}  \n  _Reason: {_md('; '.join(dc.reasons))}_")
+    if query and scope:
+        spinner = (
+            "Retrieving passages..."
+            if llm is None
+            else f"Retrieving passages and asking {getattr(llm, 'model', 'the model')}..."
+        )
+        try:
+            with st.spinner(spinner):
+                entry = _ask(str(query), scope)
+        except (RiskLabError, ValueError) as exc:
+            st.error(f"Could not search the filings: {exc}.", icon=":material/error:")
         else:
-            if not ans.chunks:
-                st.warning(
-                    "No passages from the selected companies' filings matched this question.",
-                    icon=":material/search_off:",
+            history = [entry, *st.session_state.get(HISTORY_KEY, [])][:MAX_HISTORY]
+            st.session_state[HISTORY_KEY] = history
+            st.rerun()  # redraw so the sidebar call counter includes this answer
+
+    def _citation_link(c: Chunk) -> str:
+        return f"[{c.citation}]({c.source_url})"
+
+    def _render_sources(ans: Answer, *, expand_first: int) -> None:
+        for i, c in enumerate(ans.chunks, start=1):
+            heading = c.heading.strip()
+            if len(heading) > 90:
+                heading = heading[:90].rsplit(" ", 1)[0].rstrip(",;:") + " …"
+            label = f"[{i}] {c.citation}" + (f": {heading}" if heading else "")
+            with st.expander(_md(label), expanded=i <= expand_first, icon=":material/description:"):
+                st.caption(
+                    f"{_md(c.company)} ({c.ticker}) · {c.form} filed {c.filing_date} · fiscal "
+                    f"year {c.fiscal_year} · Item {c.item} · passage {c.chunk_id} · fusion "
+                    f"score {c.score:.4f} · [open filing on SEC EDGAR]({c.source_url})"
                 )
+                st.markdown(_md(c.text))
+
+    def _render(entry: dict[str, Any]) -> None:
+        ans: Answer = entry["answer"]
+        with st.chat_message("user"):
+            st.markdown(_md(ans.query))
+        with st.chat_message("assistant"):
+            if ans.mode == "llm":
+                if ans.answer:
+                    st.markdown(_md(ans.answer))
+                for claim in ans.claims:
+                    cites = ", ".join(
+                        _citation_link(c)
+                        for i in claim.chunk_ids
+                        if (c := ans.chunk(i)) is not None
+                    )
+                    st.markdown(f"- {_md(claim.text)} ({cites})")
+                if ans.insufficient_evidence:
+                    st.caption(
+                        "The model judged the retrieved passages insufficient to answer fully."
+                    )
+                first = (
+                    "verified on the first pass" if ans.first_pass_ok else "verified after a retry"
+                )
+                st.caption(
+                    f"Answer by {ans.model}; {first}; {fmt_number(len(ans.claims))} claims kept, "
+                    f"{fmt_number(len(ans.dropped_claims))} dropped; every citation resolves to a "
+                    "retrieved passage."
+                )
+                if ans.dropped_claims:
+                    with st.expander(
+                        f"{len(ans.dropped_claims)} claims dropped by the verifier",
+                        icon=":material/block:",
+                    ):
+                        for dc in ans.dropped_claims:
+                            st.markdown(
+                                f"- {_md(dc.text)}  \n  _Reason: {_md('; '.join(dc.reasons))}_"
+                            )
             else:
-                reason = ans.fallback_reason or "retrieval-only mode"
-                st.markdown(
-                    f"**{fmt_number(len(ans.chunks))} most relevant passages.** No generated "
-                    f"answer: {_md(reason)}. Read the sources below."
+                if not ans.chunks:
+                    st.warning(
+                        "No passages from the selected companies' filings matched this question.",
+                        icon=":material/search_off:",
+                    )
+                else:
+                    reason = ans.fallback_reason or "retrieval-only mode"
+                    st.markdown(
+                        f"**{fmt_number(len(ans.chunks))} most relevant passages.** No generated "
+                        f"answer: {_md(reason)}. Read the sources below."
+                    )
+            if entry["retrieval_mode"] != "hybrid":
+                st.caption(
+                    f"Retrieval used {entry['retrieval_mode']} ranking only: "
+                    + _md("; ".join(entry["warnings"]) or "dense ranking unavailable")
+                    + "."
                 )
-        if entry["retrieval_mode"] != "hybrid":
-            st.caption(
-                f"Retrieval used {entry['retrieval_mode']} ranking only: "
-                + _md("; ".join(entry["warnings"]) or "dense ranking unavailable")
-                + "."
+            if ans.chunks:
+                st.markdown("**Sources**")
+                _render_sources(ans, expand_first=2 if ans.mode == "retrieval_only" else 0)
+
+    history: list[dict[str, Any]] = st.session_state.get(HISTORY_KEY, [])
+    if history:
+        for entry in history:
+            _render(entry)
+        if st.button("Clear conversation", icon=":material/delete:", key="w_qa_clear"):
+            st.session_state[HISTORY_KEY] = []
+            st.rerun()
+    elif scope:
+        st.caption("Pick a sample question or type your own. The newest answer appears on top.")
+
+with theme_tab:
+    st.markdown(
+        "Which risk themes does each company's 10-K discuss most? Each theme is a short "
+        "description embedded like a question; a cell is the average similarity of the "
+        "company's 3 closest passages. **This measures how much the filing talks about a "
+        "theme, not economic exposure**, and companies that write more about a risk score "
+        "higher. Colour compares each company with the others shown, per theme."
+    )
+    if len(scope) < 2:
+        st.info("Select at least two companies above to compare them.", icon=":material/info:")
+    else:
+        tm = guarded("the risk theme map", lambda: cached.theme_map(tuple(scope)))
+        if tm is not None:
+            chart(charts.theme_heatmap(tm.scores, tm.relative))
+            top = strongest_by_theme(tm)
+            st.markdown("**Strongest discussion of each theme**")
+            st.table(
+                pd.DataFrame(
+                    {
+                        "Theme": top["theme"],
+                        "Company": top["ticker"],
+                        "Similarity": [f"{v:.3f}" for v in top["score"]],
+                        "Closest passage": top["chunk_id"],
+                    }
+                ),
+                hide_index=True,
             )
-        if ans.chunks:
-            st.markdown("**Sources**")
-            _render_sources(ans, expand_first=2 if ans.mode == "retrieval_only" else 0)
+            c1, c2 = st.columns(2)
+            theme_pick = c1.selectbox("Read the passage behind a cell: theme", list(THEMES))
+            company_pick = c2.selectbox("Company", list(tm.scores.index))
+            cid = str(tm.top_chunk.loc[company_pick, theme_pick])
+            chunk = cached.chunk_by_id(cid)
+            if chunk is not None:
+                st.caption(
+                    f"{_md(chunk.company)} ({chunk.ticker}) · {chunk.citation} · passage "
+                    f"{chunk.chunk_id} · similarity "
+                    f"{float(tm.scores.loc[company_pick, theme_pick]):.3f} (top-3 mean) · "
+                    f"[open filing on SEC EDGAR]({chunk.source_url})"
+                )
+                with st.container(border=True):
+                    st.markdown(_md(chunk.text))
 
-
-history: list[dict[str, Any]] = st.session_state.get(HISTORY_KEY, [])
-if history:
-    for entry in history:
-        _render(entry)
-    if st.button("Clear conversation", icon=":material/delete:", key="w_qa_clear"):
-        st.session_state[HISTORY_KEY] = []
-        st.rerun()
-elif scope:
-    st.caption("Pick a sample question or type your own. The newest answer appears on top.")
 
 how_calculated(
     "Each 10-K's Item 1A (risk factors), and Items 7 and 7A where they could be extracted, "
