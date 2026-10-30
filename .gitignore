@@ -1,0 +1,19 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.streamlit/secrets.toml
+
+# Local caches (the sample snapshot and prebuilt index are committed)
+data/cache/
+data/filings/
+
+.DS_Store
+
+# Parallel-agent git worktrees
+.worktrees/
