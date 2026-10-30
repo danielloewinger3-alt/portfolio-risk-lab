@@ -18,7 +18,11 @@ from risklab.llm.client import ProviderStatus, resolve_provider, session_client
 CLIENT_KEY = "llm_client"
 STATUS_KEY = "llm_status"
 
-PROVIDER_NAMES = {"anthropic": "the Anthropic API", "ollama": "a local Ollama server"}
+PROVIDER_NAMES = {
+    "anthropic": "the Anthropic API",
+    "openai": "a hosted OpenAI-compatible API",
+    "ollama": "a local Ollama server",
+}
 
 
 def llm_status() -> ProviderStatus:

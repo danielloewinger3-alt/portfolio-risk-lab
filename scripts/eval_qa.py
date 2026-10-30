@@ -155,7 +155,9 @@ def write_markdown(path: Path, result: dict[str, Any]) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("--provider", choices=["auto", "anthropic", "ollama", "none"], default=None)
+    ap.add_argument(
+        "--provider", choices=["auto", "anthropic", "openai", "ollama", "none"], default=None
+    )
     ap.add_argument("--out-dir", type=Path, default=ROOT / "docs" / "eval")
     args = ap.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")

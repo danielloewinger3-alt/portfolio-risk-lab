@@ -4,11 +4,15 @@ Providers (``RISKLAB_LLM_PROVIDER``, see ``docs/DEVIATIONS.md`` for the D12/O6 c
 
 - ``anthropic``: the ``anthropic`` SDK (``docs/06-rag-llm-spec.md`` §G), model from
   ``RISKLAB_LLM_MODEL``.
+- ``openai``: any OpenAI-compatible ``/chat/completions`` endpoint over HTTP
+  (``requests``), Groq's free tier by default; key, base URL and model from
+  ``RISKLAB_OPENAI_API_KEY``, ``RISKLAB_OPENAI_BASE_URL`` and ``RISKLAB_OPENAI_MODEL``.
+  This is how the hosted demo gets an LLM without a paid key.
 - ``ollama``: a local Ollama server's ``/api/chat`` endpoint over HTTP (``requests``),
   model from ``RISKLAB_OLLAMA_MODEL``, temperature 0 and seed 42.
 - ``none``: no LLM. Callers use the deterministic template memo and retrieval-only Q&A.
-- ``auto`` (default): ``anthropic`` if an API key is set, else ``ollama`` if the server
-  answers ``/api/version``, else ``none``.
+- ``auto`` (default): ``anthropic`` if its API key is set, else ``openai`` if its key is
+  set, else ``ollama`` if the server answers ``/api/version``, else ``none``.
 
 No client ever logs prompts, responses, or secrets; logs carry only provider, model,
 status codes, and timings.
@@ -29,13 +33,15 @@ from risklab.errors import LLMUnavailableError
 
 logger = logging.getLogger(__name__)
 
-ResolvedProvider = Literal["anthropic", "ollama", "none"]
+ResolvedProvider = Literal["anthropic", "openai", "ollama", "none"]
 
 DEFAULT_SEED = 42
 DEFAULT_TEMPERATURE = 0.0
 OLLAMA_NUM_CTX = 8192
 """Context window requested from Ollama; prompts here are about 3-5k tokens."""
 TRANSIENT_STATUS = frozenset({408, 409, 425, 429, 500, 502, 503, 504, 529})
+MAX_RETRY_AFTER = 30.0
+"""Longest ``Retry-After`` wait honored on a 429 (free tiers rate-limit per minute)."""
 
 
 @runtime_checkable
@@ -166,6 +172,120 @@ def ollama_reachable(base_url: str, timeout: float = 1.5) -> bool:
     except requests.RequestException:
         return False
     return resp.status_code == 200
+
+
+# --------------------------------------------------------------------------- openai-compatible
+class OpenAICompatClient:
+    """Chat completion against an OpenAI-compatible API (``POST {base_url}/chat/completions``).
+
+    Works with Groq (the default), OpenRouter, Together and similar hosts. Temperature 0
+    and a fixed seed (hosts may treat the seed as best effort). ``json_schema`` asks for
+    ``response_format={"type": "json_object"}``, which is widely supported, and puts the
+    schema in the system prompt; if the host rejects ``response_format``, the request is
+    retried once without it. Transient failures are retried with exponential backoff; a
+    429 waits for the host's ``Retry-After`` (capped at :data:`MAX_RETRY_AFTER`).
+    """
+
+    provider = "openai"
+
+    def __init__(
+        self,
+        api_key: str,
+        model: str,
+        base_url: str,
+        *,
+        timeout: float = 120.0,
+        seed: int = DEFAULT_SEED,
+        temperature: float = DEFAULT_TEMPERATURE,
+        max_retries: int = 3,
+        backoff: float = 1.0,
+        session: requests.Session | None = None,
+    ) -> None:
+        self.model = model
+        self.base_url = base_url.rstrip("/")
+        self.timeout = timeout
+        self.seed = seed
+        self.temperature = temperature
+        self.max_retries = max_retries
+        self.backoff = backoff
+        self._headers = {"Authorization": f"Bearer {api_key}"}
+        self._session = session or requests.Session()
+
+    def _payload(self, system: str, user: str, max_tokens: int, json_mode: bool) -> dict[str, Any]:
+        payload: dict[str, Any] = {
+            "model": self.model,
+            "messages": [
+                {"role": "system", "content": system},
+                {"role": "user", "content": user},
+            ],
+            "temperature": self.temperature,
+            "seed": self.seed,
+            "max_tokens": max_tokens,
+        }
+        if json_mode:
+            payload["response_format"] = {"type": "json_object"}
+        return payload
+
+    def _wait(self, resp: requests.Response | None, attempt: int) -> float:
+        if resp is not None and resp.status_code == 429:
+            try:
+                return min(float(resp.headers.get("retry-after", "")), MAX_RETRY_AFTER)
+            except ValueError:
+                pass
+        return float(self.backoff * 2**attempt)
+
+    def _post(self, payload: dict[str, Any]) -> requests.Response:
+        url = f"{self.base_url}/chat/completions"
+        last: Exception | None = None
+        for attempt in range(self.max_retries + 1):
+            resp: requests.Response | None = None
+            try:
+                resp = self._session.post(
+                    url, json=payload, headers=self._headers, timeout=self.timeout
+                )
+            except (requests.ConnectionError, requests.Timeout) as exc:
+                last = exc
+                logger.warning("openai-compat: %s on attempt %d", type(exc).__name__, attempt + 1)
+            else:
+                if resp.status_code not in TRANSIENT_STATUS:
+                    return resp
+                last = LLMUnavailableError(f"HTTP {resp.status_code}")
+                logger.warning(
+                    "openai-compat: HTTP %d on attempt %d", resp.status_code, attempt + 1
+                )
+            if attempt < self.max_retries:
+                time.sleep(self._wait(resp, attempt))
+        raise LLMUnavailableError(f"LLM API at {self.base_url} is unavailable: {last}") from last
+
+    def complete(
+        self,
+        system: str,
+        user: str,
+        *,
+        max_tokens: int,
+        json_schema: dict[str, Any] | None = None,
+    ) -> str:
+        """Return the first choice's message text. Raises :class:`LLMUnavailableError`."""
+        if json_schema is not None:
+            system = (
+                f"{system}\n\nRespond with a single JSON object (no prose, no code fences) "
+                f"matching this JSON schema:\n{json.dumps(json_schema)}"
+            )
+        t0 = time.perf_counter()
+        resp = self._post(self._payload(system, user, max_tokens, json_schema is not None))
+        if resp.status_code == 400 and json_schema is not None:
+            logger.info("openai-compat: response_format rejected, retrying without it")
+            resp = self._post(self._payload(system, user, max_tokens, False))
+        if resp.status_code in (401, 403):
+            raise LLMUnavailableError(f"LLM API rejected the API key (HTTP {resp.status_code})")
+        if resp.status_code != 200:
+            raise LLMUnavailableError(f"LLM API returned HTTP {resp.status_code}")
+        try:
+            content = resp.json()["choices"][0]["message"]["content"]
+        except (ValueError, KeyError, IndexError, TypeError) as exc:
+            raise LLMUnavailableError("LLM API returned an unexpected response body") from exc
+        logger.info("openai-compat %s: %.1fs", self.model, time.perf_counter() - t0)
+        return str(content or "")
 
 
 # --------------------------------------------------------------------------- anthropic
@@ -299,9 +419,10 @@ class ProviderStatus:
 def resolve_provider(settings: Settings | None = None, *, probe: bool = True) -> ProviderStatus:
     """Resolve ``RISKLAB_LLM_PROVIDER`` to a concrete provider.
 
-    An explicit ``anthropic`` without a key, or an explicit ``ollama`` whose server does
-    not answer (when ``probe``), resolves to ``none`` with the reason. ``auto`` tries
-    Anthropic (key set), then Ollama (server reachable), then ``none``.
+    An explicit ``anthropic`` or ``openai`` without its key, or an explicit ``ollama``
+    whose server does not answer (when ``probe``), resolves to ``none`` with the reason.
+    ``auto`` tries Anthropic (key set), then OpenAI-compatible (key set), then Ollama
+    (server reachable), then ``none``.
     """
     s = settings or get_settings()
     choice = s.llm_provider
@@ -311,6 +432,14 @@ def resolve_provider(settings: Settings | None = None, *, probe: bool = True) ->
         return ProviderStatus("anthropic", s.llm_model, "ANTHROPIC_API_KEY is set")
     if choice == "anthropic":
         return ProviderStatus("none", None, "RISKLAB_LLM_PROVIDER=anthropic but no API key")
+    if choice in ("openai", "auto") and s.openai_api_key is not None:
+        return ProviderStatus(
+            "openai", s.openai_model, f"RISKLAB_OPENAI_API_KEY is set ({s.openai_base_url})"
+        )
+    if choice == "openai":
+        return ProviderStatus(
+            "none", None, "RISKLAB_LLM_PROVIDER=openai but no RISKLAB_OPENAI_API_KEY"
+        )
     # ollama, or auto without a key
     if not probe or ollama_reachable(s.ollama_url):
         return ProviderStatus("ollama", s.ollama_model, f"Ollama server at {s.ollama_url}")
@@ -324,6 +453,14 @@ def make_client(status: ProviderStatus, settings: Settings | None = None) -> LLM
         assert s.anthropic_api_key is not None
         return AnthropicClient(
             s.anthropic_api_key.get_secret_value(), s.llm_model, timeout=s.llm_timeout
+        )
+    if status.provider == "openai":
+        assert s.openai_api_key is not None
+        return OpenAICompatClient(
+            s.openai_api_key.get_secret_value(),
+            s.openai_model,
+            s.openai_base_url,
+            timeout=s.llm_timeout,
         )
     if status.provider == "ollama":
         return OllamaClient(s.ollama_model, s.ollama_url, timeout=s.llm_timeout)

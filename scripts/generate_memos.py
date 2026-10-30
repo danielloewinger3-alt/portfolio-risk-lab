@@ -252,7 +252,9 @@ def _sampling_client(seed: int, temperature: float) -> LLMClient:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("--provider", choices=["auto", "anthropic", "ollama", "none"], default=None)
+    ap.add_argument(
+        "--provider", choices=["auto", "anthropic", "openai", "ollama", "none"], default=None
+    )
     ap.add_argument("--sample-runs", type=int, default=0)
     ap.add_argument("--sample-temperature", type=float, default=0.7)
     ap.add_argument("--stats-only", action="store_true", help="recompute from committed memos")

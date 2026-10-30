@@ -30,10 +30,13 @@ PROJECT_ROOT: Path = Path(__file__).resolve().parents[2]
 DEFAULT_LLM_MODEL = "claude-sonnet-5-5"
 DEFAULT_OLLAMA_MODEL = "qwen2.5:3b"
 DEFAULT_OLLAMA_URL = "http://127.0.0.1:11434"
+DEFAULT_OPENAI_BASE_URL = "https://api.groq.com/openai/v1"
+DEFAULT_OPENAI_MODEL = "llama-3.3-70b-versatile"
 
-LLMProvider = Literal["auto", "anthropic", "ollama", "none"]
+LLMProvider = Literal["auto", "anthropic", "openai", "ollama", "none"]
 """``auto`` (default) resolves at runtime in :func:`risklab.llm.client.resolve_provider`:
-``anthropic`` if an API key is set, else ``ollama`` if the server answers, else ``none``."""
+``anthropic`` if its API key is set, else ``openai`` (any OpenAI-compatible endpoint, Groq
+by default) if its key is set, else ``ollama`` if the server answers, else ``none``."""
 
 # Env/secret keys that Settings understands; used to pick values out of st.secrets.
 _SECRET_KEYS: tuple[str, ...] = (
@@ -44,6 +47,9 @@ _SECRET_KEYS: tuple[str, ...] = (
     "RISKLAB_LLM_TIMEOUT",
     "RISKLAB_OLLAMA_MODEL",
     "RISKLAB_OLLAMA_URL",
+    "RISKLAB_OPENAI_API_KEY",
+    "RISKLAB_OPENAI_BASE_URL",
+    "RISKLAB_OPENAI_MODEL",
     "SEC_USER_AGENT",
     "RISKLAB_DATA_DIR",
     "RISKLAB_OFFLINE",
@@ -84,6 +90,18 @@ class Settings(BaseSettings):
         default=DEFAULT_OLLAMA_URL,
         validation_alias=AliasChoices("RISKLAB_OLLAMA_URL", "ollama_url"),
     )
+    openai_api_key: SecretStr | None = Field(
+        default=None,
+        validation_alias=AliasChoices("RISKLAB_OPENAI_API_KEY", "openai_api_key"),
+    )
+    openai_base_url: str = Field(
+        default=DEFAULT_OPENAI_BASE_URL,
+        validation_alias=AliasChoices("RISKLAB_OPENAI_BASE_URL", "openai_base_url"),
+    )
+    openai_model: str = Field(
+        default=DEFAULT_OPENAI_MODEL,
+        validation_alias=AliasChoices("RISKLAB_OPENAI_MODEL", "openai_model"),
+    )
     sec_user_agent: str | None = Field(
         default=None, validation_alias=AliasChoices("SEC_USER_AGENT", "sec_user_agent")
     )
@@ -95,7 +113,7 @@ class Settings(BaseSettings):
         default=False, validation_alias=AliasChoices("RISKLAB_OFFLINE", "offline")
     )
 
-    @field_validator("anthropic_api_key", "sec_user_agent", mode="before")
+    @field_validator("anthropic_api_key", "openai_api_key", "sec_user_agent", mode="before")
     @classmethod
     def _blank_to_none(cls, v: Any) -> Any:
         """Treat empty strings (as in a copied ``.env.example``) as unset."""
@@ -123,6 +141,15 @@ class Settings(BaseSettings):
     def _blank_ollama_to_default(cls, v: Any, info: Any) -> Any:
         if isinstance(v, str) and not v.strip():
             return DEFAULT_OLLAMA_MODEL if info.field_name == "ollama_model" else DEFAULT_OLLAMA_URL
+        return v
+
+    @field_validator("openai_model", "openai_base_url", mode="before")
+    @classmethod
+    def _blank_openai_to_default(cls, v: Any, info: Any) -> Any:
+        if isinstance(v, str) and not v.strip():
+            if info.field_name == "openai_model":
+                return DEFAULT_OPENAI_MODEL
+            return DEFAULT_OPENAI_BASE_URL
         return v
 
     @field_validator("data_dir", mode="after")

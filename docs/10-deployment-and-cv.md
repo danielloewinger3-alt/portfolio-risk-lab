@@ -14,7 +14,7 @@ Agent preparation (M9):
 Human steps:
 1. Push the repo to GitHub (decide O3 about the price snapshot first)
 2. Streamlit Community Cloud: New app, select repo, main file `app/Home.py`, Python 3.12
-3. Add secrets: `ANTHROPIC_API_KEY`, optionally `RISKLAB_LLM_CALL_LIMIT = "20"`
+3. Add secrets: `ANTHROPIC_API_KEY`, or for a free hosted model `RISKLAB_OPENAI_API_KEY` (Groq key; see `.env.example`), optionally `RISKLAB_LLM_CALL_LIMIT = "20"`
 4. Verify each page, then copy the live URL into the README and your CV
 
 Cost protection for a public demo: per-session LLM cap, pre-generated memos for samples, no free-form LLM calls without a cached fallback, and an API key with a spend limit.

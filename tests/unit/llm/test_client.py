@@ -19,6 +19,7 @@ from risklab.llm.client import (
     LimitedLLMClient,
     LLMClient,
     OllamaClient,
+    OpenAICompatClient,
     ProviderStatus,
     get_llm_client,
     make_client,
@@ -167,6 +168,93 @@ def test_anthropic_builds_sdk_client() -> None:
     assert client.model == "m" and client.provider == "anthropic"
 
 
+# --------------------------------------------------------------------------- openai-compatible
+OAI = "https://llm.test/openai/v1"
+OAI_CHAT = f"{OAI}/chat/completions"
+
+
+def oai_body(content: str | None = '{"a": 1}') -> dict[str, Any]:
+    return {"choices": [{"index": 0, "message": {"role": "assistant", "content": content}}]}
+
+
+@responses.activate
+def test_openai_request_is_deterministic_and_json_mode() -> None:
+    responses.post(OAI_CHAT, json=oai_body("hi"))
+    client = OpenAICompatClient("gsk-secret", "llama-test", OAI + "/", backoff=0)
+    assert client.complete("SYS", "USER", max_tokens=50, json_schema={"type": "object"}) == "hi"
+    req = responses.calls[0].request
+    assert req.headers["Authorization"] == "Bearer gsk-secret"
+    body = json.loads(req.body or b"")
+    assert body["model"] == "llama-test" and body["max_tokens"] == 50
+    assert (body["temperature"], body["seed"]) == (0.0, 42)
+    assert body["response_format"] == {"type": "json_object"}
+    system, user = body["messages"]
+    assert system["role"] == "system" and system["content"].startswith("SYS")
+    assert '"type": "object"' in system["content"]
+    assert user == {"role": "user", "content": "USER"}
+    assert isinstance(client, LLMClient) and client.provider == "openai"
+
+
+@responses.activate
+def test_openai_without_schema_is_plain_text() -> None:
+    responses.post(OAI_CHAT, json=oai_body("plain"))
+    assert OpenAICompatClient("k", "m", OAI, backoff=0).complete("s", "u", max_tokens=5) == "plain"
+    body = json.loads(responses.calls[0].request.body or b"")
+    assert "response_format" not in body and body["messages"][0]["content"] == "s"
+
+
+@responses.activate
+def test_openai_drops_rejected_response_format() -> None:
+    responses.post(OAI_CHAT, status=400, json={"error": {"message": "response_format"}})
+    responses.post(OAI_CHAT, json=oai_body())
+    OpenAICompatClient("k", "m", OAI, backoff=0).complete("s", "u", max_tokens=5, json_schema={})
+    assert "response_format" not in json.loads(responses.calls[1].request.body or b"")
+
+
+@responses.activate
+def test_openai_retries_transient_and_honors_retry_after(monkeypatch: pytest.MonkeyPatch) -> None:
+    waits: list[float] = []
+    monkeypatch.setattr("risklab.llm.client.time.sleep", waits.append)
+    responses.post(OAI_CHAT, status=429, headers={"retry-after": "7"})
+    responses.post(OAI_CHAT, status=429, headers={"retry-after": "999"})
+    responses.post(OAI_CHAT, body=requests.ConnectionError("down"))
+    responses.post(OAI_CHAT, json=oai_body("ok"))
+    client = OpenAICompatClient("k", "m", OAI, max_retries=3, backoff=0.5)
+    assert client.complete("s", "u", max_tokens=5) == "ok"
+    assert waits == [7.0, 30.0, 2.0]  # Retry-After, capped Retry-After, exponential backoff
+
+
+@responses.activate
+def test_openai_gives_up_after_retries(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr("risklab.llm.client.time.sleep", lambda s: None)
+    responses.post(OAI_CHAT, status=429, headers={"retry-after": "soon"})
+    with pytest.raises(LLMUnavailableError, match="unavailable"):
+        OpenAICompatClient("k", "m", OAI, max_retries=1).complete("s", "u", max_tokens=5)
+    assert len(responses.calls) == 2
+
+
+@responses.activate
+@pytest.mark.parametrize(
+    ("status", "body", "match"),
+    [
+        (401, {"error": "invalid key"}, "rejected the API key"),
+        (404, {"error": "no model"}, "HTTP 404"),
+        (200, {"choices": []}, "unexpected"),
+    ],
+)
+def test_openai_errors(status: int, body: dict[str, Any], match: str) -> None:
+    responses.post(OAI_CHAT, status=status, json=body)
+    with pytest.raises(LLMUnavailableError, match=match) as exc:
+        OpenAICompatClient("gsk-secret", "m", OAI, backoff=0).complete("s", "u", max_tokens=5)
+    assert "gsk-secret" not in str(exc.value)
+
+
+@responses.activate
+def test_openai_null_content_is_empty_text() -> None:
+    responses.post(OAI_CHAT, json=oai_body(None))
+    assert OpenAICompatClient("k", "m", OAI, backoff=0).complete("s", "u", max_tokens=5) == ""
+
+
 # --------------------------------------------------------------------------- call cap
 def test_limited_client_counts_and_stops() -> None:
     inner = FakeLLMClient(["a"])
@@ -220,6 +308,21 @@ def test_explicit_ollama_ignores_api_key() -> None:
     assert st.provider == "ollama"
 
 
+def test_resolve_openai() -> None:
+    st = resolve_provider(settings(openai_api_key="gsk-x"), probe=False)
+    assert (st.provider, st.model) == ("openai", "llama-3.3-70b-versatile")
+    assert "gsk-x" not in st.reason
+    # Anthropic wins under auto; an explicit openai choice wins over an Anthropic key.
+    both = {"openai_api_key": "gsk-x", "anthropic_api_key": "sk-x"}
+    assert resolve_provider(settings(**both)).provider == "anthropic"
+    assert resolve_provider(settings(llm_provider="openai", **both)).provider == "openai"
+    st = resolve_provider(settings(llm_provider="openai"))
+    assert st.provider == "none" and "RISKLAB_OPENAI_API_KEY" in st.reason
+    s = settings(openai_api_key=" ", openai_model="", openai_base_url=" ")
+    assert s.openai_api_key is None and s.openai_model == "llama-3.3-70b-versatile"
+    assert s.openai_base_url == "https://api.groq.com/openai/v1"
+
+
 def test_make_client_and_get_client() -> None:
     s = settings(llm_provider="ollama", llm_timeout=7)
     client = make_client(ProviderStatus("ollama", "qwen2.5:3b", "x"), s)
@@ -227,6 +330,12 @@ def test_make_client_and_get_client() -> None:
     assert make_client(ProviderStatus("none", None, "x"), s) is None
     a = make_client(ProviderStatus("anthropic", "m", "x"), settings(anthropic_api_key="k"))
     assert isinstance(a, AnthropicClient)
+    o = make_client(
+        ProviderStatus("openai", "m", "x"),
+        settings(openai_api_key="k", openai_base_url=OAI, openai_model="m2", llm_timeout=9),
+    )
+    assert isinstance(o, OpenAICompatClient)
+    assert (o.model, o.base_url, o.timeout) == ("m2", OAI, 9)
     assert get_llm_client(settings(llm_provider="none")) is None
     assert isinstance(get_llm_client(s, probe=False), OllamaClient)
 

@@ -54,7 +54,7 @@ flowchart TB
     rag --> llm
     report --> llm
     pages --> adapters --> risk & ml & rag & llm
-    llm -. "Anthropic API, local Ollama, or none" .- provider{{LLM provider}}
+    llm -. "Anthropic API, a hosted OpenAI-compatible API (Groq), local Ollama, or none" .- provider{{LLM provider}}
 ```
 
 The memo pipeline: `build_report()` turns every analysis into named facts → the model drafts JSON with placeholders and citations → `verify_memo()` rejects stray digits, unknown placeholders and unknown citations → one retry with the violations listed → otherwise the deterministic template → code substitutes the figures.
@@ -99,6 +99,8 @@ No keys are needed. Optional LLM features:
 ```bash
 cp .env.example .env
 # Anthropic: set ANTHROPIC_API_KEY=...  (RISKLAB_LLM_PROVIDER=auto picks it up)
+# Free hosted model: set RISKLAB_OPENAI_API_KEY=... (a Groq key from console.groq.com;
+#   defaults to llama-3.3-70b-versatile; any OpenAI-compatible host via RISKLAB_OPENAI_BASE_URL)
 # Local Ollama: install from https://ollama.com, then
 ollama pull qwen2.5:3b        # or qwen2.5:7b (about 4.7 GB), set RISKLAB_OLLAMA_MODEL to match
 # RISKLAB_LLM_PROVIDER=ollama
