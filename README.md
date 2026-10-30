@@ -67,8 +67,8 @@ All numbers below are quoted from [`docs/VALIDATION.md`](docs/VALIDATION.md), wh
 - **Volatility forecasting** (purged walk-forward, QLIKE): **GARCH-t had the lowest QLIKE on 4 of 4 portfolios; LightGBM beat GARCH-t on 0 of 4.** The winner's lead over the runner-up was statistically meaningful (Newey-West) on 1 of 4, so the honest summary is "GARCH-t is at least as good, and the ML model did not earn its complexity here".
 - **Regimes** (3-state HMM on SPY): annualized volatility Calm 8.2%, Transition 19.1%, Stress 60.1%; portfolio volatility in Stress regimes is 4.5x to 6.4x its Calm level. In-sample labels were identical on 100.0% of days across 5 alternative seeds.
 - **Filings retrieval** (on a **synthetic** gold set of 26 questions written by the build agent, so a sanity check rather than a benchmark): hit@6 with one company's filings was 100.0% hybrid vs 96.2% dense; with a five-company filter, dense scored 96.2% vs 92.3% hybrid. **Dense retrieval alone was competitive with hybrid.** Citation validity: 936 of 936.
-- **LLM memos**: the local `qwen2.5:3b` model **failed verification on 4 of 4 sample memos, even after a retry**. The verifier caught 64 violations in first drafts (mostly numbers typed from the facts list), so **every committed memo is the deterministic template**, with 0 unsupported numbers. The UI says which source produced each memo.
-- **Filings Q&A** with the same model: of 9 questions, 6 verified on the first pass and 3 after a retry; 13 claims kept and 1 dropped by the verifier; citation validity 100.0%.
+- **LLM memos**: the local `qwen2.5:7b` model **failed verification on 4 of 4 sample memos, even after a retry** (the smaller `qwen2.5:3b` failed too). The verifier caught 48 violations in first drafts (38 numbers typed from the facts list, 10 citations to passages that were not retrieved), so **every committed memo is the deterministic template**, with 0 unsupported numbers. The UI says which source produced each memo.
+- **Filings Q&A** with the same model: of 9 questions, 8 verified on the first pass and 1 after a retry; 26 claims kept and 0 dropped by the verifier; citation validity 100.0%.
 - **Tests**: 523 passed, 0 failed (live-network tests deselected); coverage 97.5% overall, and every docs/07 gate met (`risk/` 99.3%, `ml/` 98.8%, `llm/verify.py` 100.0%, `rag/chunking.py` 96.4%).
 
 ## Methodology highlights and limitations
@@ -78,7 +78,7 @@ All numbers below are quoted from [`docs/VALIDATION.md`](docs/VALIDATION.md), wh
 - The regime model is fitted in-sample; regime labels on the chart are descriptive. Only the filtered current-regime probability is forward-safe.
 - Each result comes from one 10-year window that includes COVID and the 2022 rate shock. Other periods can rank models differently.
 - The retrieval gold set is synthetic, and MD&A could not be extracted for 3 filers (see [`docs/BLOCKERS.md`](docs/BLOCKERS.md)).
-- A 3B local model cannot write a verified memo here. LLM-written memos need a larger model (for example `qwen2.5:7b`) or an Anthropic API key.
+- Local 3B and 7B models cannot write a verified memo here. LLM-written memos need a stronger model, such as Claude via an Anthropic API key.
 - Prices are a static snapshot. Live mode fetches from Yahoo Finance and falls back to the bundle.
 
 ## Run locally

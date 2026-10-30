@@ -1,8 +1,8 @@
 {
- "generated_at": "2026-10-30 10:37 UTC",
- "git_commit": "c2579bc",
+ "generated_at": "2026-10-30 16:06 UTC",
+ "git_commit": "8d873d4",
  "provider": "ollama",
- "model": "qwen2.5:3b",
+ "model": "qwen2.5:7b",
  "prompt_version": "m8-v1",
  "window": {
   "start": "2016-10-29",
@@ -17,90 +17,90 @@
     "outcome": "fallback",
     "source": "template",
     "provider": "ollama",
-    "model": "qwen2.5:3b",
+    "model": "qwen2.5:7b",
     "llm_calls": 2,
     "first_pass_ok": false,
     "retried": true,
     "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (36 violations in the last)",
-    "first_pass_violations": 21,
+    "fallback_reason": "2 drafts failed verification (11 violations in the last)",
+    "first_pass_violations": 24,
     "first_pass_violation_kinds": {
      "stray_numeral": 17,
-     "unknown_citation": 4
+     "unknown_citation": 7
     },
-    "retry_violations": 36,
+    "retry_violations": 11,
     "final_figures_traced": 49,
     "final_unsupported_numbers": 0,
     "final_verified": true,
     "chunks": 0,
-    "seconds": null
+    "seconds": 86.7
    },
    {
     "portfolio": "Tech heavy",
     "outcome": "fallback",
     "source": "template",
     "provider": "ollama",
-    "model": "qwen2.5:3b",
+    "model": "qwen2.5:7b",
     "llm_calls": 2,
     "first_pass_ok": false,
     "retried": true,
     "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (34 violations in the last)",
-    "first_pass_violations": 1,
+    "fallback_reason": "2 drafts failed verification (14 violations in the last)",
+    "first_pass_violations": 3,
     "first_pass_violation_kinds": {
-     "malformed_output": 1
+     "stray_numeral": 3
     },
-    "retry_violations": 34,
+    "retry_violations": 14,
     "final_figures_traced": 49,
     "final_unsupported_numbers": 0,
     "final_verified": true,
     "chunks": 6,
-    "seconds": null
+    "seconds": 102.7
    },
    {
     "portfolio": "Diversified global",
     "outcome": "fallback",
     "source": "template",
     "provider": "ollama",
-    "model": "qwen2.5:3b",
+    "model": "qwen2.5:7b",
     "llm_calls": 2,
     "first_pass_ok": false,
     "retried": true,
     "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (25 violations in the last)",
-    "first_pass_violations": 22,
+    "fallback_reason": "2 drafts failed verification (17 violations in the last)",
+    "first_pass_violations": 5,
     "first_pass_violation_kinds": {
-     "stray_numeral": 18,
-     "unknown_citation": 4
+     "stray_numeral": 2,
+     "unknown_citation": 3
     },
-    "retry_violations": 25,
+    "retry_violations": 17,
     "final_figures_traced": 49,
     "final_unsupported_numbers": 0,
     "final_verified": true,
     "chunks": 0,
-    "seconds": null
+    "seconds": 94.5
    },
    {
     "portfolio": "Defensive dividend",
     "outcome": "fallback",
     "source": "template",
     "provider": "ollama",
-    "model": "qwen2.5:3b",
+    "model": "qwen2.5:7b",
     "llm_calls": 2,
     "first_pass_ok": false,
     "retried": true,
     "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (21 violations in the last)",
-    "first_pass_violations": 20,
+    "fallback_reason": "2 drafts failed verification (6 violations in the last)",
+    "first_pass_violations": 16,
     "first_pass_violation_kinds": {
-     "stray_numeral": 20
+     "stray_numeral": 16
     },
-    "retry_violations": 21,
+    "retry_violations": 6,
     "final_figures_traced": 49,
     "final_unsupported_numbers": 0,
     "final_verified": true,
     "chunks": 6,
-    "seconds": null
+    "seconds": 120.8
    }
   ],
   "rates": {
@@ -114,11 +114,10 @@
    "outcomes": {
     "fallback": 4
    },
-   "first_pass_violations_total": 64,
+   "first_pass_violations_total": 48,
    "first_pass_violations_by_kind": {
-    "stray_numeral": 55,
-    "unknown_citation": 8,
-    "malformed_output": 1
+    "stray_numeral": 38,
+    "unknown_citation": 10
    },
    "final_memos_verified": 4,
    "final_unsupported_numbers_total": 0
@@ -130,506 +129,5 @@
   "Most violations are the model typing a figure it saw in the FACTS list (for example '1.08' instead of [[fact:sharpe]]). Small local models follow the placeholder rule less reliably than the API model the spec assumed (D12/O6 change, DEVIATIONS.md).",
   "A malformed_output violation (for example a draft that loops until the token limit and is cut off mid-JSON) stops the scan, so that draft's violation count is 1 even though its prose may also contain stray numbers.",
   "Prompt iterations tried before these runs (all on Tech heavy, all still failing): showing values as 'never type it'; listing the matching placeholder for each stray number in the retry; not echoing the rejected draft in the retry. The verifier and allowlist were not loosened to make drafts pass."
- ],
- "sensitivity": {
-  "temperature": 0.7,
-  "runs_per_portfolio": 5,
-  "memos": [
-   {
-    "portfolio": "Classic 60/40",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (24 violations in the last)",
-    "first_pass_violations": 44,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 24,
-     "unknown_citation": 20
-    },
-    "retry_violations": 24,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 0,
-    "seconds": 62.0,
-    "seed": 1
-   },
-   {
-    "portfolio": "Classic 60/40",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (18 violations in the last)",
-    "first_pass_violations": 22,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 16,
-     "unknown_citation": 6
-    },
-    "retry_violations": 18,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 0,
-    "seconds": 59.2,
-    "seed": 2
-   },
-   {
-    "portfolio": "Classic 60/40",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (23 violations in the last)",
-    "first_pass_violations": 27,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 23,
-     "unknown_citation": 4
-    },
-    "retry_violations": 23,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 0,
-    "seconds": 63.5,
-    "seed": 3
-   },
-   {
-    "portfolio": "Classic 60/40",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (41 violations in the last)",
-    "first_pass_violations": 21,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 20,
-     "unknown_citation": 1
-    },
-    "retry_violations": 41,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 0,
-    "seconds": 57.5,
-    "seed": 4
-   },
-   {
-    "portfolio": "Classic 60/40",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (39 violations in the last)",
-    "first_pass_violations": 40,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 18,
-     "unknown_citation": 22
-    },
-    "retry_violations": 39,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 0,
-    "seconds": 69.8,
-    "seed": 5
-   },
-   {
-    "portfolio": "Tech heavy",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (1 violations in the last)",
-    "first_pass_violations": 13,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 13
-    },
-    "retry_violations": 1,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 6,
-    "seconds": 85.4,
-    "seed": 1
-   },
-   {
-    "portfolio": "Tech heavy",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (17 violations in the last)",
-    "first_pass_violations": 26,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 26
-    },
-    "retry_violations": 17,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 6,
-    "seconds": 70.4,
-    "seed": 2
-   },
-   {
-    "portfolio": "Tech heavy",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (22 violations in the last)",
-    "first_pass_violations": 20,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 20
-    },
-    "retry_violations": 22,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 6,
-    "seconds": 65.1,
-    "seed": 3
-   },
-   {
-    "portfolio": "Tech heavy",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (34 violations in the last)",
-    "first_pass_violations": 21,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 21
-    },
-    "retry_violations": 34,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 6,
-    "seconds": 97.0,
-    "seed": 4
-   },
-   {
-    "portfolio": "Tech heavy",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (3 violations in the last)",
-    "first_pass_violations": 29,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 23,
-     "unknown_citation": 6
-    },
-    "retry_violations": 3,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 6,
-    "seconds": 77.7,
-    "seed": 5
-   },
-   {
-    "portfolio": "Diversified global",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (36 violations in the last)",
-    "first_pass_violations": 22,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 17,
-     "unknown_citation": 4,
-     "missing_citation": 1
-    },
-    "retry_violations": 36,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 0,
-    "seconds": 62.9,
-    "seed": 1
-   },
-   {
-    "portfolio": "Diversified global",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (41 violations in the last)",
-    "first_pass_violations": 13,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 12,
-     "unknown_citation": 1
-    },
-    "retry_violations": 41,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 0,
-    "seconds": 70.3,
-    "seed": 2
-   },
-   {
-    "portfolio": "Diversified global",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (5 violations in the last)",
-    "first_pass_violations": 27,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 23,
-     "unknown_citation": 4
-    },
-    "retry_violations": 5,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 0,
-    "seconds": 53.7,
-    "seed": 3
-   },
-   {
-    "portfolio": "Diversified global",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (20 violations in the last)",
-    "first_pass_violations": 25,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 15,
-     "unknown_citation": 10
-    },
-    "retry_violations": 20,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 0,
-    "seconds": 46.8,
-    "seed": 4
-   },
-   {
-    "portfolio": "Diversified global",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (40 violations in the last)",
-    "first_pass_violations": 14,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 5,
-     "unknown_citation": 9
-    },
-    "retry_violations": 40,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 0,
-    "seconds": 64.7,
-    "seed": 5
-   },
-   {
-    "portfolio": "Defensive dividend",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (23 violations in the last)",
-    "first_pass_violations": 30,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 21,
-     "unknown_citation": 9
-    },
-    "retry_violations": 23,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 6,
-    "seconds": 70.8,
-    "seed": 1
-   },
-   {
-    "portfolio": "Defensive dividend",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (22 violations in the last)",
-    "first_pass_violations": 34,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 34
-    },
-    "retry_violations": 22,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 6,
-    "seconds": 72.0,
-    "seed": 2
-   },
-   {
-    "portfolio": "Defensive dividend",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (33 violations in the last)",
-    "first_pass_violations": 23,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 23
-    },
-    "retry_violations": 33,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 6,
-    "seconds": 79.6,
-    "seed": 3
-   },
-   {
-    "portfolio": "Defensive dividend",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (14 violations in the last)",
-    "first_pass_violations": 62,
-    "first_pass_violation_kinds": {
-     "stray_numeral": 29,
-     "unknown_citation": 33
-    },
-    "retry_violations": 14,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 6,
-    "seconds": 61.0,
-    "seed": 4
-   },
-   {
-    "portfolio": "Defensive dividend",
-    "outcome": "fallback",
-    "source": "template",
-    "provider": "ollama",
-    "model": "qwen2.5:3b",
-    "llm_calls": 2,
-    "first_pass_ok": false,
-    "retried": true,
-    "fell_back": true,
-    "fallback_reason": "2 drafts failed verification (23 violations in the last)",
-    "first_pass_violations": 1,
-    "first_pass_violation_kinds": {
-     "malformed_output": 1
-    },
-    "retry_violations": 23,
-    "final_figures_traced": 49,
-    "final_unsupported_numbers": 0,
-    "final_verified": true,
-    "chunks": 6,
-    "seconds": 81.6,
-    "seed": 5
-   }
-  ],
-  "rates": {
-   "n_runs": 20,
-   "n_llm_runs": 20,
-   "first_pass_rate": 0.0,
-   "retry_rate": 1.0,
-   "after_retry_success_rate": 0.0,
-   "verified_rate": 0.0,
-   "fallback_rate": 1.0,
-   "outcomes": {
-    "fallback": 20
-   },
-   "first_pass_violations_total": 514,
-   "first_pass_violations_by_kind": {
-    "stray_numeral": 383,
-    "unknown_citation": 129,
-    "missing_citation": 1,
-    "malformed_output": 1
-   },
-   "final_memos_verified": 20,
-   "final_unsupported_numbers_total": 0
-  }
- }
+ ]
 }

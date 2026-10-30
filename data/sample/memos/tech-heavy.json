@@ -2,7 +2,7 @@
  "portfolio_name": "Tech heavy",
  "source": "template",
  "provider": "ollama",
- "model": "qwen2.5:3b",
+ "model": "qwen2.5:7b",
  "draft": {
   "summary": "[[fact:portfolio_name]] holds [[fact:n_holdings]] positions ([[fact:holdings]]) and is compared with [[fact:benchmark]]. Between [[fact:start_date]] and [[fact:end_date]] it grew at [[fact:cagr]] a year with annualized volatility of [[fact:ann_vol]], and its worst peak-to-trough loss was [[fact:max_drawdown]]. [[fact:top_risk_contributor]] is [[fact:top_risk_contributor_weight]] of the weight but [[fact:top_risk_contributor_pct]] of the volatility.",
   "return_and_risk": "The Sharpe ratio is [[fact:sharpe]] and the Sortino ratio is [[fact:sortino]], using a risk-free rate of [[fact:rf_annual]]. The benchmark grew at [[fact:benchmark_cagr]] a year with volatility of [[fact:benchmark_ann_vol]] and a maximum drawdown of [[fact:benchmark_max_drawdown]]. Beta to the benchmark is [[fact:beta]]. The maximum drawdown ran from [[fact:max_drawdown_peak]] to [[fact:max_drawdown_trough]] and lasted [[fact:max_drawdown_duration]] in total. The effective number of independent risk bets is [[fact:effective_n_bets]]. Daily returns have skewness of [[fact:skew]] and excess kurtosis of [[fact:excess_kurtosis]]; positive excess kurtosis means fatter tails than a normal distribution.",
@@ -162,135 +162,94 @@
  "attempts": [
   {
    "attempt": 1,
-   "raw": "{\n  \"summary\": \"The Tech-heavy portfolio named Tech heavy has a Sharpe ratio of 1.08, indicating that for every unit of risk taken, it offers a 1.08% excess return over the risk-free rate. The portfolio's maximum drawdown was -45.07%, which is a significant downturn from its peak. The portfolio's beta of 1.33 suggests it moves in line with the benchmark, the S&P 500 (SPY). The portfolio's effective number of independent bets is 5.26, meaning the risk is diversified across multiple holdings. The portfolio's 1-day 95% Value at Risk (VaR) is 2.93%, and the 1-day 99% VaR is 4.85%. The portfolio's stress scenarios show it underperforms during the 2022 rate shock scenario, with a return of -40.49%.\",\n  \"return_and_risk\": \"The portfolio has a compound annual growth rate (CAGR) of 33.90%, which is higher than the benchmark's 15.58%. The annualized volatility is 27.95%, and the maximum drawdown is -45.07%. The portfolio's Sharpe ratio of 1.08 suggests that for every unit of risk, it offers a 1.08% excess return over the risk-free rate. The portfolio's beta of 1.33 indicates that it moves in line with the benchmark. The portfolio's effective number of independent bets is 5.26, meaning the risk is diversified across multiple holdings. The portfolio's 1-day 95% Value at Risk (VaR) is 2.93%, and the 1-day 99% VaR is 4.85%. The portfolio's stress scenarios show it underperforms during the 2022 rate shock scenario, with a return of -40.49%.\",\n  \"tail_risk\": \"The portfolio's maximum drawdown of -45.07% is a significant downturn from its peak, which is a significant risk. The portfolio's 1-day 99% Expected Shortfall (ES) is 6.05%, indicating that the portfolio could lose up to 6.05% of its value in a single day. The portfolio's stress scenarios show it underperforms during the 2022 rate shock scenario, with a return of -40.49%. This highlights the portfolio's sensitivity to market shocks and the potential for significant losses.\",\n  \"stress_and_regimes\": \"The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's stress scenarios show it underperforms during the 2022 rate shock scenario, with a return of -40.49%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25.42%, which is higher than the current volatility of 27.95%. The portfolio's forecasted volatility in the next month is 25",
+   "raw": "{\n  \"summary\": \"The [[fact:portfolio_name]] has delivered impressive returns and outperformed the benchmark, but it also carries significant risk, particularly during market downturns. The portfolio's high Sharpe ratio and Sortino ratio indicate strong risk-adjusted returns, while the Calmar ratio suggests that the returns are not as consistent as the CAGR might suggest during periods of extreme market stress.\",\n  \"return_and_risk\": \"Over the analysis period, the portfolio achieved a compound annual growth rate (CAGR) of [[fact:cagr]], significantly outperforming the benchmark's CAGR of [[fact:benchmark_cagr]]. However, the annualized volatility of [[fact:ann_vol]] and the maximum drawdown of [[fact:max_drawdown]] highlight the substantial risk involved. The portfolio's beta of [[fact:beta]] indicates that it is more volatile than the market, and the high excess kurtosis of [[fact:excess_kurtosis]] suggests the presence of fat tails, meaning the portfolio is more susceptible to extreme events.\",\n  \"tail_risk\": \"The portfolio's 1-day 95% and 99% Value at Risk (VaR) and Expected Shortfall (ES) measures indicate the potential for significant losses. The 95% VaR of [[fact:var_95_1d_hist]] and the 99% VaR of [[fact:var_99_1d_hist]] suggest that there is a non-negligible chance of large losses. The historical backtests for these measures show that the portfolio's risk is well-estimated, but the 99% VaR model underestimates risk, as indicated by the Kupiec test verdict.\",\n  \"stress_and_regimes\": \"The portfolio's performance during historical stress scenarios, such as the 2022 rate shock, has been particularly poor, with a simulated loss of [[fact:mc_p_loss]] over the next year and a 65.89% probability of a drawdown worse than one fifth of the portfolio's value. The current market regime is described as Calm, with a 90.37% probability, but the portfolio's volatility is expected to increase by 4.5x during Stress regimes. The GARCH-t model is the best at forecasting volatility, with a forecast of [[fact:vol_forecast_current]] for the next month.\",\n  \"caveats\": \"While the portfolio's performance and risk measures are informative, they are based on historical data and assumptions, and actual outcomes may differ. The disclosed risks are based on the passages provided, which highlight potential risks related to economic conditions, industry competition, and geopolitical events.\",\n  \"disclosed_risks\": [\n    {\"text\": \"Potential outcomes include financial instability; inability to obtain credit to finance business operations; and insolvency.\", \"chunk_ids\": [\"AAPL-2025-1A-0001\"]},\n    {\"text\": \"The Company’s business can be impacted by political events, trade and other international disputes, geopolitical tensions, conflict, terrorism, natural disasters, public health issues, industrial accidents and other business interruptions.\", \"chunk_ids\": [\"AAPL-2025-1A-0003\"]}\n  ]\n}",
    "verification": {
     "ok": false,
     "violations": [
      {
-      "kind": "malformed_output",
-      "detail": "output is not a JSON object",
-      "field": "",
-      "snippet": "",
-      "token": ""
+      "kind": "stray_numeral",
+      "detail": "number '65.89%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "ss]] over the next year and a 65.89% probability of a drawdown wor",
+      "token": "65.89%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '90.37%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "is described as Calm, with a 90.37% probability, but the portfoli",
+      "token": "90.37%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '4.5' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "ty is expected to increase by 4.5x during Stress regimes. The G",
+      "token": "4.5"
      }
     ],
-    "figures_traced": 0,
-    "facts_used": [],
-    "citations": [],
-    "unsupported_numbers": 0,
-    "word_count": 0
+    "figures_traced": 11,
+    "facts_used": [
+     "portfolio_name",
+     "cagr",
+     "benchmark_cagr",
+     "ann_vol",
+     "max_drawdown",
+     "beta",
+     "excess_kurtosis",
+     "var_95_1d_hist",
+     "var_99_1d_hist",
+     "mc_p_loss",
+     "vol_forecast_current"
+    ],
+    "citations": [
+     "AAPL-2025-1A-0001",
+     "AAPL-2025-1A-0003"
+    ],
+    "unsupported_numbers": 3,
+    "word_count": 372
    }
   },
   {
    "attempt": 2,
-   "raw": "{\n  \"summary\": \"The portfolio, Tech heavy, has a Sharpe ratio of 1.08 and a maximum drawdown of -45.07%. It is exposed to significant market volatility, with a beta of 1.33 relative to the benchmark. The largest holding, Apple (AAPL), contributes 20% of the portfolio's volatility.\",\n  \"return_and_risk\": \"The portfolio has a compound annual growth rate (CAGR) of 33.90%, with an annualized volatility of 27.95%. The Sortino ratio, which measures return per unit of downside volatility, is 1.72. The Calmar ratio, which is the CAGR over the maximum drawdown, is 0.75. The portfolio's beta of 1.33 indicates it is more volatile than the benchmark (SPY).\",\n  \"tail_risk\": \"The portfolio's maximum drawdown was -45.07%, occurring from 2021-11-19 to 2022-11-03, which is a significant risk. The portfolio's 1-day 95% Value at Risk (VaR) is 2.93%, and the 1-day 99% VaR is 4.85%. The portfolio's 10-day 95% VaR is 7.72%, indicating a higher risk horizon.\",\n  \"stress_and_regimes\": \"The portfolio has been tested under historical stress scenarios, including the 2022 rate shock, which resulted in a -40.49% return. The portfolio's volatility in stress regimes is 4.5x higher than in the current calm regime. The portfolio's expected annual return is 5.00%, and the median simulated return over the next year is 1.89%. The portfolio's effective number of independent risk bets is 5.26, suggesting a complex risk landscape.\",\n  \"caveats\": \"These estimates are based on historical data and simulations, and do not guarantee future performance. The portfolio's performance is influenced by market conditions and other unquantifiable factors.\",\n  \"disclosed_risks\": [\n    {\n      \"text\": \"The portfolio is exposed to significant market volatility, with a beta of 1.33 relative to the benchmark. The largest holding, Apple (AAPL), contributes 20% of the portfolio's volatility.\",\n      \"chunk_ids\": [\"AAPL-2025-1A-0001\"]\n    },\n    {\n      \"text\": \"The portfolio has a maximum drawdown of -45.07%, which is a significant risk. The portfolio's 1-day 95% Value at Risk (VaR) is 2.93%, and the 1-day 99% VaR is 4.85%. The portfolio's 10-day 95% VaR is 7.72%, indicating a higher risk horizon.\",\n      \"chunk_ids\": [\"META-2025-1A-0001\", \"AAPL-2025-1A-0001\"]\n    },\n    {\n      \"text\": \"The portfolio has been tested under historical stress scenarios, including the 2022 rate shock, which resulted in a -40.49% return. The portfolio's volatility in stress regimes is 4.5x higher than in the current calm regime. The portfolio's expected annual return is 5.00%, and the median simulated return over the next year is 1.89%. The portfolio's effective number of independent risk bets is 5.26, suggesting a complex risk landscape.\",\n      \"chunk_ids\": [\"META-2025-1A-0001\", \"MSFT-2026-1A-0001\", \"NVDA-2026-1A-0001\"]\n    }\n  ]\n}",
+   "raw": "{\n  \"summary\": \"The [[fact:portfolio_name]] has delivered impressive returns and outperformed the benchmark, but it also carries significant risks, including potential large drawdowns and market volatility.\",\n  \"return_and_risk\": \"Over the analysis period, the portfolio achieved a [[fact:cagr]] of 33.90%, significantly higher than the benchmark's 15.58%. However, this comes with substantial risk, as the annualized volatility is 27.95%, and the maximum drawdown was -45.07%. The portfolio's beta of 1.33 indicates it is more volatile than the market.\",\n  \"tail_risk\": \"Tail risk is a key concern, as the 1-day 95% Value at Risk (VaR) is 2.93%, and the 1-day 99% VaR is 4.85%. The Expected Shortfall (ES) at 95% and 99% is 4.10% and 6.05%, respectively, indicating potential for larger losses than VaR suggests. Historical backtests show the 99% VaR model underestimates risk.\",\n  \"stress_and_regimes\": \"The portfolio's performance in historical stress scenarios, such as the 2022 rate shock, was particularly poor, with a return of -40.49%. The current market regime is identified as Calm, with a 90.37% probability, but the portfolio's volatility in Stress regimes is 4.5x higher than in Calm regimes.\",\n  \"caveats\": \"These estimates are based on historical data and models, which may not fully capture future market conditions.\",\n  \"disclosed_risks\": [\n    {\"text\": \"Potential for large drawdowns and market volatility, as evidenced by the maximum drawdown of -45.07% and the 1-day 99% VaR of 4.85%.\", \"chunk_ids\": [\"AAPL-2025-1A-0001\", \"AMZN-2025-1A-0001\", \"MSFT-2026-1A-0001\", \"NVDA-2026-1A-0001\", \"META-2025-1A-0001\"]},\n    {\"text\": \"Political events, trade disputes, and natural disasters can significantly impact the portfolio, as highlighted by the potential for financial instability and credit risk.\", \"chunk_ids\": [\"AAPL-2025-1A-0003\"]}\n  ]\n}",
    "verification": {
     "ok": false,
     "violations": [
      {
       "kind": "stray_numeral",
-      "detail": "number '1.08' outside a placeholder",
-      "field": "summary",
-      "snippet": "heavy, has a Sharpe ratio of 1.08 and a maximum drawdown of -45",
-      "token": "1.08"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '45.07%' outside a placeholder",
-      "field": "summary",
-      "snippet": "08 and a maximum drawdown of -45.07%. It is exposed to significant",
-      "token": "45.07%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '1.33' outside a placeholder",
-      "field": "summary",
-      "snippet": "et volatility, with a beta of 1.33 relative to the benchmark. Th",
-      "token": "1.33"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '20%' outside a placeholder",
-      "field": "summary",
-      "snippet": "ng, Apple (AAPL), contributes 20% of the portfolio's volatility",
-      "token": "20%"
-     },
-     {
-      "kind": "stray_numeral",
       "detail": "number '33.90%' outside a placeholder",
       "field": "return_and_risk",
-      "snippet": "annual growth rate (CAGR) of 33.90%, with an annualized volatilit",
+      "snippet": "o achieved a [[fact:cagr]] of 33.90%, significantly higher than th",
       "token": "33.90%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '15.58%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "y higher than the benchmark's 15.58%. However, this comes with sub",
+      "token": "15.58%"
      },
      {
       "kind": "stray_numeral",
       "detail": "number '27.95%' outside a placeholder",
       "field": "return_and_risk",
-      "snippet": "h an annualized volatility of 27.95%. The Sortino ratio, which mea",
+      "snippet": "the annualized volatility is 27.95%, and the maximum drawdown was",
       "token": "27.95%"
      },
      {
       "kind": "stray_numeral",
-      "detail": "number '1.72' outside a placeholder",
+      "detail": "number '45.07%' outside a placeholder",
       "field": "return_and_risk",
-      "snippet": "it of downside volatility, is 1.72. The Calmar ratio, which is t",
-      "token": "1.72"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '0.75' outside a placeholder",
-      "field": "return_and_risk",
-      "snippet": "over the maximum drawdown, is 0.75. The portfolio's beta of 1.33",
-      "token": "0.75"
+      "snippet": "and the maximum drawdown was -45.07%. The portfolio's beta of 1.33",
+      "token": "45.07%"
      },
      {
       "kind": "stray_numeral",
       "detail": "number '1.33' outside a placeholder",
       "field": "return_and_risk",
-      "snippet": "0.75. The portfolio's beta of 1.33 indicates it is more volatile",
+      "snippet": ".07%. The portfolio's beta of 1.33 indicates it is more volatile",
       "token": "1.33"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '45.07%' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "folio's maximum drawdown was -45.07%, occurring from 2021-11-19 to",
-      "token": "45.07%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '2021' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "n was -45.07%, occurring from 2021-11-19 to 2022-11-03, which is",
-      "token": "2021"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '11' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "-45.07%, occurring from 2021-11-19 to 2022-11-03, which is a",
-      "token": "11"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '19' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "5.07%, occurring from 2021-11-19 to 2022-11-03, which is a sig",
-      "token": "19"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '11' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "rring from 2021-11-19 to 2022-11-03, which is a significant ri",
-      "token": "11"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '03' outside a placeholder",
-      "field": "tail_risk",
-      "snippet": "ng from 2021-11-19 to 2022-11-03, which is a significant risk.",
-      "token": "03"
      },
      {
       "kind": "stray_numeral",
@@ -303,146 +262,81 @@
       "kind": "stray_numeral",
       "detail": "number '4.85%' outside a placeholder",
       "field": "tail_risk",
-      "snippet": "93%, and the 1-day 99% VaR is 4.85%. The portfolio's 10-day 95% V",
+      "snippet": "93%, and the 1-day 99% VaR is 4.85%. The Expected Shortfall (ES)",
       "token": "4.85%"
      },
      {
       "kind": "stray_numeral",
-      "detail": "number '7.72%' outside a placeholder",
+      "detail": "number '4.10%' outside a placeholder",
       "field": "tail_risk",
-      "snippet": "portfolio's 10-day 95% VaR is 7.72%, indicating a higher risk hor",
-      "token": "7.72%"
+      "snippet": "rtfall (ES) at 95% and 99% is 4.10% and 6.05%, respectively, indi",
+      "token": "4.10%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '6.05%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": ") at 95% and 99% is 4.10% and 6.05%, respectively, indicating pot",
+      "token": "6.05%"
      },
      {
       "kind": "stray_numeral",
       "detail": "number '40.49%' outside a placeholder",
       "field": "stress_and_regimes",
-      "snippet": "e shock, which resulted in a -40.49% return. The portfolio's volat",
+      "snippet": "larly poor, with a return of -40.49%. The current market regime is",
       "token": "40.49%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '90.37%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "is identified as Calm, with a 90.37% probability, but the portfoli",
+      "token": "90.37%"
      },
      {
       "kind": "stray_numeral",
       "detail": "number '4.5' outside a placeholder",
       "field": "stress_and_regimes",
-      "snippet": "latility in stress regimes is 4.5x higher than in the current c",
+      "snippet": "latility in Stress regimes is 4.5x higher than in Calm regimes.",
       "token": "4.5"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '5.00%' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "o's expected annual return is 5.00%, and the median simulated ret",
-      "token": "5.00%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '1.89%' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "return over the next year is 1.89%. The portfolio's effective nu",
-      "token": "1.89%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '5.26' outside a placeholder",
-      "field": "stress_and_regimes",
-      "snippet": "r of independent risk bets is 5.26, suggesting a complex risk la",
-      "token": "5.26"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '1.33' outside a placeholder",
-      "field": "disclosed_risks[0]",
-      "snippet": "et volatility, with a beta of 1.33 relative to the benchmark. Th",
-      "token": "1.33"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '20%' outside a placeholder",
-      "field": "disclosed_risks[0]",
-      "snippet": "ng, Apple (AAPL), contributes 20% of the portfolio's volatility",
-      "token": "20%"
      },
      {
       "kind": "stray_numeral",
       "detail": "number '45.07%' outside a placeholder",
-      "field": "disclosed_risks[1]",
-      "snippet": "io has a maximum drawdown of -45.07%, which is a significant risk.",
+      "field": "disclosed_risks[0]",
+      "snippet": "d by the maximum drawdown of -45.07% and the 1-day 99% VaR of 4.85",
       "token": "45.07%"
      },
      {
       "kind": "stray_numeral",
-      "detail": "number '2.93%' outside a placeholder",
-      "field": "disclosed_risks[1]",
-      "snippet": "ay 95% Value at Risk (VaR) is 2.93%, and the 1-day 99% VaR is 4.8",
-      "token": "2.93%"
-     },
-     {
-      "kind": "stray_numeral",
       "detail": "number '4.85%' outside a placeholder",
-      "field": "disclosed_risks[1]",
-      "snippet": "93%, and the 1-day 99% VaR is 4.85%. The portfolio's 10-day 95% V",
+      "field": "disclosed_risks[0]",
+      "snippet": ".07% and the 1-day 99% VaR of 4.85%.",
       "token": "4.85%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '7.72%' outside a placeholder",
-      "field": "disclosed_risks[1]",
-      "snippet": "portfolio's 10-day 95% VaR is 7.72%, indicating a higher risk hor",
-      "token": "7.72%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '40.49%' outside a placeholder",
-      "field": "disclosed_risks[2]",
-      "snippet": "e shock, which resulted in a -40.49% return. The portfolio's volat",
-      "token": "40.49%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '4.5' outside a placeholder",
-      "field": "disclosed_risks[2]",
-      "snippet": "latility in stress regimes is 4.5x higher than in the current c",
-      "token": "4.5"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '5.00%' outside a placeholder",
-      "field": "disclosed_risks[2]",
-      "snippet": "o's expected annual return is 5.00%, and the median simulated ret",
-      "token": "5.00%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '1.89%' outside a placeholder",
-      "field": "disclosed_risks[2]",
-      "snippet": "return over the next year is 1.89%. The portfolio's effective nu",
-      "token": "1.89%"
-     },
-     {
-      "kind": "stray_numeral",
-      "detail": "number '5.26' outside a placeholder",
-      "field": "disclosed_risks[2]",
-      "snippet": "r of independent risk bets is 5.26, suggesting a complex risk la",
-      "token": "5.26"
      }
     ],
-    "figures_traced": 0,
-    "facts_used": [],
+    "figures_traced": 2,
+    "facts_used": [
+     "portfolio_name",
+     "cagr"
+    ],
     "citations": [
      "AAPL-2025-1A-0001",
-     "META-2025-1A-0001",
+     "AMZN-2025-1A-0001",
      "MSFT-2026-1A-0001",
-     "NVDA-2026-1A-0001"
+     "NVDA-2026-1A-0001",
+     "META-2025-1A-0001",
+     "AAPL-2025-1A-0003"
     ],
-    "unsupported_numbers": 34,
-    "word_count": 378
+    "unsupported_numbers": 14,
+    "word_count": 233
    }
   }
  ],
  "first_pass_ok": false,
  "retried": true,
  "fell_back": true,
- "fallback_reason": "2 drafts failed verification (34 violations in the last)",
+ "fallback_reason": "2 drafts failed verification (14 violations in the last)",
  "chunk_ids": [
   "META-2025-1A-0001",
   "AAPL-2025-1A-0001",
@@ -452,7 +346,7 @@
   "AAPL-2025-1A-0003"
  ],
  "report_hash": "b94f838373b891ca945184b1e7c9ffe2e213db7d296447a2069365df9fb879d6",
- "cache_key": "15d0e83a19ec8cc7f0a2cd86543e7c2123ace24061f1d8b1117927a8b265d937",
+ "cache_key": "80457f73eca8a662bcc25f35de7220910f0a660429bb71a102f73027b5710c9e",
  "prompt_version": "m8-v1",
  "as_of": "2026-10-29"
 }
