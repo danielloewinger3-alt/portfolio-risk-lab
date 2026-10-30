@@ -69,7 +69,7 @@ All numbers below are quoted from [`docs/VALIDATION.md`](docs/VALIDATION.md), wh
 - **Filings retrieval** (on a **synthetic** gold set of 26 questions written by the build agent, so a sanity check rather than a benchmark): hit@6 with one company's filings was 100.0% hybrid vs 96.2% dense; with a five-company filter, dense scored 96.2% vs 92.3% hybrid. **Dense retrieval alone was competitive with hybrid.** Citation validity: 936 of 936.
 - **LLM memos**: the local `qwen2.5:3b` model **failed verification on 4 of 4 sample memos, even after a retry**. The verifier caught 64 violations in first drafts (mostly numbers typed from the facts list), so **every committed memo is the deterministic template**, with 0 unsupported numbers. The UI says which source produced each memo.
 - **Filings Q&A** with the same model: of 9 questions, 6 verified on the first pass and 3 after a retry; 13 claims kept and 1 dropped by the verifier; citation validity 100.0%.
-- **Tests**: 496 passed, 0 failed (live-network tests deselected); coverage 97.6% overall, and every docs/07 gate met (`risk/` 99.7%, `ml/` 98.8%, `llm/verify.py` 100.0%, `rag/chunking.py` 96.4%).
+- **Tests**: 523 passed, 0 failed (live-network tests deselected); coverage 97.5% overall, and every docs/07 gate met (`risk/` 99.3%, `ml/` 98.8%, `llm/verify.py` 100.0%, `rag/chunking.py` 96.4%).
 
 ## Methodology highlights and limitations
 

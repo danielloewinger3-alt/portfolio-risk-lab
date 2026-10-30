@@ -1,7 +1,7 @@
 {
   "description": "Rolling one-day VaR backtests (strictly out of sample) with the Kupiec POF test, on real bundled prices. VaR is a positive loss fraction; an exception is a day with -r_t > VaR_t.",
-  "generated_utc": "2026-10-30T14:48:30+00:00",
-  "git_commit": "e8f92cef426154bd9432c450a954b57a5ecc7a53",
+  "generated_utc": "2026-10-30T15:11:52+00:00",
+  "git_commit": "e6503cb185538ebe0d28a600cc6e3c758075cc13",
   "data": {
     "source": "data/sample/prices.parquet (bundled real adjusted closes)",
     "snapshot_date": "2026-10-29"
