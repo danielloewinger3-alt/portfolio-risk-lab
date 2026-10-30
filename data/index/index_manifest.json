@@ -1,0 +1,750 @@
+{
+  "build_date": "2026-10-30T09:38:54",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "embedding_dim": 384,
+  "collection": "filings_10k",
+  "parser_version": 4,
+  "chunking": {
+    "target_chars": 1500.0,
+    "overlap": 0.15,
+    "min_chars": 200.0
+  },
+  "items": [
+    "1A",
+    "7",
+    "7A"
+  ],
+  "tickers_indexed": [
+    "AAPL",
+    "AMD",
+    "AMZN",
+    "BAC",
+    "CAT",
+    "CVX",
+    "GOOGL",
+    "HD",
+    "JNJ",
+    "JPM",
+    "KO",
+    "META",
+    "MSFT",
+    "NFLX",
+    "NVDA",
+    "PFE",
+    "PG",
+    "TSLA",
+    "UNH",
+    "V",
+    "WMT",
+    "XOM"
+  ],
+  "tickers_failed": {},
+  "filings": {
+    "AAPL": {
+      "ticker": "AAPL",
+      "company": "Apple Inc.",
+      "cik": 320193,
+      "form": "10-K",
+      "accession": "0000320193-25-000079",
+      "filing_date": "2025-10-31",
+      "report_date": "2025-09-27",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 67651,
+          "n_chunks": 59,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 16402,
+          "n_chunks": 14,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "short",
+          "n_chars": 2987,
+          "n_chunks": 3,
+          "indexed": true
+        }
+      },
+      "n_chunks": 76
+    },
+    "MSFT": {
+      "ticker": "MSFT",
+      "company": "MICROSOFT CORP",
+      "cik": 789019,
+      "form": "10-K",
+      "accession": "0001193125-26-323660",
+      "filing_date": "2026-07-29",
+      "report_date": "2026-06-30",
+      "fiscal_year": 2026,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 80873,
+          "n_chunks": 68,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 47421,
+          "n_chunks": 38,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "short",
+          "n_chars": 1910,
+          "n_chunks": 2,
+          "indexed": true
+        }
+      },
+      "n_chunks": 108
+    },
+    "NVDA": {
+      "ticker": "NVDA",
+      "company": "NVIDIA CORP",
+      "cik": 1045810,
+      "form": "10-K",
+      "accession": "0001045810-26-000021",
+      "filing_date": "2026-02-25",
+      "report_date": "2026-01-25",
+      "fiscal_year": 2026,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 114405,
+          "n_chunks": 100,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 31630,
+          "n_chunks": 26,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "ok",
+          "n_chars": 4232,
+          "n_chunks": 4,
+          "indexed": true
+        }
+      },
+      "n_chunks": 130
+    },
+    "AMZN": {
+      "ticker": "AMZN",
+      "company": "AMAZON COM INC",
+      "cik": 1018724,
+      "form": "10-K",
+      "accession": "0001018724-26-000004",
+      "filing_date": "2026-02-06",
+      "report_date": "2025-12-31",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 60458,
+          "n_chunks": 53,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 43705,
+          "n_chunks": 37,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "ok",
+          "n_chars": 5246,
+          "n_chunks": 5,
+          "indexed": true
+        }
+      },
+      "n_chunks": 95
+    },
+    "GOOGL": {
+      "ticker": "GOOGL",
+      "company": "Alphabet Inc.",
+      "cik": 1652044,
+      "form": "10-K",
+      "accession": "0001652044-26-000018",
+      "filing_date": "2026-02-05",
+      "report_date": "2025-12-31",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 84678,
+          "n_chunks": 74,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 49212,
+          "n_chunks": 39,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "ok",
+          "n_chars": 7466,
+          "n_chunks": 6,
+          "indexed": true
+        }
+      },
+      "n_chunks": 119
+    },
+    "META": {
+      "ticker": "META",
+      "company": "Meta Platforms, Inc.",
+      "cik": 1326801,
+      "form": "10-K",
+      "accession": "0001628280-26-003942",
+      "filing_date": "2026-01-29",
+      "report_date": "2025-12-31",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 194954,
+          "n_chunks": 173,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 55967,
+          "n_chunks": 46,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "ok",
+          "n_chars": 5929,
+          "n_chunks": 5,
+          "indexed": true
+        }
+      },
+      "n_chunks": 224
+    },
+    "TSLA": {
+      "ticker": "TSLA",
+      "company": "Tesla, Inc.",
+      "cik": 1318605,
+      "form": "10-K",
+      "accession": "0001628280-26-003952",
+      "filing_date": "2026-01-29",
+      "report_date": "2025-12-31",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 83417,
+          "n_chunks": 74,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 51982,
+          "n_chunks": 46,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "short",
+          "n_chars": 1622,
+          "n_chunks": 2,
+          "indexed": true
+        }
+      },
+      "n_chunks": 122
+    },
+    "AMD": {
+      "ticker": "AMD",
+      "company": "ADVANCED MICRO DEVICES INC",
+      "cik": 2488,
+      "form": "10-K",
+      "accession": "0000002488-26-000018",
+      "filing_date": "2026-02-04",
+      "report_date": "2025-12-27",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 131174,
+          "n_chunks": 111,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 36182,
+          "n_chunks": 30,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "ok",
+          "n_chars": 4924,
+          "n_chunks": 4,
+          "indexed": true
+        }
+      },
+      "n_chunks": 145
+    },
+    "NFLX": {
+      "ticker": "NFLX",
+      "company": "NETFLIX INC",
+      "cik": 1065280,
+      "form": "10-K",
+      "accession": "0001065280-26-000034",
+      "filing_date": "2026-01-23",
+      "report_date": "2025-12-31",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000034/nflx-20251231.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 74806,
+          "n_chunks": 63,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 32951,
+          "n_chunks": 28,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "ok",
+          "n_chars": 6699,
+          "n_chunks": 6,
+          "indexed": true
+        }
+      },
+      "n_chunks": 97
+    },
+    "JPM": {
+      "ticker": "JPM",
+      "company": "JPMORGAN CHASE & CO",
+      "cik": 19617,
+      "form": "10-K",
+      "accession": "0001628280-26-008131",
+      "filing_date": "2026-02-13",
+      "report_date": "2025-12-31",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 111842,
+          "n_chunks": 92,
+          "indexed": true
+        },
+        "7": {
+          "quality": "short",
+          "n_chars": 395,
+          "n_chunks": 0,
+          "indexed": false
+        },
+        "7A": {
+          "quality": "failed",
+          "n_chars": 0,
+          "n_chunks": 0,
+          "indexed": false
+        }
+      },
+      "n_chunks": 92
+    },
+    "BAC": {
+      "ticker": "BAC",
+      "company": "BANK OF AMERICA CORP /DE/",
+      "cik": 70858,
+      "form": "10-K",
+      "accession": "0000070858-26-000157",
+      "filing_date": "2026-02-25",
+      "report_date": "2025-12-31",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/70858/000007085826000157/bac-20251231.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 116605,
+          "n_chunks": 108,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 237946,
+          "n_chunks": 193,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "failed",
+          "n_chars": 0,
+          "n_chunks": 0,
+          "indexed": false
+        }
+      },
+      "n_chunks": 301
+    },
+    "V": {
+      "ticker": "V",
+      "company": "VISA INC.",
+      "cik": 1403161,
+      "form": "10-K",
+      "accession": "0001403161-25-000089",
+      "filing_date": "2025-11-06",
+      "report_date": "2025-09-30",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316125000089/v-20250930.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 81883,
+          "n_chunks": 72,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 42283,
+          "n_chunks": 34,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "ok",
+          "n_chars": 6112,
+          "n_chunks": 5,
+          "indexed": true
+        }
+      },
+      "n_chunks": 111
+    },
+    "XOM": {
+      "ticker": "XOM",
+      "company": "EXXON MOBIL CORP",
+      "cik": 34088,
+      "form": "10-K",
+      "accession": "0000034088-26-000045",
+      "filing_date": "2026-02-18",
+      "report_date": "2025-12-31",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/34088/000003408826000045/xom-20251231.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 35514,
+          "n_chunks": 33,
+          "indexed": true
+        },
+        "7": {
+          "quality": "failed",
+          "n_chars": 0,
+          "n_chunks": 0,
+          "indexed": false
+        },
+        "7A": {
+          "quality": "short",
+          "n_chars": 406,
+          "n_chunks": 0,
+          "indexed": false
+        }
+      },
+      "n_chunks": 33
+    },
+    "CVX": {
+      "ticker": "CVX",
+      "company": "CHEVRON CORP",
+      "cik": 93410,
+      "form": "10-K",
+      "accession": "0000093410-26-000078",
+      "filing_date": "2026-02-24",
+      "report_date": "2025-12-31",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/93410/000009341026000078/cvx-20251231.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 34479,
+          "n_chunks": 33,
+          "indexed": true
+        },
+        "7": {
+          "quality": "failed",
+          "n_chars": 0,
+          "n_chunks": 0,
+          "indexed": false
+        },
+        "7A": {
+          "quality": "short",
+          "n_chars": 353,
+          "n_chunks": 0,
+          "indexed": false
+        }
+      },
+      "n_chunks": 33
+    },
+    "JNJ": {
+      "ticker": "JNJ",
+      "company": "JOHNSON & JOHNSON",
+      "cik": 200406,
+      "form": "10-K",
+      "accession": "0000200406-26-000016",
+      "filing_date": "2026-02-11",
+      "report_date": "2025-12-28",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/200406/000020040626000016/jnj-20251228.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 43230,
+          "n_chunks": 37,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 60516,
+          "n_chunks": 49,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "short",
+          "n_chars": 481,
+          "n_chunks": 0,
+          "indexed": false
+        }
+      },
+      "n_chunks": 86
+    },
+    "PFE": {
+      "ticker": "PFE",
+      "company": "PFIZER INC",
+      "cik": 78003,
+      "form": "10-K",
+      "accession": "0000078003-26-000026",
+      "filing_date": "2026-02-26",
+      "report_date": "2025-12-31",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/78003/000007800326000026/pfe-20251231.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 87059,
+          "n_chunks": 77,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 101086,
+          "n_chunks": 84,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "failed",
+          "n_chars": 0,
+          "n_chunks": 0,
+          "indexed": false
+        }
+      },
+      "n_chunks": 161
+    },
+    "UNH": {
+      "ticker": "UNH",
+      "company": "UNITEDHEALTH GROUP INC",
+      "cik": 731766,
+      "form": "10-K",
+      "accession": "0000731766-26-000062",
+      "filing_date": "2026-03-02",
+      "report_date": "2025-12-31",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 66702,
+          "n_chunks": 59,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 42652,
+          "n_chunks": 36,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "short",
+          "n_chars": 2365,
+          "n_chunks": 2,
+          "indexed": true
+        }
+      },
+      "n_chunks": 97
+    },
+    "PG": {
+      "ticker": "PG",
+      "company": "PROCTER & GAMBLE Co",
+      "cik": 80424,
+      "form": "10-K",
+      "accession": "0000080424-26-000103",
+      "filing_date": "2026-08-04",
+      "report_date": "2026-06-30",
+      "fiscal_year": 2026,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/80424/000008042426000103/pg-20260630.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 37679,
+          "n_chunks": 33,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 86813,
+          "n_chunks": 70,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "failed",
+          "n_chars": 0,
+          "n_chunks": 0,
+          "indexed": false
+        }
+      },
+      "n_chunks": 103
+    },
+    "KO": {
+      "ticker": "KO",
+      "company": "COCA COLA CO",
+      "cik": 21344,
+      "form": "10-K",
+      "accession": "0001628280-26-010047",
+      "filing_date": "2026-02-20",
+      "report_date": "2025-12-31",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 92209,
+          "n_chunks": 84,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 106849,
+          "n_chunks": 87,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "ok",
+          "n_chars": 6007,
+          "n_chunks": 5,
+          "indexed": true
+        }
+      },
+      "n_chunks": 176
+    },
+    "WMT": {
+      "ticker": "WMT",
+      "company": "Walmart Inc.",
+      "cik": 104169,
+      "form": "10-K",
+      "accession": "0000104169-26-000055",
+      "filing_date": "2026-03-13",
+      "report_date": "2026-01-31",
+      "fiscal_year": 2026,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 93133,
+          "n_chunks": 86,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 51314,
+          "n_chunks": 43,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "ok",
+          "n_chars": 4287,
+          "n_chunks": 4,
+          "indexed": true
+        }
+      },
+      "n_chunks": 133
+    },
+    "HD": {
+      "ticker": "HD",
+      "company": "HOME DEPOT, INC.",
+      "cik": 354950,
+      "form": "10-K",
+      "accession": "0001628280-26-019436",
+      "filing_date": "2026-03-18",
+      "report_date": "2026-02-01",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/354950/000162828026019436/hd-20260201.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 74792,
+          "n_chunks": 70,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 29154,
+          "n_chunks": 24,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "short",
+          "n_chars": 2073,
+          "n_chunks": 2,
+          "indexed": true
+        }
+      },
+      "n_chunks": 96
+    },
+    "CAT": {
+      "ticker": "CAT",
+      "company": "CATERPILLAR INC",
+      "cik": 18230,
+      "form": "10-K",
+      "accession": "0000018230-26-000008",
+      "filing_date": "2026-02-13",
+      "report_date": "2025-12-31",
+      "fiscal_year": 2025,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/18230/000001823026000008/cat-20251231.htm",
+      "sections": {
+        "1A": {
+          "quality": "ok",
+          "n_chars": 53216,
+          "n_chunks": 46,
+          "indexed": true
+        },
+        "7": {
+          "quality": "ok",
+          "n_chars": 85815,
+          "n_chunks": 69,
+          "indexed": true
+        },
+        "7A": {
+          "quality": "short",
+          "n_chars": 652,
+          "n_chunks": 0,
+          "indexed": false
+        }
+      },
+      "n_chunks": 115
+    }
+  },
+  "total_chunks": 2653,
+  "notes": []
+}

@@ -1,0 +1,223 @@
+{
+  "label": "SYNTHETIC GOLD SET - questions written by the build agent, not by humans; not a benchmark",
+  "method": {
+    "sampling": "random.Random(42): shuffle the sorted indexed tickers, keep 13 (sorted); for each, sample 2 chunks (sorted by chunk_id) from Items 1A/7/7A with at least 900 characters. Reproduced by `scripts/eval_rag.py --show-sample`.",
+    "generator": "Claude Opus 5.5 build agent, in-session (no API call), 2026-10-30, after reading the first 900 characters of each sampled chunk.",
+    "prompt": "For each passage, write one natural question an investor might ask that this passage answers. Paraphrase: avoid copying distinctive phrases from the passage where a common synonym exists, do not name the company, keep it under 20 words.",
+    "caveats": [
+      "Questions were written while reading the gold passage, so wording overlap is higher than for real user questions; this favors BM25.",
+      "Gold is a single chunk; neighbouring chunks share 15% overlap, so the lenient metric also accepts an adjacent chunk (same ticker and item, index +/-1).",
+      "Single annotator, no adjudication, 26 questions: differences of a few points are noise."
+    ]
+  },
+  "questions": [
+    {
+      "id": "q01",
+      "question": "What drove growth in AWS sales, and what partly offset it?",
+      "ticker": "AMZN",
+      "gold_chunk_ids": [
+        "AMZN-2025-7-0023"
+      ]
+    },
+    {
+      "id": "q02",
+      "question": "Has the company suffered security incidents before, and can its safeguards fully prevent data loss?",
+      "ticker": "AMZN",
+      "gold_chunk_ids": [
+        "AMZN-2025-1A-0027"
+      ]
+    },
+    {
+      "id": "q03",
+      "question": "How might investor pressure over climate strategy and carbon frameworks affect access to capital?",
+      "ticker": "CVX",
+      "gold_chunk_ids": [
+        "CVX-2025-1A-0027"
+      ]
+    },
+    {
+      "id": "q04",
+      "question": "Could the company be held liable for environmental damage even if it did not cause it?",
+      "ticker": "CVX",
+      "gold_chunk_ids": [
+        "CVX-2025-1A-0015"
+      ]
+    },
+    {
+      "id": "q05",
+      "question": "Which European and US data protection laws apply to the company's activities?",
+      "ticker": "GOOGL",
+      "gold_chunk_ids": [
+        "GOOGL-2025-1A-0058"
+      ]
+    },
+    {
+      "id": "q06",
+      "question": "How is adding AI features to search expected to influence revenue and margins?",
+      "ticker": "GOOGL",
+      "gold_chunk_ids": [
+        "GOOGL-2025-7-0002"
+      ]
+    },
+    {
+      "id": "q07",
+      "question": "What risks arise from transactions with governments or sovereign entities?",
+      "ticker": "JPM",
+      "gold_chunk_ids": [
+        "JPM-2025-1A-0037"
+      ]
+    },
+    {
+      "id": "q08",
+      "question": "What are the principal legal and regulatory risk factors summarized by the bank?",
+      "ticker": "JPM",
+      "gold_chunk_ids": [
+        "JPM-2025-1A-0002"
+      ]
+    },
+    {
+      "id": "q09",
+      "question": "How could the OECD global minimum tax and profit reallocation proposals affect the company?",
+      "ticker": "KO",
+      "gold_chunk_ids": [
+        "KO-2025-1A-0042"
+      ]
+    },
+    {
+      "id": "q10",
+      "question": "When is a previously reserved uncertain tax benefit recognized in the accounts?",
+      "ticker": "KO",
+      "gold_chunk_ids": [
+        "KO-2025-7-0029"
+      ]
+    },
+    {
+      "id": "q11",
+      "question": "What risks come from bugs or reliability problems in the company's AI and software products?",
+      "ticker": "MSFT",
+      "gold_chunk_ids": [
+        "MSFT-2026-1A-0044"
+      ]
+    },
+    {
+      "id": "q12",
+      "question": "What ethical or societal problems could arise from how customers use the company's AI?",
+      "ticker": "MSFT",
+      "gold_chunk_ids": [
+        "MSFT-2026-1A-0036"
+      ]
+    },
+    {
+      "id": "q13",
+      "question": "How could net neutrality or network access fee rules affect the streaming business?",
+      "ticker": "NFLX",
+      "gold_chunk_ids": [
+        "NFLX-2025-1A-0020"
+      ]
+    },
+    {
+      "id": "q14",
+      "question": "What happens if the company cannot protect its trademarks and domain names?",
+      "ticker": "NFLX",
+      "gold_chunk_ids": [
+        "NFLX-2025-1A-0028"
+      ]
+    },
+    {
+      "id": "q15",
+      "question": "What are the consequences if personal data held by the company is stolen or misused?",
+      "ticker": "NVDA",
+      "gold_chunk_ids": [
+        "NVDA-2026-1A-0088"
+      ]
+    },
+    {
+      "id": "q16",
+      "question": "How could an economic downturn hurt the company through its suppliers and customers?",
+      "ticker": "NVDA",
+      "gold_chunk_ids": [
+        "NVDA-2026-1A-0027"
+      ]
+    },
+    {
+      "id": "q17",
+      "question": "Why are counterfeit medicines a risk for the company?",
+      "ticker": "PFE",
+      "gold_chunk_ids": [
+        "PFE-2025-1A-0026"
+      ]
+    },
+    {
+      "id": "q18",
+      "question": "How does the company estimate the fair value of intangible assets in acquisitions?",
+      "ticker": "PFE",
+      "gold_chunk_ids": [
+        "PFE-2025-7-0026"
+      ]
+    },
+    {
+      "id": "q19",
+      "question": "How do online shopping and discount retailers change the competitive landscape?",
+      "ticker": "PG",
+      "gold_chunk_ids": [
+        "PG-2026-1A-0013"
+      ]
+    },
+    {
+      "id": "q20",
+      "question": "Why does management treat productivity improvement as strategic?",
+      "ticker": "PG",
+      "gold_chunk_ids": [
+        "PG-2026-7-0015"
+      ]
+    },
+    {
+      "id": "q21",
+      "question": "What happens if CMS cuts Medicare Advantage benchmarks or changes risk adjustment payments?",
+      "ticker": "UNH",
+      "gold_chunk_ids": [
+        "UNH-2025-1A-0047"
+      ]
+    },
+    {
+      "id": "q22",
+      "question": "How much liquidity does the company hold in cash and investment securities?",
+      "ticker": "UNH",
+      "gold_chunk_ids": [
+        "UNH-2025-7-0022"
+      ]
+    },
+    {
+      "id": "q23",
+      "question": "How do alternative payment systems such as real-time and P2P payments threaten the network?",
+      "ticker": "V",
+      "gold_chunk_ids": [
+        "V-2025-1A-0034"
+      ]
+    },
+    {
+      "id": "q24",
+      "question": "How do movements in the euro affect results through the European subsidiary?",
+      "ticker": "V",
+      "gold_chunk_ids": [
+        "V-2025-7A-0002"
+      ]
+    },
+    {
+      "id": "q25",
+      "question": "How do new lower-emission businesses like carbon capture and hydrogen depend on government policy?",
+      "ticker": "XOM",
+      "gold_chunk_ids": [
+        "XOM-2025-1A-0002"
+      ]
+    },
+    {
+      "id": "q26",
+      "question": "Why are operating efficiency and cost control important to competitive performance?",
+      "ticker": "XOM",
+      "gold_chunk_ids": [
+        "XOM-2025-1A-0026"
+      ]
+    }
+  ]
+}
