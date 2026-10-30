@@ -129,7 +129,15 @@ def efficient_frontier(mu: pd.Series, cov: pd.DataFrame, n_points: int = 30) -> 
     w_min = min_variance_weights(cov)
     r_min = float(w_min.to_numpy() @ m)
     r_max = float(m.max())
-    targets = np.linspace(r_min, r_max, n_points) if r_max > r_min + _TOL else np.array([r_min])
+    if r_max <= r_min + _TOL:
+        # Degenerate frontier: the minimum-variance portfolio is the only point. Re-solving
+        # with a return target would duplicate the budget constraint (μ ∝ 1), which SLSQP
+        # can reject as a singular subproblem depending on the platform's LAPACK.
+        w = w_min.to_numpy()
+        points = pd.DataFrame([{"ret": r_min, "vol": float(np.sqrt(max(w @ s @ w, 0.0)))}])
+        weights = pd.DataFrame([w], columns=cov.index)
+        return FrontierResult(points=points, weights=weights, min_variance=w_min)
+    targets = np.linspace(r_min, r_max, n_points)
     rows, ws = [], []
     x0 = w_min.to_numpy()
     for t in targets:
