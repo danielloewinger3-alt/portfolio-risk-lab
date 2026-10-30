@@ -88,7 +88,7 @@ plugins = ["pydantic.mypy"]
 # ---------------------------------------------------------------- pytest
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-norecursedirs = [".worktrees", ".git", ".venv", "node_modules"]
+norecursedirs = [".worktrees", ".git", ".venv", "node_modules", ".hypothesis"]
 addopts = "--strict-markers -ra"
 markers = [
     "network: test hits the live network (skipped by default; run with -m network)",
