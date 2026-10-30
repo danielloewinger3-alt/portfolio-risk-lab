@@ -207,3 +207,12 @@ def test_overview_tables_from_committed_shape() -> None:
     )
     assert vol.loc[0, "LightGBM vs best classical"] == "QLIKE 20.0% relative, not meaningful"
     assert vol.loc[1, "LightGBM vs best classical"] == "n/a"
+
+
+def test_alternatives_sentence() -> None:
+    from risklab.viz.text import alternatives_sentence
+
+    s = alternatives_sentence((0.10, 0.20), (0.08, 0.15), (0.05, 0.10))
+    assert "10.0% a year at 20.0% volatility" in s
+    assert "Hierarchical Risk Parity on the same holdings: 8.0% at 15.0%" in s
+    assert s.endswith("5.0% at 10.0%.")

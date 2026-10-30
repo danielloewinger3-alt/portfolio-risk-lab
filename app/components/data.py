@@ -47,6 +47,12 @@ from risklab.risk.attribution import (
 )
 from risklab.risk.metrics import MetricsSummary, summary_metrics
 from risklab.risk.montecarlo import SimulationResult, simulate_portfolio
+from risklab.risk.optimize import (
+    FrontierResult,
+    annualized_mean,
+    efficient_frontier,
+    hrp_weights,
+)
 from risklab.risk.stress import stress_test_portfolio
 from risklab.risk.var import BacktestResult, rolling_var_backtest, var_es_table
 
@@ -279,3 +285,14 @@ def chunk_by_id(chunk_id: str) -> Chunk | None:
         return open_index().chunks.get(chunk_id)
     except RiskLabError:
         return None
+
+
+@st.cache_data(show_spinner=False, hash_funcs=HASH)
+def alternatives(
+    p: Portfolio, offline: bool, method: str
+) -> tuple[FrontierResult, pd.Series, pd.Series, pd.DataFrame]:
+    """Efficient frontier, HRP weights, mean returns and covariance for ``p``'s holdings."""
+    r = portfolio_data(p, offline).asset_returns[list(p.tickers)]
+    cov = covariance(r, method)  # type: ignore[arg-type]
+    mu = annualized_mean(r).reindex(cov.index)
+    return efficient_frontier(mu, cov), hrp_weights(cov), mu, cov

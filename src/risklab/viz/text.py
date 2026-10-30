@@ -167,3 +167,15 @@ def regime_probs_sentence(probs: Mapping[str, float]) -> str:
         return "No regime probabilities available."
     top = max(probs, key=lambda k: probs[k])
     return f"Most likely current regime: {top} ({fmt_pct(probs[top], 1)}, filtered)."
+
+
+def alternatives_sentence(
+    current: tuple[float, float], hrp: tuple[float, float], min_var: tuple[float, float]
+) -> str:
+    """Compare in-sample (return, volatility) of the current, HRP and minimum-variance mixes."""
+    return (
+        f"In-sample, the current weights returned {fmt_pct(current[0], 1)} a year at "
+        f"{fmt_pct(current[1], 1)} volatility. Hierarchical Risk Parity on the same holdings: "
+        f"{fmt_pct(hrp[0], 1)} at {fmt_pct(hrp[1], 1)}; minimum variance: "
+        f"{fmt_pct(min_var[0], 1)} at {fmt_pct(min_var[1], 1)}."
+    )

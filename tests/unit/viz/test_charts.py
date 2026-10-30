@@ -166,3 +166,12 @@ def test_theme_heatmap_relative_colour_raw_text() -> None:
     assert hm.text[0][0] == "0.70" and hm.text[1][1] == ""
     assert fig.layout.title.text.startswith("How strongly")
     assert fig.layout.xaxis.title.text and fig.layout.yaxis.title.text
+
+
+def test_frontier_chart_labels_each_portfolio() -> None:
+    pts = pd.DataFrame({"vol": [0.10, 0.12, 0.18], "ret": [0.05, 0.07, 0.09]})
+    fig = charts.frontier_chart(pts, {"Current": (0.15, 0.06), "HRP": (0.11, 0.06)})
+    assert [t.name for t in fig.data] == ["Efficient frontier (in-sample)", "Current", "HRP"]
+    assert fig.data[1].text == ("Current",)  # labelled, not colour-only
+    assert fig.layout.xaxis.title.text and fig.layout.yaxis.title.text
+    assert fig.layout.xaxis.tickformat == ".1%"

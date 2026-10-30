@@ -61,8 +61,13 @@ def test_correlation(name: str) -> None:
     at = _run("2_Correlation_and_Concentration.py", _sample(name))
     _common(at, "Correlation and concentration")
     assert any("of weight but" in m.value for m in at.markdown)
-    assert len(at.get("plotly_chart")) == 2
+    assert len(at.get("plotly_chart")) == 3  # contributions, correlation, frontier
     assert len(at.dataframe) == 1
+    # Diversification alternatives (F14): weights and in-sample stats per mix.
+    alt = at.table[0].value
+    assert list(alt.columns) == ["Current", "HRP", "Minimum variance", "Equal weight"]
+    assert alt.loc["Volatility"].str.endswith("%").all()
+    assert any("Hierarchical Risk Parity" in m.value for m in at.markdown)
 
 
 @pytest.mark.parametrize("name", SAMPLES)

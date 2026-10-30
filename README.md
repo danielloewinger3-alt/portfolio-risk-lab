@@ -19,7 +19,7 @@
 
 | | |
 |---|---|
-| **Overview**: CAGR, volatility, Sharpe, Sortino, max drawdown, beta; cumulative return vs benchmark, underwater chart, rolling volatility, monthly heatmap | **Correlation and concentration**: clustered correlation heatmap, Euler risk contributions vs weights, effective number of bets |
+| **Overview**: CAGR, volatility, Sharpe, Sortino, max drawdown, beta; cumulative return vs benchmark, underwater chart, rolling volatility, monthly heatmap | **Correlation and concentration**: clustered correlation heatmap, Euler risk contributions vs weights, effective number of bets; long-only efficient frontier with Hierarchical Risk Parity, minimum-variance and equal-weight alternatives (in-sample, illustrative) |
 | ![Correlation](docs/screenshots/2_correlation.png) | ![Tail risk](docs/screenshots/3_tail_risk.png) |
 | **Tail risk**: VaR and Expected Shortfall (historical, normal, Student-t, Cornish-Fisher) at 95/99% and 1/10 days; rolling out-of-sample backtest with the Kupiec test in plain language | **Monte Carlo**: stationary block bootstrap, Student-t or normal; fan chart, terminal distribution, P(loss) and P(drawdown > 20%) |
 | ![Monte Carlo](docs/screenshots/4_monte_carlo.png) | ![Stress tests](docs/screenshots/5_stress_tests.png) |

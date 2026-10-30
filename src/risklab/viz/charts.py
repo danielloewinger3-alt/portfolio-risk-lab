@@ -690,3 +690,53 @@ def theme_heatmap(scores: pd.DataFrame, relative: pd.DataFrame) -> go.Figure:
         y_title="Company",
         height=max(CHART_HEIGHT, min(420, 36 * len(tickers) + 200)),
     )
+
+
+ALTERNATIVE_COLORS: dict[str, str] = {
+    "Current": PORTFOLIO,
+    "HRP": ACCENT,
+    "Minimum variance": WARNING,
+    "Equal weight": MUTED_TEXT,
+}
+
+
+def frontier_chart(
+    points: pd.DataFrame, portfolios: Mapping[str, tuple[float, float]]
+) -> go.Figure:
+    """Long-only efficient frontier (``points`` with ``vol``/``ret``) and labelled markers
+    for each named portfolio ``name -> (vol, ret)`` (annualized fractions)."""
+    fig = go.Figure(
+        go.Scatter(
+            x=points["vol"],
+            y=points["ret"],
+            mode="lines",
+            name="Efficient frontier (in-sample)",
+            line={"color": BENCHMARK, "width": 2},
+            hovertemplate="Volatility %{x:.1%}<br>Return %{y:.1%}<extra>Frontier</extra>",
+        )
+    )
+    for name, (vol, ret) in portfolios.items():
+        fig.add_trace(
+            go.Scatter(
+                x=[vol],
+                y=[ret],
+                mode="markers+text",
+                name=name,
+                text=[name],
+                textposition="middle right",
+                marker={"size": 12, "color": ALTERNATIVE_COLORS.get(name, PORTFOLIO)},
+                hovertemplate=(
+                    f"{name}<br>Volatility %{{x:.1%}}<br>Return %{{y:.1%}}<extra></extra>"
+                ),
+            )
+        )
+    fig.update_xaxes(tickformat=PCT, rangemode="tozero")
+    fig.update_yaxes(tickformat=PCT)
+    fig = apply_theme(
+        fig,
+        title="Efficient frontier (grey) and alternatives",
+        x_title="Annualized volatility",
+        y_title="Annualized mean return",
+    )
+    fig.update_layout(showlegend=False)  # every marker carries its own text label
+    return fig
