@@ -240,3 +240,23 @@ def test_write_query_cache_model_mismatch_ignored(tmp_data_dir: Settings) -> Non
     ix.write_query_cache(HashEmbedder(), ["q1"], settings=tmp_data_dir)
     assert set(ix._load_query_cache(tmp_data_dir, HashEmbedder.model_name)) == {"q1"}
     assert ix._load_query_cache(tmp_data_dir, "other/model") == {}
+
+
+def test_runtime_copy_and_open_index(built: Built, monkeypatch: pytest.MonkeyPatch) -> None:
+    settings, _, _ = built
+    dst = ix.runtime_copy(settings)
+    assert dst.is_relative_to(settings.cache_dir) and (dst / "chroma.sqlite3").is_file()
+    marker = (dst / ".source_build_date").read_text()
+    assert marker == load_manifest(settings).build_date  # type: ignore[union-attr]
+    assert ix.runtime_copy(settings) == dst  # unchanged build: reused, no recopy
+    ix.open_index.cache_clear()
+    monkeypatch.setattr(ix, "FastEmbedEmbedder", lambda **kw: HashEmbedder())
+    try:
+        assert ix.open_index().tickers == ["AAA", "BBB", "CCC"]
+    finally:
+        ix.open_index.cache_clear()
+
+
+def test_runtime_copy_requires_index(tmp_data_dir: Settings) -> None:
+    with pytest.raises(DataUnavailableError, match="build_index"):
+        ix.runtime_copy(tmp_data_dir)

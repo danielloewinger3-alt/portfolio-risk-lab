@@ -470,16 +470,42 @@ def _load_query_cache(settings: Settings, model: str) -> dict[str, list[float]]:
     return queries
 
 
+def runtime_copy(settings: Settings | None = None) -> Path:
+    """Copy the committed Chroma directory to ``data/cache/chroma_runtime`` and return it.
+
+    Chroma writes to its sqlite file even when only reading, which would dirty the
+    committed index on every app start. Readers therefore open a copy in the gitignored
+    cache, refreshed whenever the manifest's ``build_date`` changes.
+    """
+    s = settings or get_settings()
+    src = chroma_path(s)
+    if not (src / "chroma.sqlite3").is_file():
+        raise DataUnavailableError(f"no filings index at {src}; run scripts/build_index.py")
+    manifest = load_manifest(s)
+    stamp = manifest.build_date if manifest else "unknown"
+    dst = s.cache_dir / "chroma_runtime"
+    marker = dst / ".source_build_date"
+    if not (marker.is_file() and marker.read_text() == stamp):
+        tmp = s.cache_dir / "chroma_runtime.tmp"
+        shutil.rmtree(tmp, ignore_errors=True)
+        shutil.copytree(src, tmp)
+        (tmp / ".source_build_date").write_text(stamp)
+        shutil.rmtree(dst, ignore_errors=True)
+        tmp.rename(dst)
+    return dst
+
+
 @lru_cache(maxsize=1)
 def open_index() -> RagIndex:
     """The committed index with the default embedder (process-wide, cached).
 
+    Opens a runtime copy (:func:`runtime_copy`) so the committed files stay untouched.
     The embedder loads the model lazily, only when a query is not in the cache. In
     offline mode it never downloads (``local_files_only``).
     """
     s = get_settings()
     emb = FastEmbedEmbedder(cache_dir=s.cache_dir / "fastembed", local_files_only=s.offline)
-    return RagIndex(chroma_path(s), embedder=emb, query_cache=_load_query_cache(s, emb.model_name))
+    return RagIndex(runtime_copy(s), embedder=emb, query_cache=_load_query_cache(s, emb.model_name))
 
 
 def indexed_tickers(settings: Settings | None = None) -> list[str]:
