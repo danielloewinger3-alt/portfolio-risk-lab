@@ -1,0 +1,2871 @@
+{
+  "label": "SYNTHETIC GOLD SET - questions written by the build agent, not by humans; not a benchmark",
+  "run_at": "2026-10-30T09:42:53",
+  "git_commit": "5a3c7bf",
+  "index_build_date": "2026-10-30T09:38:54",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "k": 6,
+  "per_ticker_quota": 2,
+  "seed": 42,
+  "n_questions": 26,
+  "n_tickers": 13,
+  "citation_validity": {
+    "retrieved": 936,
+    "valid": 936,
+    "rate": 1.0
+  },
+  "metrics": {
+    "single/dense": {
+      "n": 26,
+      "hit_at_6": 0.9615,
+      "mrr_at_6": 0.8846,
+      "hit_at_6_lenient": 1.0,
+      "mrr_at_6_lenient": 0.9615
+    },
+    "single/bm25": {
+      "n": 26,
+      "hit_at_6": 0.8846,
+      "mrr_at_6": 0.7244,
+      "hit_at_6_lenient": 0.9231,
+      "mrr_at_6_lenient": 0.8173
+    },
+    "single/hybrid": {
+      "n": 26,
+      "hit_at_6": 1.0,
+      "mrr_at_6": 0.7962,
+      "hit_at_6_lenient": 1.0,
+      "mrr_at_6_lenient": 0.9103
+    },
+    "portfolio/dense": {
+      "n": 26,
+      "hit_at_6": 0.9615,
+      "mrr_at_6": 0.7756,
+      "hit_at_6_lenient": 1.0,
+      "mrr_at_6_lenient": 0.8397
+    },
+    "portfolio/bm25": {
+      "n": 26,
+      "hit_at_6": 0.8462,
+      "mrr_at_6": 0.6936,
+      "hit_at_6_lenient": 0.8846,
+      "mrr_at_6_lenient": 0.7192
+    },
+    "portfolio/hybrid": {
+      "n": 26,
+      "hit_at_6": 0.9231,
+      "mrr_at_6": 0.8013,
+      "hit_at_6_lenient": 0.9615,
+      "mrr_at_6_lenient": 0.8782
+    }
+  },
+  "per_question": [
+    {
+      "id": "q01",
+      "ticker": "AMZN",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "AMZN"
+          ],
+          "retrieved": [
+            "AMZN-2025-7-0023",
+            "AMZN-2025-7-0021",
+            "AMZN-2025-7-0007",
+            "AMZN-2025-7-0031",
+            "AMZN-2025-7-0022",
+            "AMZN-2025-1A-0019"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "AMZN"
+          ],
+          "retrieved": [
+            "AMZN-2025-7-0023",
+            "AMZN-2025-7-0031",
+            "AMZN-2025-7-0025",
+            "AMZN-2025-7-0026",
+            "AMZN-2025-7-0022",
+            "AMZN-2025-7-0030"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "AMZN"
+          ],
+          "retrieved": [
+            "AMZN-2025-7-0023",
+            "AMZN-2025-7-0031",
+            "AMZN-2025-7-0025",
+            "AMZN-2025-7-0022",
+            "AMZN-2025-7-0021",
+            "AMZN-2025-7-0007"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "AAPL",
+            "AMZN",
+            "CAT",
+            "JPM",
+            "XOM"
+          ],
+          "retrieved": [
+            "AMZN-2025-7-0023",
+            "AMZN-2025-7-0021",
+            "AMZN-2025-7-0007",
+            "AMZN-2025-7-0031",
+            "AMZN-2025-7-0022",
+            "AMZN-2025-1A-0019"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "AAPL",
+            "AMZN",
+            "CAT",
+            "JPM",
+            "XOM"
+          ],
+          "retrieved": [
+            "AMZN-2025-7-0023",
+            "AMZN-2025-7-0031",
+            "CAT-2025-7-0008",
+            "AAPL-2025-7-0006",
+            "CAT-2025-7-0003",
+            "AAPL-2025-7-0005"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "AAPL",
+            "AMZN",
+            "CAT",
+            "JPM",
+            "XOM"
+          ],
+          "retrieved": [
+            "AMZN-2025-7-0023",
+            "AMZN-2025-7-0031",
+            "CAT-2025-7-0008",
+            "AAPL-2025-7-0006",
+            "CAT-2025-7-0003",
+            "AAPL-2025-7-0005"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q02",
+      "ticker": "AMZN",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "AMZN"
+          ],
+          "retrieved": [
+            "AMZN-2025-1A-0026",
+            "AMZN-2025-1A-0027",
+            "AMZN-2025-1A-0028",
+            "AMZN-2025-1A-0039",
+            "AMZN-2025-1A-0004",
+            "AMZN-2025-1A-0014"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "AMZN"
+          ],
+          "retrieved": [
+            "AMZN-2025-1A-0026",
+            "AMZN-2025-1A-0027",
+            "AMZN-2025-1A-0028",
+            "AMZN-2025-1A-0039",
+            "AMZN-2025-1A-0035",
+            "AMZN-2025-1A-0046"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "AMZN"
+          ],
+          "retrieved": [
+            "AMZN-2025-1A-0026",
+            "AMZN-2025-1A-0027",
+            "AMZN-2025-1A-0028",
+            "AMZN-2025-1A-0039",
+            "AMZN-2025-1A-0043",
+            "AMZN-2025-1A-0040"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "AMZN",
+            "CAT",
+            "CVX",
+            "JNJ",
+            "XOM"
+          ],
+          "retrieved": [
+            "AMZN-2025-1A-0026",
+            "AMZN-2025-1A-0027",
+            "JNJ-2025-1A-0036",
+            "JNJ-2025-1A-0034",
+            "CAT-2025-1A-0015",
+            "CAT-2025-1A-0016"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "AMZN",
+            "CAT",
+            "CVX",
+            "JNJ",
+            "XOM"
+          ],
+          "retrieved": [
+            "AMZN-2025-1A-0026",
+            "AMZN-2025-1A-0027",
+            "CVX-2025-1A-0008",
+            "JNJ-2025-1A-0036",
+            "CVX-2025-1A-0012",
+            "JNJ-2025-1A-0035"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "AMZN",
+            "CAT",
+            "CVX",
+            "JNJ",
+            "XOM"
+          ],
+          "retrieved": [
+            "AMZN-2025-1A-0026",
+            "AMZN-2025-1A-0027",
+            "JNJ-2025-1A-0036",
+            "JNJ-2025-1A-0035",
+            "CVX-2025-1A-0008",
+            "CVX-2025-1A-0012"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q03",
+      "ticker": "CVX",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "CVX"
+          ],
+          "retrieved": [
+            "CVX-2025-1A-0027",
+            "CVX-2025-1A-0026",
+            "CVX-2025-1A-0032",
+            "CVX-2025-1A-0028",
+            "CVX-2025-1A-0022",
+            "CVX-2025-1A-0025"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "CVX"
+          ],
+          "retrieved": [
+            "CVX-2025-1A-0025",
+            "CVX-2025-1A-0028",
+            "CVX-2025-1A-0027",
+            "CVX-2025-1A-0026",
+            "CVX-2025-1A-0032",
+            "CVX-2025-1A-0009"
+          ],
+          "rank_strict": 3,
+          "rank_lenient": 2
+        },
+        "single/hybrid": {
+          "tickers": [
+            "CVX"
+          ],
+          "retrieved": [
+            "CVX-2025-1A-0027",
+            "CVX-2025-1A-0026",
+            "CVX-2025-1A-0028",
+            "CVX-2025-1A-0025",
+            "CVX-2025-1A-0032",
+            "CVX-2025-1A-0022"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "AMZN",
+            "CVX",
+            "NVDA",
+            "UNH",
+            "V"
+          ],
+          "retrieved": [
+            "CVX-2025-1A-0027",
+            "NVDA-2026-1A-0045",
+            "CVX-2025-1A-0026",
+            "NVDA-2026-1A-0013",
+            "AMZN-2025-7-0016",
+            "UNH-2025-1A-0059"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "AMZN",
+            "CVX",
+            "NVDA",
+            "UNH",
+            "V"
+          ],
+          "retrieved": [
+            "CVX-2025-1A-0027",
+            "CVX-2025-1A-0025",
+            "V-2025-1A-0010",
+            "NVDA-2026-1A-0044",
+            "NVDA-2026-7-0014",
+            "AMZN-2025-1A-0022"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "AMZN",
+            "CVX",
+            "NVDA",
+            "UNH",
+            "V"
+          ],
+          "retrieved": [
+            "CVX-2025-1A-0027",
+            "CVX-2025-1A-0026",
+            "NVDA-2026-1A-0044",
+            "NVDA-2026-1A-0045",
+            "V-2025-1A-0010",
+            "AMZN-2025-7-0016"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q04",
+      "ticker": "CVX",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "CVX"
+          ],
+          "retrieved": [
+            "CVX-2025-1A-0015",
+            "CVX-2025-1A-0012",
+            "CVX-2025-1A-0013",
+            "CVX-2025-1A-0014",
+            "CVX-2025-1A-0032",
+            "CVX-2025-1A-0021"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "CVX"
+          ],
+          "retrieved": [
+            "CVX-2025-1A-0011",
+            "CVX-2025-1A-0013",
+            "CVX-2025-1A-0025",
+            "CVX-2025-1A-0001",
+            "CVX-2025-1A-0017",
+            "CVX-2025-1A-0012"
+          ],
+          "rank_strict": null,
+          "rank_lenient": null
+        },
+        "single/hybrid": {
+          "tickers": [
+            "CVX"
+          ],
+          "retrieved": [
+            "CVX-2025-1A-0013",
+            "CVX-2025-1A-0015",
+            "CVX-2025-1A-0012",
+            "CVX-2025-1A-0011",
+            "CVX-2025-1A-0025",
+            "CVX-2025-1A-0022"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "AAPL",
+            "AMD",
+            "AMZN",
+            "CVX",
+            "HD"
+          ],
+          "retrieved": [
+            "AMD-2025-1A-0080",
+            "AMD-2025-1A-0081",
+            "CVX-2025-1A-0015",
+            "AMZN-2025-1A-0048",
+            "HD-2025-1A-0053",
+            "AAPL-2025-1A-0043"
+          ],
+          "rank_strict": 3,
+          "rank_lenient": 3
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "AAPL",
+            "AMD",
+            "AMZN",
+            "CVX",
+            "HD"
+          ],
+          "retrieved": [
+            "AMD-2025-1A-0080",
+            "CVX-2025-1A-0011",
+            "AMD-2025-1A-0078",
+            "AAPL-2025-1A-0019",
+            "AAPL-2025-1A-0042",
+            "CVX-2025-1A-0025"
+          ],
+          "rank_strict": null,
+          "rank_lenient": null
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "AAPL",
+            "AMD",
+            "AMZN",
+            "CVX",
+            "HD"
+          ],
+          "retrieved": [
+            "AMD-2025-1A-0080",
+            "AMD-2025-1A-0078",
+            "HD-2025-1A-0053",
+            "AAPL-2025-1A-0043",
+            "CVX-2025-1A-0011",
+            "AAPL-2025-1A-0019"
+          ],
+          "rank_strict": null,
+          "rank_lenient": null
+        }
+      }
+    },
+    {
+      "id": "q05",
+      "ticker": "GOOGL",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "GOOGL"
+          ],
+          "retrieved": [
+            "GOOGL-2025-1A-0058",
+            "GOOGL-2025-1A-0059",
+            "GOOGL-2025-1A-0046",
+            "GOOGL-2025-1A-0057",
+            "GOOGL-2025-1A-0056",
+            "GOOGL-2025-1A-0048"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "GOOGL"
+          ],
+          "retrieved": [
+            "GOOGL-2025-1A-0058",
+            "GOOGL-2025-1A-0057",
+            "GOOGL-2025-1A-0046",
+            "GOOGL-2025-1A-0047",
+            "GOOGL-2025-1A-0048",
+            "GOOGL-2025-1A-0045"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "GOOGL"
+          ],
+          "retrieved": [
+            "GOOGL-2025-1A-0058",
+            "GOOGL-2025-1A-0057",
+            "GOOGL-2025-1A-0046",
+            "GOOGL-2025-1A-0047",
+            "GOOGL-2025-1A-0048",
+            "GOOGL-2025-1A-0056"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "AAPL",
+            "GOOGL",
+            "JNJ",
+            "TSLA",
+            "UNH"
+          ],
+          "retrieved": [
+            "GOOGL-2025-1A-0058",
+            "GOOGL-2025-1A-0059",
+            "AAPL-2025-1A-0048",
+            "TSLA-2025-1A-0063",
+            "JNJ-2025-1A-0037",
+            "AAPL-2025-1A-0039"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "AAPL",
+            "GOOGL",
+            "JNJ",
+            "TSLA",
+            "UNH"
+          ],
+          "retrieved": [
+            "GOOGL-2025-1A-0058",
+            "GOOGL-2025-1A-0057",
+            "AAPL-2025-1A-0048",
+            "TSLA-2025-1A-0063",
+            "TSLA-2025-1A-0062",
+            "UNH-2025-1A-0056"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "AAPL",
+            "GOOGL",
+            "JNJ",
+            "TSLA",
+            "UNH"
+          ],
+          "retrieved": [
+            "GOOGL-2025-1A-0058",
+            "GOOGL-2025-1A-0057",
+            "AAPL-2025-1A-0048",
+            "TSLA-2025-1A-0063",
+            "UNH-2025-1A-0056",
+            "JNJ-2025-1A-0036"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q06",
+      "ticker": "GOOGL",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "GOOGL"
+          ],
+          "retrieved": [
+            "GOOGL-2025-7-0002",
+            "GOOGL-2025-7-0003",
+            "GOOGL-2025-1A-0009",
+            "GOOGL-2025-1A-0002",
+            "GOOGL-2025-1A-0003",
+            "GOOGL-2025-1A-0004"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "GOOGL"
+          ],
+          "retrieved": [
+            "GOOGL-2025-7-0003",
+            "GOOGL-2025-1A-0013",
+            "GOOGL-2025-7-0004",
+            "GOOGL-2025-7-0002",
+            "GOOGL-2025-1A-0034",
+            "GOOGL-2025-1A-0004"
+          ],
+          "rank_strict": 4,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "GOOGL"
+          ],
+          "retrieved": [
+            "GOOGL-2025-7-0003",
+            "GOOGL-2025-7-0002",
+            "GOOGL-2025-1A-0013",
+            "GOOGL-2025-1A-0004",
+            "GOOGL-2025-7-0004",
+            "GOOGL-2025-1A-0034"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "GOOGL",
+            "HD",
+            "JNJ",
+            "NVDA",
+            "UNH"
+          ],
+          "retrieved": [
+            "GOOGL-2025-7-0002",
+            "GOOGL-2025-7-0003",
+            "UNH-2025-1A-0025",
+            "NVDA-2026-1A-0083",
+            "JNJ-2025-1A-0021",
+            "UNH-2025-1A-0026"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "GOOGL",
+            "HD",
+            "JNJ",
+            "NVDA",
+            "UNH"
+          ],
+          "retrieved": [
+            "NVDA-2026-1A-0007",
+            "GOOGL-2025-7-0002",
+            "GOOGL-2025-7-0003",
+            "GOOGL-2025-7-0004",
+            "GOOGL-2025-1A-0034",
+            "NVDA-2026-1A-0006"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "GOOGL",
+            "HD",
+            "JNJ",
+            "NVDA",
+            "UNH"
+          ],
+          "retrieved": [
+            "GOOGL-2025-7-0002",
+            "GOOGL-2025-7-0003",
+            "NVDA-2026-1A-0017",
+            "NVDA-2026-1A-0007",
+            "UNH-2025-1A-0025",
+            "JNJ-2025-1A-0021"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q07",
+      "ticker": "JPM",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "JPM"
+          ],
+          "retrieved": [
+            "JPM-2025-1A-0037",
+            "JPM-2025-1A-0017",
+            "JPM-2025-1A-0091",
+            "JPM-2025-1A-0088",
+            "JPM-2025-1A-0089",
+            "JPM-2025-1A-0002"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "JPM"
+          ],
+          "retrieved": [
+            "JPM-2025-1A-0037",
+            "JPM-2025-1A-0090",
+            "JPM-2025-1A-0060",
+            "JPM-2025-1A-0005",
+            "JPM-2025-1A-0058",
+            "JPM-2025-1A-0035"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "JPM"
+          ],
+          "retrieved": [
+            "JPM-2025-1A-0037",
+            "JPM-2025-1A-0090",
+            "JPM-2025-1A-0091",
+            "JPM-2025-1A-0017",
+            "JPM-2025-1A-0035",
+            "JPM-2025-1A-0018"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "AAPL",
+            "JNJ",
+            "JPM",
+            "PFE",
+            "V"
+          ],
+          "retrieved": [
+            "JPM-2025-1A-0037",
+            "AAPL-2025-1A-0007",
+            "JPM-2025-1A-0017",
+            "V-2025-1A-0061",
+            "V-2025-1A-0060",
+            "JNJ-2025-1A-0025"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "AAPL",
+            "JNJ",
+            "JPM",
+            "PFE",
+            "V"
+          ],
+          "retrieved": [
+            "JPM-2025-1A-0037",
+            "JPM-2025-1A-0090",
+            "V-2025-1A-0047",
+            "JNJ-2025-7-0011",
+            "V-2025-1A-0065",
+            "AAPL-2025-1A-0036"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "AAPL",
+            "JNJ",
+            "JPM",
+            "PFE",
+            "V"
+          ],
+          "retrieved": [
+            "JPM-2025-1A-0037",
+            "JPM-2025-1A-0090",
+            "AAPL-2025-1A-0007",
+            "V-2025-1A-0047",
+            "JNJ-2025-7-0011",
+            "V-2025-1A-0061"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q08",
+      "ticker": "JPM",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "JPM"
+          ],
+          "retrieved": [
+            "JPM-2025-1A-0002",
+            "JPM-2025-1A-0006",
+            "JPM-2025-1A-0009",
+            "JPM-2025-1A-0005",
+            "JPM-2025-1A-0001",
+            "JPM-2025-1A-0012"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "JPM"
+          ],
+          "retrieved": [
+            "JPM-2025-1A-0045",
+            "JPM-2025-1A-0002",
+            "JPM-2025-1A-0001",
+            "JPM-2025-1A-0011",
+            "JPM-2025-1A-0044",
+            "JPM-2025-1A-0006"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        },
+        "single/hybrid": {
+          "tickers": [
+            "JPM"
+          ],
+          "retrieved": [
+            "JPM-2025-1A-0002",
+            "JPM-2025-1A-0006",
+            "JPM-2025-1A-0001",
+            "JPM-2025-1A-0005",
+            "JPM-2025-1A-0011",
+            "JPM-2025-1A-0012"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "CVX",
+            "JNJ",
+            "JPM",
+            "META",
+            "NVDA"
+          ],
+          "retrieved": [
+            "JPM-2025-1A-0002",
+            "NVDA-2026-1A-0058",
+            "JPM-2025-1A-0006",
+            "NVDA-2026-1A-0003",
+            "META-2025-1A-0082",
+            "JNJ-2025-1A-0025"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "CVX",
+            "JNJ",
+            "JPM",
+            "META",
+            "NVDA"
+          ],
+          "retrieved": [
+            "JPM-2025-1A-0045",
+            "JPM-2025-1A-0002",
+            "NVDA-2026-1A-0004",
+            "NVDA-2026-7-0006",
+            "CVX-2025-1A-0014",
+            "JNJ-2025-7-0046"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "CVX",
+            "JNJ",
+            "JPM",
+            "META",
+            "NVDA"
+          ],
+          "retrieved": [
+            "JPM-2025-1A-0002",
+            "JPM-2025-1A-0006",
+            "NVDA-2026-1A-0004",
+            "NVDA-2026-1A-0058",
+            "META-2025-1A-0082",
+            "JNJ-2025-1A-0025"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q09",
+      "ticker": "KO",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "KO"
+          ],
+          "retrieved": [
+            "KO-2025-7-0061",
+            "KO-2025-1A-0042",
+            "KO-2025-7-0063",
+            "KO-2025-1A-0041",
+            "KO-2025-7-0060",
+            "KO-2025-1A-0002"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        },
+        "single/bm25": {
+          "tickers": [
+            "KO"
+          ],
+          "retrieved": [
+            "KO-2025-7-0061",
+            "KO-2025-1A-0042",
+            "KO-2025-7-0062",
+            "KO-2025-7-0060",
+            "KO-2025-1A-0043",
+            "KO-2025-1A-0041"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        },
+        "single/hybrid": {
+          "tickers": [
+            "KO"
+          ],
+          "retrieved": [
+            "KO-2025-7-0061",
+            "KO-2025-1A-0042",
+            "KO-2025-7-0060",
+            "KO-2025-7-0063",
+            "KO-2025-1A-0041",
+            "KO-2025-1A-0002"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "BAC",
+            "CAT",
+            "GOOGL",
+            "KO",
+            "META"
+          ],
+          "retrieved": [
+            "KO-2025-7-0061",
+            "META-2025-1A-0099",
+            "GOOGL-2025-1A-0064",
+            "META-2025-1A-0101",
+            "GOOGL-2025-1A-0065",
+            "KO-2025-1A-0042"
+          ],
+          "rank_strict": 6,
+          "rank_lenient": 6
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "BAC",
+            "CAT",
+            "GOOGL",
+            "KO",
+            "META"
+          ],
+          "retrieved": [
+            "META-2025-1A-0099",
+            "KO-2025-7-0061",
+            "KO-2025-1A-0042",
+            "GOOGL-2025-7-0023",
+            "GOOGL-2025-1A-0065",
+            "BAC-2025-1A-0089"
+          ],
+          "rank_strict": 3,
+          "rank_lenient": 3
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "BAC",
+            "CAT",
+            "GOOGL",
+            "KO",
+            "META"
+          ],
+          "retrieved": [
+            "KO-2025-7-0061",
+            "META-2025-1A-0099",
+            "KO-2025-1A-0042",
+            "GOOGL-2025-1A-0065",
+            "GOOGL-2025-1A-0064",
+            "BAC-2025-1A-0089"
+          ],
+          "rank_strict": 3,
+          "rank_lenient": 3
+        }
+      }
+    },
+    {
+      "id": "q10",
+      "ticker": "KO",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "KO"
+          ],
+          "retrieved": [
+            "KO-2025-7-0029",
+            "KO-2025-7-0028",
+            "KO-2025-7-0030",
+            "KO-2025-7-0084",
+            "KO-2025-7-0031",
+            "KO-2025-7-0085"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "KO"
+          ],
+          "retrieved": [
+            "KO-2025-7-0029",
+            "KO-2025-7-0028",
+            "KO-2025-7-0058",
+            "KO-2025-7-0082",
+            "KO-2025-7-0060",
+            "KO-2025-7-0071"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "KO"
+          ],
+          "retrieved": [
+            "KO-2025-7-0029",
+            "KO-2025-7-0028",
+            "KO-2025-7-0030",
+            "KO-2025-7-0060",
+            "KO-2025-7-0081",
+            "KO-2025-7-0031"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "AMZN",
+            "BAC",
+            "KO",
+            "MSFT",
+            "NFLX"
+          ],
+          "retrieved": [
+            "KO-2025-7-0029",
+            "NFLX-2025-7-0028",
+            "KO-2025-7-0028",
+            "MSFT-2026-7-0035",
+            "AMZN-2025-1A-0051",
+            "NFLX-2025-7-0027"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "AMZN",
+            "BAC",
+            "KO",
+            "MSFT",
+            "NFLX"
+          ],
+          "retrieved": [
+            "KO-2025-7-0029",
+            "MSFT-2026-7-0035",
+            "NFLX-2025-7-0028",
+            "MSFT-2026-7-0036",
+            "KO-2025-7-0082",
+            "BAC-2025-7-0070"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "AMZN",
+            "BAC",
+            "KO",
+            "MSFT",
+            "NFLX"
+          ],
+          "retrieved": [
+            "KO-2025-7-0029",
+            "NFLX-2025-7-0028",
+            "MSFT-2026-7-0035",
+            "KO-2025-7-0028",
+            "MSFT-2026-7-0036",
+            "NFLX-2025-7-0027"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q11",
+      "ticker": "MSFT",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "MSFT"
+          ],
+          "retrieved": [
+            "MSFT-2026-1A-0044",
+            "MSFT-2026-1A-0034",
+            "MSFT-2026-1A-0025",
+            "MSFT-2026-1A-0043",
+            "MSFT-2026-1A-0013",
+            "MSFT-2026-1A-0035"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "MSFT"
+          ],
+          "retrieved": [
+            "MSFT-2026-1A-0044",
+            "MSFT-2026-1A-0043",
+            "MSFT-2026-1A-0034",
+            "MSFT-2026-1A-0032",
+            "MSFT-2026-7-0037",
+            "MSFT-2026-1A-0057"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "MSFT"
+          ],
+          "retrieved": [
+            "MSFT-2026-1A-0044",
+            "MSFT-2026-1A-0034",
+            "MSFT-2026-1A-0043",
+            "MSFT-2026-1A-0024",
+            "MSFT-2026-1A-0013",
+            "MSFT-2026-1A-0027"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "AMD",
+            "JNJ",
+            "META",
+            "MSFT",
+            "WMT"
+          ],
+          "retrieved": [
+            "META-2025-1A-0158",
+            "MSFT-2026-1A-0044",
+            "META-2025-1A-0150",
+            "WMT-2026-1A-0032",
+            "MSFT-2026-1A-0034",
+            "AMD-2025-1A-0016"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "AMD",
+            "JNJ",
+            "META",
+            "MSFT",
+            "WMT"
+          ],
+          "retrieved": [
+            "MSFT-2026-1A-0044",
+            "META-2025-1A-0157",
+            "META-2025-1A-0158",
+            "MSFT-2026-1A-0043",
+            "AMD-2025-1A-0038",
+            "JNJ-2025-1A-0021"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "AMD",
+            "JNJ",
+            "META",
+            "MSFT",
+            "WMT"
+          ],
+          "retrieved": [
+            "MSFT-2026-1A-0044",
+            "META-2025-1A-0158",
+            "META-2025-1A-0157",
+            "MSFT-2026-1A-0043",
+            "JNJ-2025-1A-0021",
+            "WMT-2026-1A-0032"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q12",
+      "ticker": "MSFT",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "MSFT"
+          ],
+          "retrieved": [
+            "MSFT-2026-1A-0036",
+            "MSFT-2026-1A-0034",
+            "MSFT-2026-1A-0035",
+            "MSFT-2026-1A-0033",
+            "MSFT-2026-1A-0044",
+            "MSFT-2026-1A-0013"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "MSFT"
+          ],
+          "retrieved": [
+            "MSFT-2026-1A-0036",
+            "MSFT-2026-7-0037",
+            "MSFT-2026-1A-0043",
+            "MSFT-2026-1A-0044",
+            "MSFT-2026-1A-0035",
+            "MSFT-2026-7-0001"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "MSFT"
+          ],
+          "retrieved": [
+            "MSFT-2026-1A-0036",
+            "MSFT-2026-1A-0035",
+            "MSFT-2026-1A-0044",
+            "MSFT-2026-1A-0034",
+            "MSFT-2026-1A-0043",
+            "MSFT-2026-1A-0025"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "BAC",
+            "MSFT",
+            "NFLX",
+            "PFE",
+            "UNH"
+          ],
+          "retrieved": [
+            "MSFT-2026-1A-0036",
+            "MSFT-2026-1A-0034",
+            "UNH-2025-1A-0006",
+            "UNH-2025-1A-0026",
+            "PFE-2025-1A-0059",
+            "PFE-2025-1A-0061"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "BAC",
+            "MSFT",
+            "NFLX",
+            "PFE",
+            "UNH"
+          ],
+          "retrieved": [
+            "MSFT-2026-1A-0036",
+            "MSFT-2026-1A-0043",
+            "UNH-2025-1A-0006",
+            "BAC-2025-7-0007",
+            "BAC-2025-1A-0023",
+            "PFE-2025-1A-0060"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "BAC",
+            "MSFT",
+            "NFLX",
+            "PFE",
+            "UNH"
+          ],
+          "retrieved": [
+            "MSFT-2026-1A-0036",
+            "UNH-2025-1A-0006",
+            "MSFT-2026-1A-0035",
+            "PFE-2025-1A-0060",
+            "UNH-2025-1A-0026",
+            "PFE-2025-1A-0059"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q13",
+      "ticker": "NFLX",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "NFLX"
+          ],
+          "retrieved": [
+            "NFLX-2025-1A-0020",
+            "NFLX-2025-1A-0038",
+            "NFLX-2025-1A-0037",
+            "NFLX-2025-1A-0021",
+            "NFLX-2025-1A-0002",
+            "NFLX-2025-1A-0015"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "NFLX"
+          ],
+          "retrieved": [
+            "NFLX-2025-1A-0020",
+            "NFLX-2025-1A-0021",
+            "NFLX-2025-1A-0038",
+            "NFLX-2025-7-0024",
+            "NFLX-2025-1A-0037",
+            "NFLX-2025-7-0005"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "NFLX"
+          ],
+          "retrieved": [
+            "NFLX-2025-1A-0020",
+            "NFLX-2025-1A-0038",
+            "NFLX-2025-1A-0021",
+            "NFLX-2025-1A-0037",
+            "NFLX-2025-1A-0019",
+            "NFLX-2025-1A-0005"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "AMZN",
+            "JPM",
+            "META",
+            "NFLX",
+            "UNH"
+          ],
+          "retrieved": [
+            "NFLX-2025-1A-0020",
+            "NFLX-2025-1A-0038",
+            "NFLX-2025-1A-0037",
+            "NFLX-2025-1A-0021",
+            "NFLX-2025-1A-0002",
+            "META-2025-1A-0144"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "AMZN",
+            "JPM",
+            "META",
+            "NFLX",
+            "UNH"
+          ],
+          "retrieved": [
+            "NFLX-2025-1A-0020",
+            "NFLX-2025-1A-0021",
+            "UNH-2025-1A-0041",
+            "AMZN-2025-1A-0039",
+            "AMZN-2025-1A-0023",
+            "UNH-2025-7-0013"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "AMZN",
+            "JPM",
+            "META",
+            "NFLX",
+            "UNH"
+          ],
+          "retrieved": [
+            "NFLX-2025-1A-0020",
+            "NFLX-2025-1A-0021",
+            "UNH-2025-1A-0041",
+            "AMZN-2025-1A-0039",
+            "AMZN-2025-1A-0023",
+            "META-2025-1A-0144"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q14",
+      "ticker": "NFLX",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "NFLX"
+          ],
+          "retrieved": [
+            "NFLX-2025-1A-0028",
+            "NFLX-2025-1A-0027",
+            "NFLX-2025-1A-0009",
+            "NFLX-2025-1A-0007",
+            "NFLX-2025-1A-0030",
+            "NFLX-2025-1A-0029"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "NFLX"
+          ],
+          "retrieved": [
+            "NFLX-2025-1A-0028",
+            "NFLX-2025-1A-0027",
+            "NFLX-2025-1A-0041",
+            "NFLX-2025-1A-0057",
+            "NFLX-2025-7-0013",
+            "NFLX-2025-7-0023"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "NFLX"
+          ],
+          "retrieved": [
+            "NFLX-2025-1A-0028",
+            "NFLX-2025-1A-0027",
+            "NFLX-2025-1A-0041",
+            "NFLX-2025-1A-0036",
+            "NFLX-2025-1A-0009",
+            "NFLX-2025-1A-0007"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "AMD",
+            "AMZN",
+            "GOOGL",
+            "NFLX",
+            "V"
+          ],
+          "retrieved": [
+            "NFLX-2025-1A-0028",
+            "GOOGL-2025-1A-0015",
+            "AMZN-2025-1A-0014",
+            "AMZN-2025-1A-0015",
+            "GOOGL-2025-1A-0014",
+            "NFLX-2025-1A-0027"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "AMD",
+            "AMZN",
+            "GOOGL",
+            "NFLX",
+            "V"
+          ],
+          "retrieved": [
+            "AMZN-2025-1A-0015",
+            "NFLX-2025-1A-0028",
+            "AMZN-2025-1A-0014",
+            "AMD-2025-1A-0022",
+            "GOOGL-2025-1A-0014",
+            "AMD-2025-1A-0002"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "AMD",
+            "AMZN",
+            "GOOGL",
+            "NFLX",
+            "V"
+          ],
+          "retrieved": [
+            "NFLX-2025-1A-0028",
+            "AMZN-2025-1A-0015",
+            "AMZN-2025-1A-0014",
+            "GOOGL-2025-1A-0014",
+            "NFLX-2025-1A-0027",
+            "GOOGL-2025-1A-0015"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q15",
+      "ticker": "NVDA",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "NVDA"
+          ],
+          "retrieved": [
+            "NVDA-2026-1A-0087",
+            "NVDA-2026-1A-0088",
+            "NVDA-2026-1A-0095",
+            "NVDA-2026-1A-0036",
+            "NVDA-2026-1A-0094",
+            "NVDA-2026-1A-0093"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "NVDA"
+          ],
+          "retrieved": [
+            "NVDA-2026-1A-0094",
+            "NVDA-2026-1A-0095",
+            "NVDA-2026-1A-0092",
+            "NVDA-2026-1A-0088",
+            "NVDA-2026-1A-0093",
+            "NVDA-2026-1A-0091"
+          ],
+          "rank_strict": 4,
+          "rank_lenient": 4
+        },
+        "single/hybrid": {
+          "tickers": [
+            "NVDA"
+          ],
+          "retrieved": [
+            "NVDA-2026-1A-0095",
+            "NVDA-2026-1A-0094",
+            "NVDA-2026-1A-0088",
+            "NVDA-2026-1A-0093",
+            "NVDA-2026-1A-0087",
+            "NVDA-2026-1A-0036"
+          ],
+          "rank_strict": 3,
+          "rank_lenient": 3
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "AMZN",
+            "HD",
+            "JPM",
+            "NVDA",
+            "XOM"
+          ],
+          "retrieved": [
+            "AMZN-2025-1A-0026",
+            "NVDA-2026-1A-0087",
+            "NVDA-2026-1A-0088",
+            "HD-2025-1A-0032",
+            "HD-2025-1A-0040",
+            "JPM-2025-1A-0063"
+          ],
+          "rank_strict": 3,
+          "rank_lenient": 2
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "AMZN",
+            "HD",
+            "JPM",
+            "NVDA",
+            "XOM"
+          ],
+          "retrieved": [
+            "NVDA-2026-1A-0094",
+            "NVDA-2026-1A-0095",
+            "HD-2025-1A-0033",
+            "HD-2025-1A-0032",
+            "XOM-2025-1A-0029",
+            "JPM-2025-1A-0063"
+          ],
+          "rank_strict": null,
+          "rank_lenient": null
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "AMZN",
+            "HD",
+            "JPM",
+            "NVDA",
+            "XOM"
+          ],
+          "retrieved": [
+            "NVDA-2026-1A-0095",
+            "NVDA-2026-1A-0088",
+            "HD-2025-1A-0032",
+            "HD-2025-1A-0040",
+            "JPM-2025-1A-0063",
+            "AMZN-2025-1A-0026"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        }
+      }
+    },
+    {
+      "id": "q16",
+      "ticker": "NVDA",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "NVDA"
+          ],
+          "retrieved": [
+            "NVDA-2026-1A-0027",
+            "NVDA-2026-1A-0002",
+            "NVDA-2026-1A-0026",
+            "NVDA-2026-1A-0022",
+            "NVDA-2026-1A-0057",
+            "NVDA-2026-1A-0045"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "NVDA"
+          ],
+          "retrieved": [
+            "NVDA-2026-7-0016",
+            "NVDA-2026-1A-0026",
+            "NVDA-2026-1A-0050",
+            "NVDA-2026-1A-0032",
+            "NVDA-2026-1A-0045",
+            "NVDA-2026-1A-0040"
+          ],
+          "rank_strict": null,
+          "rank_lenient": 2
+        },
+        "single/hybrid": {
+          "tickers": [
+            "NVDA"
+          ],
+          "retrieved": [
+            "NVDA-2026-1A-0026",
+            "NVDA-2026-1A-0045",
+            "NVDA-2026-1A-0027",
+            "NVDA-2026-1A-0011",
+            "NVDA-2026-7-0016",
+            "NVDA-2026-1A-0002"
+          ],
+          "rank_strict": 3,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "BAC",
+            "JNJ",
+            "MSFT",
+            "NVDA",
+            "PFE"
+          ],
+          "retrieved": [
+            "MSFT-2026-1A-0060",
+            "NVDA-2026-1A-0027",
+            "NVDA-2026-1A-0002",
+            "MSFT-2026-1A-0063",
+            "PFE-2025-1A-0016",
+            "PFE-2025-1A-0021"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "BAC",
+            "JNJ",
+            "MSFT",
+            "NVDA",
+            "PFE"
+          ],
+          "retrieved": [
+            "JNJ-2025-1A-0008",
+            "BAC-2025-1A-0001",
+            "PFE-2025-1A-0016",
+            "BAC-2025-1A-0002",
+            "JNJ-2025-1A-0026",
+            "NVDA-2026-1A-0026"
+          ],
+          "rank_strict": null,
+          "rank_lenient": 6
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "BAC",
+            "JNJ",
+            "MSFT",
+            "NVDA",
+            "PFE"
+          ],
+          "retrieved": [
+            "NVDA-2026-1A-0026",
+            "NVDA-2026-1A-0027",
+            "PFE-2025-1A-0016",
+            "BAC-2025-1A-0002",
+            "JNJ-2025-1A-0008",
+            "MSFT-2026-1A-0060"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q17",
+      "ticker": "PFE",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "PFE"
+          ],
+          "retrieved": [
+            "PFE-2025-1A-0026",
+            "PFE-2025-1A-0027",
+            "PFE-2025-1A-0028",
+            "PFE-2025-1A-0011",
+            "PFE-2025-1A-0058",
+            "PFE-2025-1A-0010"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "PFE"
+          ],
+          "retrieved": [
+            "PFE-2025-1A-0026",
+            "PFE-2025-1A-0027",
+            "PFE-2025-1A-0028",
+            "PFE-2025-7-0002",
+            "PFE-2025-7-0048",
+            "PFE-2025-1A-0001"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "PFE"
+          ],
+          "retrieved": [
+            "PFE-2025-1A-0026",
+            "PFE-2025-1A-0027",
+            "PFE-2025-1A-0028",
+            "PFE-2025-1A-0058",
+            "PFE-2025-1A-0055",
+            "PFE-2025-1A-0057"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "CVX",
+            "META",
+            "PFE",
+            "WMT",
+            "XOM"
+          ],
+          "retrieved": [
+            "PFE-2025-1A-0026",
+            "PFE-2025-1A-0027",
+            "PFE-2025-1A-0028",
+            "WMT-2026-1A-0026",
+            "WMT-2026-1A-0024",
+            "META-2025-1A-0087"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "CVX",
+            "META",
+            "PFE",
+            "WMT",
+            "XOM"
+          ],
+          "retrieved": [
+            "PFE-2025-1A-0026",
+            "PFE-2025-1A-0027",
+            "WMT-2026-1A-0026",
+            "XOM-2025-1A-0001",
+            "CVX-2025-1A-0032",
+            "CVX-2025-1A-0001"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "CVX",
+            "META",
+            "PFE",
+            "WMT",
+            "XOM"
+          ],
+          "retrieved": [
+            "PFE-2025-1A-0026",
+            "PFE-2025-1A-0027",
+            "WMT-2026-1A-0026",
+            "XOM-2025-1A-0001",
+            "WMT-2026-1A-0024",
+            "CVX-2025-1A-0032"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q18",
+      "ticker": "PFE",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "PFE"
+          ],
+          "retrieved": [
+            "PFE-2025-7-0026",
+            "PFE-2025-7-0025",
+            "PFE-2025-7-0027",
+            "PFE-2025-7-0031",
+            "PFE-2025-7-0032",
+            "PFE-2025-7-0066"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "PFE"
+          ],
+          "retrieved": [
+            "PFE-2025-7-0025",
+            "PFE-2025-7-0026",
+            "PFE-2025-7-0027",
+            "PFE-2025-7-0031",
+            "PFE-2025-7-0032",
+            "PFE-2025-7-0030"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "PFE"
+          ],
+          "retrieved": [
+            "PFE-2025-7-0025",
+            "PFE-2025-7-0026",
+            "PFE-2025-7-0027",
+            "PFE-2025-7-0031",
+            "PFE-2025-7-0032",
+            "PFE-2025-7-0030"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "AMZN",
+            "GOOGL",
+            "JNJ",
+            "META",
+            "PFE"
+          ],
+          "retrieved": [
+            "PFE-2025-7-0026",
+            "PFE-2025-7-0025",
+            "JNJ-2025-7-0041",
+            "JNJ-2025-7-0040",
+            "GOOGL-2025-7-0035",
+            "GOOGL-2025-7-0036"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "AMZN",
+            "GOOGL",
+            "JNJ",
+            "META",
+            "PFE"
+          ],
+          "retrieved": [
+            "PFE-2025-7-0026",
+            "PFE-2025-7-0025",
+            "META-2025-1A-0102",
+            "AMZN-2025-1A-0036",
+            "META-2025-1A-0103",
+            "JNJ-2025-7-0039"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "AMZN",
+            "GOOGL",
+            "JNJ",
+            "META",
+            "PFE"
+          ],
+          "retrieved": [
+            "PFE-2025-7-0026",
+            "PFE-2025-7-0025",
+            "AMZN-2025-1A-0036",
+            "JNJ-2025-7-0040",
+            "JNJ-2025-7-0041",
+            "GOOGL-2025-7A-0005"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q19",
+      "ticker": "PG",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "PG"
+          ],
+          "retrieved": [
+            "PG-2026-1A-0013",
+            "PG-2026-7-0016",
+            "PG-2026-1A-0014",
+            "PG-2026-7-0026",
+            "PG-2026-1A-0012",
+            "PG-2026-1A-0026"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "PG"
+          ],
+          "retrieved": [
+            "PG-2026-1A-0013",
+            "PG-2026-7-0016",
+            "PG-2026-7-0056",
+            "PG-2026-7-0061",
+            "PG-2026-7-0060",
+            "PG-2026-7-0008"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "PG"
+          ],
+          "retrieved": [
+            "PG-2026-1A-0013",
+            "PG-2026-7-0016",
+            "PG-2026-7-0026",
+            "PG-2026-7-0015",
+            "PG-2026-7-0060",
+            "PG-2026-1A-0026"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "CVX",
+            "HD",
+            "PG",
+            "UNH",
+            "WMT"
+          ],
+          "retrieved": [
+            "PG-2026-1A-0013",
+            "HD-2025-1A-0007",
+            "WMT-2026-1A-0009",
+            "PG-2026-7-0016",
+            "HD-2025-1A-0009",
+            "WMT-2026-1A-0010"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "CVX",
+            "HD",
+            "PG",
+            "UNH",
+            "WMT"
+          ],
+          "retrieved": [
+            "HD-2025-1A-0005",
+            "WMT-2026-1A-0009",
+            "HD-2025-1A-0006",
+            "WMT-2026-1A-0010",
+            "PG-2026-1A-0013",
+            "PG-2026-7-0056"
+          ],
+          "rank_strict": 5,
+          "rank_lenient": 5
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "CVX",
+            "HD",
+            "PG",
+            "UNH",
+            "WMT"
+          ],
+          "retrieved": [
+            "WMT-2026-1A-0009",
+            "PG-2026-1A-0013",
+            "HD-2025-1A-0006",
+            "HD-2025-1A-0005",
+            "WMT-2026-1A-0010",
+            "PG-2026-7-0016"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        }
+      }
+    },
+    {
+      "id": "q20",
+      "ticker": "PG",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "PG"
+          ],
+          "retrieved": [
+            "PG-2026-7-0015",
+            "PG-2026-7-0016",
+            "PG-2026-1A-0028",
+            "PG-2026-7-0014",
+            "PG-2026-7-0068",
+            "PG-2026-1A-0027"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "PG"
+          ],
+          "retrieved": [
+            "PG-2026-7-0015",
+            "PG-2026-7-0024",
+            "PG-2026-7-0068",
+            "PG-2026-7-0013",
+            "PG-2026-7-0014",
+            "PG-2026-1A-0028"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "PG"
+          ],
+          "retrieved": [
+            "PG-2026-7-0015",
+            "PG-2026-7-0068",
+            "PG-2026-1A-0028",
+            "PG-2026-7-0014",
+            "PG-2026-7-0016",
+            "PG-2026-7-0013"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "CVX",
+            "JNJ",
+            "MSFT",
+            "NVDA",
+            "PG"
+          ],
+          "retrieved": [
+            "PG-2026-7-0015",
+            "PG-2026-7-0016",
+            "NVDA-2026-1A-0054",
+            "JNJ-2025-7-0003",
+            "JNJ-2025-7-0002",
+            "MSFT-2026-1A-0014"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "CVX",
+            "JNJ",
+            "MSFT",
+            "NVDA",
+            "PG"
+          ],
+          "retrieved": [
+            "PG-2026-7-0015",
+            "JNJ-2025-7-0002",
+            "PG-2026-7-0024",
+            "NVDA-2026-1A-0048",
+            "MSFT-2026-7-0008",
+            "MSFT-2026-1A-0015"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "CVX",
+            "JNJ",
+            "MSFT",
+            "NVDA",
+            "PG"
+          ],
+          "retrieved": [
+            "PG-2026-7-0015",
+            "PG-2026-1A-0028",
+            "JNJ-2025-7-0002",
+            "MSFT-2026-1A-0014",
+            "NVDA-2026-1A-0045",
+            "NVDA-2026-1A-0048"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q21",
+      "ticker": "UNH",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "UNH"
+          ],
+          "retrieved": [
+            "UNH-2025-1A-0047",
+            "UNH-2025-1A-0050",
+            "UNH-2025-1A-0046",
+            "UNH-2025-7-0012",
+            "UNH-2025-1A-0049",
+            "UNH-2025-1A-0051"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "UNH"
+          ],
+          "retrieved": [
+            "UNH-2025-1A-0047",
+            "UNH-2025-1A-0046",
+            "UNH-2025-1A-0049",
+            "UNH-2025-1A-0051",
+            "UNH-2025-7-0012",
+            "UNH-2025-1A-0050"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "UNH"
+          ],
+          "retrieved": [
+            "UNH-2025-1A-0047",
+            "UNH-2025-1A-0046",
+            "UNH-2025-1A-0050",
+            "UNH-2025-1A-0049",
+            "UNH-2025-7-0012",
+            "UNH-2025-1A-0051"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "HD",
+            "KO",
+            "TSLA",
+            "UNH",
+            "XOM"
+          ],
+          "retrieved": [
+            "UNH-2025-1A-0047",
+            "UNH-2025-1A-0050",
+            "UNH-2025-1A-0046",
+            "HD-2025-1A-0047",
+            "KO-2025-7-0020",
+            "HD-2025-1A-0059"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "HD",
+            "KO",
+            "TSLA",
+            "UNH",
+            "XOM"
+          ],
+          "retrieved": [
+            "UNH-2025-1A-0047",
+            "UNH-2025-1A-0046",
+            "UNH-2025-1A-0049",
+            "HD-2025-7-0011",
+            "KO-2025-7A-0001",
+            "XOM-2025-1A-0010"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "HD",
+            "KO",
+            "TSLA",
+            "UNH",
+            "XOM"
+          ],
+          "retrieved": [
+            "UNH-2025-1A-0047",
+            "UNH-2025-1A-0046",
+            "HD-2025-1A-0047",
+            "KO-2025-7-0020",
+            "HD-2025-7-0011",
+            "KO-2025-7A-0001"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q22",
+      "ticker": "UNH",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "UNH"
+          ],
+          "retrieved": [
+            "UNH-2025-7-0022",
+            "UNH-2025-7-0020",
+            "UNH-2025-7-0021",
+            "UNH-2025-7-0025",
+            "UNH-2025-1A-0035",
+            "UNH-2025-7-0034"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "UNH"
+          ],
+          "retrieved": [
+            "UNH-2025-7-0022",
+            "UNH-2025-7-0019",
+            "UNH-2025-7-0004",
+            "UNH-2025-7-0035",
+            "UNH-2025-1A-0039",
+            "UNH-2025-1A-0034"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "UNH"
+          ],
+          "retrieved": [
+            "UNH-2025-7-0022",
+            "UNH-2025-7-0019",
+            "UNH-2025-7-0025",
+            "UNH-2025-7-0035",
+            "UNH-2025-1A-0034",
+            "UNH-2025-7-0034"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "AMD",
+            "HD",
+            "KO",
+            "UNH",
+            "XOM"
+          ],
+          "retrieved": [
+            "KO-2025-7-0072",
+            "UNH-2025-7-0022",
+            "KO-2025-7-0074",
+            "AMD-2025-7-0025",
+            "AMD-2025-7-0027",
+            "UNH-2025-7-0020"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "AMD",
+            "HD",
+            "KO",
+            "UNH",
+            "XOM"
+          ],
+          "retrieved": [
+            "AMD-2025-7A-0002",
+            "UNH-2025-7-0022",
+            "AMD-2025-7A-0001",
+            "HD-2025-1A-0001",
+            "KO-2025-7A-0004",
+            "KO-2025-7-0023"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "AMD",
+            "HD",
+            "KO",
+            "UNH",
+            "XOM"
+          ],
+          "retrieved": [
+            "UNH-2025-7-0022",
+            "KO-2025-7-0072",
+            "KO-2025-7A-0004",
+            "AMD-2025-7A-0003",
+            "AMD-2025-7A-0002",
+            "HD-2025-1A-0001"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q23",
+      "ticker": "V",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "V"
+          ],
+          "retrieved": [
+            "V-2025-1A-0033",
+            "V-2025-1A-0061",
+            "V-2025-1A-0037",
+            "V-2025-1A-0060",
+            "V-2025-1A-0056",
+            "V-2025-1A-0036"
+          ],
+          "rank_strict": null,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "V"
+          ],
+          "retrieved": [
+            "V-2025-1A-0034",
+            "V-2025-1A-0035",
+            "V-2025-1A-0036",
+            "V-2025-1A-0031",
+            "V-2025-1A-0012",
+            "V-2025-1A-0044"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "V"
+          ],
+          "retrieved": [
+            "V-2025-1A-0033",
+            "V-2025-1A-0036",
+            "V-2025-1A-0031",
+            "V-2025-1A-0012",
+            "V-2025-1A-0034",
+            "V-2025-1A-0017"
+          ],
+          "rank_strict": 5,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "AMZN",
+            "GOOGL",
+            "JNJ",
+            "MSFT",
+            "V"
+          ],
+          "retrieved": [
+            "V-2025-1A-0033",
+            "AMZN-2025-1A-0039",
+            "V-2025-1A-0061",
+            "AMZN-2025-1A-0038",
+            "MSFT-2026-1A-0022",
+            "MSFT-2026-1A-0021"
+          ],
+          "rank_strict": null,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "AMZN",
+            "GOOGL",
+            "JNJ",
+            "MSFT",
+            "V"
+          ],
+          "retrieved": [
+            "V-2025-1A-0034",
+            "V-2025-1A-0035",
+            "V-2025-1A-0036",
+            "GOOGL-2025-1A-0040",
+            "AMZN-2025-1A-0038",
+            "AMZN-2025-7-0016"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "AMZN",
+            "GOOGL",
+            "JNJ",
+            "MSFT",
+            "V"
+          ],
+          "retrieved": [
+            "V-2025-1A-0033",
+            "V-2025-1A-0036",
+            "AMZN-2025-1A-0038",
+            "AMZN-2025-1A-0039",
+            "GOOGL-2025-1A-0040",
+            "MSFT-2026-1A-0022"
+          ],
+          "rank_strict": null,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q24",
+      "ticker": "V",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "V"
+          ],
+          "retrieved": [
+            "V-2025-7-0003",
+            "V-2025-7A-0002",
+            "V-2025-7A-0003",
+            "V-2025-7-0032",
+            "V-2025-1A-0018",
+            "V-2025-7A-0001"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        },
+        "single/bm25": {
+          "tickers": [
+            "V"
+          ],
+          "retrieved": [
+            "V-2025-1A-0018",
+            "V-2025-7-0003",
+            "V-2025-7-0002",
+            "V-2025-1A-0017",
+            "V-2025-1A-0007",
+            "V-2025-1A-0020"
+          ],
+          "rank_strict": null,
+          "rank_lenient": null
+        },
+        "single/hybrid": {
+          "tickers": [
+            "V"
+          ],
+          "retrieved": [
+            "V-2025-7-0003",
+            "V-2025-1A-0018",
+            "V-2025-7A-0002",
+            "V-2025-7-0002",
+            "V-2025-7-0032",
+            "V-2025-7A-0003"
+          ],
+          "rank_strict": 3,
+          "rank_lenient": 3
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "GOOGL",
+            "KO",
+            "PFE",
+            "UNH",
+            "V"
+          ],
+          "retrieved": [
+            "V-2025-7-0003",
+            "KO-2025-7-0086",
+            "V-2025-7A-0002",
+            "KO-2025-7-0087",
+            "PFE-2025-1A-0019",
+            "PFE-2025-7-0082"
+          ],
+          "rank_strict": 3,
+          "rank_lenient": 3
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "GOOGL",
+            "KO",
+            "PFE",
+            "UNH",
+            "V"
+          ],
+          "retrieved": [
+            "V-2025-1A-0018",
+            "V-2025-7-0003",
+            "KO-2025-7-0067",
+            "KO-2025-1A-0041",
+            "UNH-2025-7-0020",
+            "UNH-2025-1A-0058"
+          ],
+          "rank_strict": null,
+          "rank_lenient": null
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "GOOGL",
+            "KO",
+            "PFE",
+            "UNH",
+            "V"
+          ],
+          "retrieved": [
+            "V-2025-7-0003",
+            "V-2025-7A-0002",
+            "KO-2025-1A-0041",
+            "PFE-2025-7-0082",
+            "UNH-2025-1A-0059",
+            "KO-2025-7-0086"
+          ],
+          "rank_strict": 2,
+          "rank_lenient": 2
+        }
+      }
+    },
+    {
+      "id": "q25",
+      "ticker": "XOM",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "XOM"
+          ],
+          "retrieved": [
+            "XOM-2025-1A-0002",
+            "XOM-2025-1A-0019",
+            "XOM-2025-1A-0018",
+            "XOM-2025-1A-0021",
+            "XOM-2025-1A-0020",
+            "XOM-2025-1A-0015"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "XOM"
+          ],
+          "retrieved": [
+            "XOM-2025-1A-0002",
+            "XOM-2025-1A-0020",
+            "XOM-2025-1A-0012",
+            "XOM-2025-1A-0019",
+            "XOM-2025-1A-0021",
+            "XOM-2025-1A-0017"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "XOM"
+          ],
+          "retrieved": [
+            "XOM-2025-1A-0002",
+            "XOM-2025-1A-0019",
+            "XOM-2025-1A-0020",
+            "XOM-2025-1A-0021",
+            "XOM-2025-1A-0018",
+            "XOM-2025-1A-0017"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "CAT",
+            "JNJ",
+            "MSFT",
+            "NVDA",
+            "XOM"
+          ],
+          "retrieved": [
+            "XOM-2025-1A-0002",
+            "XOM-2025-1A-0019",
+            "NVDA-2026-1A-0044",
+            "MSFT-2026-1A-0052",
+            "NVDA-2026-1A-0081",
+            "CAT-2025-1A-0010"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "CAT",
+            "JNJ",
+            "MSFT",
+            "NVDA",
+            "XOM"
+          ],
+          "retrieved": [
+            "XOM-2025-1A-0002",
+            "XOM-2025-1A-0012",
+            "MSFT-2026-1A-0059",
+            "NVDA-2026-1A-0026",
+            "MSFT-2026-1A-0015",
+            "JNJ-2025-7-0011"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "CAT",
+            "JNJ",
+            "MSFT",
+            "NVDA",
+            "XOM"
+          ],
+          "retrieved": [
+            "XOM-2025-1A-0002",
+            "XOM-2025-1A-0019",
+            "NVDA-2026-1A-0044",
+            "MSFT-2026-1A-0052",
+            "MSFT-2026-1A-0059",
+            "NVDA-2026-1A-0026"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    },
+    {
+      "id": "q26",
+      "ticker": "XOM",
+      "results": {
+        "single/dense": {
+          "tickers": [
+            "XOM"
+          ],
+          "retrieved": [
+            "XOM-2025-1A-0026",
+            "XOM-2025-1A-0027",
+            "XOM-2025-1A-0025",
+            "XOM-2025-1A-0024",
+            "XOM-2025-1A-0031",
+            "XOM-2025-1A-0028"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/bm25": {
+          "tickers": [
+            "XOM"
+          ],
+          "retrieved": [
+            "XOM-2025-1A-0026",
+            "XOM-2025-1A-0024",
+            "XOM-2025-1A-0025",
+            "XOM-2025-1A-0027",
+            "XOM-2025-1A-0001",
+            "XOM-2025-1A-0022"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "single/hybrid": {
+          "tickers": [
+            "XOM"
+          ],
+          "retrieved": [
+            "XOM-2025-1A-0026",
+            "XOM-2025-1A-0024",
+            "XOM-2025-1A-0027",
+            "XOM-2025-1A-0025",
+            "XOM-2025-1A-0022",
+            "XOM-2025-1A-0028"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/dense": {
+          "tickers": [
+            "CAT",
+            "HD",
+            "TSLA",
+            "UNH",
+            "XOM"
+          ],
+          "retrieved": [
+            "XOM-2025-1A-0026",
+            "XOM-2025-1A-0027",
+            "CAT-2025-1A-0012",
+            "HD-2025-1A-0006",
+            "HD-2025-1A-0007",
+            "CAT-2025-1A-0017"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/bm25": {
+          "tickers": [
+            "CAT",
+            "HD",
+            "TSLA",
+            "UNH",
+            "XOM"
+          ],
+          "retrieved": [
+            "XOM-2025-1A-0026",
+            "UNH-2025-1A-0037",
+            "XOM-2025-1A-0025",
+            "CAT-2025-1A-0023",
+            "CAT-2025-1A-0024",
+            "TSLA-2025-1A-0068"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        },
+        "portfolio/hybrid": {
+          "tickers": [
+            "CAT",
+            "HD",
+            "TSLA",
+            "UNH",
+            "XOM"
+          ],
+          "retrieved": [
+            "XOM-2025-1A-0026",
+            "XOM-2025-1A-0027",
+            "HD-2025-1A-0015",
+            "UNH-2025-1A-0037",
+            "CAT-2025-1A-0012",
+            "CAT-2025-1A-0023"
+          ],
+          "rank_strict": 1,
+          "rank_lenient": 1
+        }
+      }
+    }
+  ]
+}
