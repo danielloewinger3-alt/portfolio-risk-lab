@@ -1,0 +1,309 @@
+{
+  "description": "Bundled adjusted-close price snapshot for the Portfolio Risk Lab demo universe. Real market data; see DATA_NOTICE.md.",
+  "build_date": "2026-10-30",
+  "built_at_utc": "2026-10-30T08:19:57+00:00",
+  "requested_start": "2006-01-01",
+  "requested_end": "2026-10-29",
+  "first_date": "2006-01-03",
+  "last_date": "2026-10-29",
+  "rows": 5241,
+  "tickers": [
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "AMZN",
+    "GOOGL",
+    "META",
+    "TSLA",
+    "AMD",
+    "NFLX",
+    "JPM",
+    "BAC",
+    "V",
+    "XOM",
+    "CVX",
+    "JNJ",
+    "PFE",
+    "UNH",
+    "PG",
+    "KO",
+    "WMT",
+    "HD",
+    "CAT",
+    "SPY",
+    "QQQ",
+    "IWM",
+    "EFA",
+    "EEM",
+    "AGG",
+    "IEF",
+    "TLT",
+    "GLD",
+    "VNQ",
+    "XLE",
+    "XLK",
+    "XLF",
+    "^VIX",
+    "^IRX"
+  ],
+  "auxiliary": [
+    "^VIX",
+    "^IRX"
+  ],
+  "price_field": "adjusted close (yfinance auto_adjust=True)",
+  "sources": [
+    "yfinance"
+  ],
+  "per_ticker": {
+    "AAPL": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "MSFT": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "NVDA": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "AMZN": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "GOOGL": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "META": {
+      "source": "yfinance",
+      "first_date": "2012-05-18",
+      "last_date": "2026-10-29",
+      "n_obs": 3635
+    },
+    "TSLA": {
+      "source": "yfinance",
+      "first_date": "2010-06-29",
+      "last_date": "2026-10-29",
+      "n_obs": 4112
+    },
+    "AMD": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "NFLX": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "JPM": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "BAC": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "V": {
+      "source": "yfinance",
+      "first_date": "2008-03-19",
+      "last_date": "2026-10-29",
+      "n_obs": 4686
+    },
+    "XOM": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "CVX": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "JNJ": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "PFE": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "UNH": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "PG": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "KO": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "WMT": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "HD": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "CAT": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "SPY": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "QQQ": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "IWM": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "EFA": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "EEM": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "AGG": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "IEF": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "TLT": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "GLD": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "VNQ": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "XLE": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "XLK": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "XLF": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "^VIX": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5241
+    },
+    "^IRX": {
+      "source": "yfinance",
+      "first_date": "2006-01-03",
+      "last_date": "2026-10-29",
+      "n_obs": 5234
+    }
+  },
+  "failed": {},
+  "long_gaps": [
+    {
+      "ticker": "^IRX",
+      "start": "2020-03-19",
+      "end": "2020-03-27",
+      "length": 7
+    }
+  ],
+  "return_outliers_gt_40pct": [
+    {
+      "date": "2013-01-24",
+      "ticker": "NFLX",
+      "ret": 0.42223507313003394
+    },
+    {
+      "date": "2016-04-22",
+      "ticker": "AMD",
+      "ret": 0.5229008335186689
+    }
+  ],
+  "file": "prices.parquet",
+  "sha256": "19312fea67af813e88f99c7908a63fbe1dd0197443e55123743878e39ccc2e1f",
+  "versions": {
+    "yfinance": "1.7.0",
+    "pandas": "3.1.0",
+    "pyarrow": "26.0.0"
+  }
+}

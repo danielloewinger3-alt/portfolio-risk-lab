@@ -54,7 +54,7 @@ packages = ["src/risklab"]
 line-length = 100
 target-version = "py312"
 src = ["src", "tests", "app", "scripts"]
-extend-exclude = [".worktrees", "data"]
+extend-exclude = [".worktrees"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP", "SIM", "NPY", "RUF"]
@@ -88,7 +88,7 @@ plugins = ["pydantic.mypy"]
 # ---------------------------------------------------------------- pytest
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-norecursedirs = [".worktrees", ".git", ".venv", "data", "node_modules"]
+norecursedirs = [".worktrees", ".git", ".venv", "node_modules"]
 addopts = "--strict-markers -ra"
 markers = [
     "network: test hits the live network (skipped by default; run with -m network)",
