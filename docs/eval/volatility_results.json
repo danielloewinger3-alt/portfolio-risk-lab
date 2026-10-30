@@ -1,0 +1,536 @@
+{
+  "meta": {
+    "script": "scripts/run_walkforward.py",
+    "git_commit": "c87d031",
+    "data_snapshot_date": "2026-10-29",
+    "data_sha256": "19312fea67af813e88f99c7908a63fbe1dd0197443e55123743878e39ccc2e1f",
+    "window_years": 10,
+    "protocol": {
+      "target": "forward 21-day realized vol, annualized, zero-mean",
+      "horizon": 21,
+      "min_train": 756,
+      "step": 5,
+      "refit_every": 21,
+      "purge": "training labels RV_i only with i <= fit_index - horizon",
+      "newey_west_lag": 21,
+      "seed": 42
+    },
+    "packages": {
+      "numpy": "2.5.4",
+      "pandas": "3.1.0",
+      "arch": "8.0.0",
+      "lightgbm": "4.7.0",
+      "hmmlearn": "0.3.3",
+      "scipy": "1.18.1"
+    },
+    "python": "3.12.16"
+  },
+  "portfolios": [
+    {
+      "portfolio": "Classic 60/40",
+      "weights": {
+        "SPY": 0.6,
+        "IEF": 0.25,
+        "TLT": 0.1,
+        "GLD": 0.05
+      },
+      "benchmark": "SPY",
+      "window": {
+        "start": "2016-11-01",
+        "end": "2026-10-29",
+        "n_obs": 2514
+      },
+      "evaluation": {
+        "first_origin": "2019-11-01",
+        "last_origin": "2026-09-28",
+        "n_points": 348
+      },
+      "metrics": [
+        {
+          "model": "garch_t",
+          "name": "GARCH-t",
+          "qlike": 0.567282,
+          "qlike_se_nw": 0.324043,
+          "rmse": 0.061122,
+          "mae": 0.035462,
+          "bias": 0.006182,
+          "share_best": 0.2701,
+          "n": 348
+        },
+        {
+          "model": "rolling",
+          "name": "Rolling 21-day",
+          "qlike": 0.647573,
+          "qlike_se_nw": 0.358274,
+          "rmse": 0.065555,
+          "mae": 0.036512,
+          "bias": -0.000263,
+          "share_best": 0.1925,
+          "n": 348
+        },
+        {
+          "model": "lgbm",
+          "name": "LightGBM",
+          "qlike": 0.697237,
+          "qlike_se_nw": 0.347317,
+          "rmse": 0.062781,
+          "mae": 0.034172,
+          "bias": -0.013972,
+          "share_best": 0.3506,
+          "n": 348
+        },
+        {
+          "model": "ewma",
+          "name": "EWMA (λ = 0.94)",
+          "qlike": 0.699046,
+          "qlike_se_nw": 0.424345,
+          "rmse": 0.063276,
+          "mae": 0.035799,
+          "bias": 0.002111,
+          "share_best": 0.1868,
+          "n": 348
+        }
+      ],
+      "winner": "garch_t",
+      "winner_name": "GARCH-t",
+      "verdict": "GARCH-t had the lowest QLIKE and beat the runner-up, Rolling 21-day, by a statistically meaningful margin. LightGBM did not beat GARCH-t, though the gap is not statistically meaningful.",
+      "takeaway": "GARCH-t had the lowest QLIKE and beat the runner-up, Rolling 21-day, by a statistically meaningful margin. LightGBM did not beat GARCH-t, though the gap is not statistically meaningful. GARCH-t's current forecast of annualized volatility over the next 21 trading days is 7.3%.",
+      "comparisons": {
+        "winner_vs_runner_up": {
+          "mean_diff": -0.0803,
+          "rel_diff": -0.124,
+          "t_stat": -2.1318,
+          "meaningful": true
+        },
+        "lgbm_vs_garch_t": {
+          "mean_diff": 0.13,
+          "rel_diff": 0.2291,
+          "t_stat": 1.2044,
+          "meaningful": false
+        }
+      },
+      "current_forecast": {
+        "rolling": 0.058028,
+        "ewma": 0.067224,
+        "garch_t": 0.073126,
+        "lgbm": 0.072005
+      },
+      "as_of": "2026-10-29",
+      "refits": {
+        "garch_t": {
+          "fits": 84,
+          "not_ok": 0
+        },
+        "lgbm": {
+          "fits": 84,
+          "not_ok": 0
+        }
+      },
+      "features": [
+        "abs_r",
+        "abs_r_mean_5",
+        "abs_r_mean_21",
+        "abs_r_mean_63",
+        "rv_5",
+        "rv_21",
+        "rv_63",
+        "rv_126",
+        "cumret_5",
+        "cumret_21",
+        "drawdown_252",
+        "bench_rv_21",
+        "vix_level",
+        "vix_chg_5"
+      ],
+      "dropped_features": [],
+      "leakage_guard": {
+        "max_purge_violation_days": 0,
+        "clean": true
+      },
+      "runtime_seconds": 2.6
+    },
+    {
+      "portfolio": "Tech heavy",
+      "weights": {
+        "AAPL": 0.2,
+        "MSFT": 0.2,
+        "NVDA": 0.2,
+        "GOOGL": 0.15,
+        "AMZN": 0.15,
+        "META": 0.1
+      },
+      "benchmark": "SPY",
+      "window": {
+        "start": "2016-11-01",
+        "end": "2026-10-29",
+        "n_obs": 2514
+      },
+      "evaluation": {
+        "first_origin": "2019-11-01",
+        "last_origin": "2026-09-28",
+        "n_points": 348
+      },
+      "metrics": [
+        {
+          "model": "garch_t",
+          "name": "GARCH-t",
+          "qlike": 0.267131,
+          "qlike_se_nw": 0.068237,
+          "rmse": 0.118341,
+          "mae": 0.082286,
+          "bias": 0.025164,
+          "share_best": 0.2672,
+          "n": 348
+        },
+        {
+          "model": "ewma",
+          "name": "EWMA (λ = 0.94)",
+          "qlike": 0.345622,
+          "qlike_se_nw": 0.131757,
+          "rmse": 0.124552,
+          "mae": 0.080479,
+          "bias": 0.004043,
+          "share_best": 0.181,
+          "n": 348
+        },
+        {
+          "model": "rolling",
+          "name": "Rolling 21-day",
+          "qlike": 0.362672,
+          "qlike_se_nw": 0.118409,
+          "rmse": 0.129933,
+          "mae": 0.083908,
+          "bias": -0.000445,
+          "share_best": 0.2586,
+          "n": 348
+        },
+        {
+          "model": "lgbm",
+          "name": "LightGBM",
+          "qlike": 0.404212,
+          "qlike_se_nw": 0.127932,
+          "rmse": 0.125831,
+          "mae": 0.086612,
+          "bias": -0.00803,
+          "share_best": 0.2931,
+          "n": 348
+        }
+      ],
+      "winner": "garch_t",
+      "winner_name": "GARCH-t",
+      "verdict": "GARCH-t had the lowest QLIKE, but there was no meaningful difference from the runner-up, EWMA (λ = 0.94). LightGBM did not beat GARCH-t, though the gap is not statistically meaningful.",
+      "takeaway": "GARCH-t had the lowest QLIKE, but there was no meaningful difference from the runner-up, EWMA (λ = 0.94). LightGBM did not beat GARCH-t, though the gap is not statistically meaningful. GARCH-t's current forecast of annualized volatility over the next 21 trading days is 25.4%.",
+      "comparisons": {
+        "winner_vs_runner_up": {
+          "mean_diff": -0.0785,
+          "rel_diff": -0.2271,
+          "t_stat": -1.1838,
+          "meaningful": false
+        },
+        "lgbm_vs_garch_t": {
+          "mean_diff": 0.1371,
+          "rel_diff": 0.5132,
+          "t_stat": 1.9465,
+          "meaningful": false
+        }
+      },
+      "current_forecast": {
+        "rolling": 0.180295,
+        "ewma": 0.186787,
+        "garch_t": 0.254162,
+        "lgbm": 0.236591
+      },
+      "as_of": "2026-10-29",
+      "refits": {
+        "garch_t": {
+          "fits": 84,
+          "not_ok": 0
+        },
+        "lgbm": {
+          "fits": 84,
+          "not_ok": 0
+        }
+      },
+      "features": [
+        "abs_r",
+        "abs_r_mean_5",
+        "abs_r_mean_21",
+        "abs_r_mean_63",
+        "rv_5",
+        "rv_21",
+        "rv_63",
+        "rv_126",
+        "cumret_5",
+        "cumret_21",
+        "drawdown_252",
+        "bench_rv_21",
+        "vix_level",
+        "vix_chg_5"
+      ],
+      "dropped_features": [],
+      "leakage_guard": {
+        "max_purge_violation_days": 0,
+        "clean": true
+      },
+      "runtime_seconds": 2.4
+    },
+    {
+      "portfolio": "Diversified global",
+      "weights": {
+        "SPY": 0.3,
+        "EFA": 0.15,
+        "EEM": 0.1,
+        "AGG": 0.2,
+        "GLD": 0.1,
+        "VNQ": 0.1,
+        "TLT": 0.05
+      },
+      "benchmark": "SPY",
+      "window": {
+        "start": "2016-11-01",
+        "end": "2026-10-29",
+        "n_obs": 2514
+      },
+      "evaluation": {
+        "first_origin": "2019-11-01",
+        "last_origin": "2026-09-28",
+        "n_points": 348
+      },
+      "metrics": [
+        {
+          "model": "garch_t",
+          "name": "GARCH-t",
+          "qlike": 0.652667,
+          "qlike_se_nw": 0.414364,
+          "rmse": 0.066222,
+          "mae": 0.034587,
+          "bias": 0.001743,
+          "share_best": 0.2644,
+          "n": 348
+        },
+        {
+          "model": "rolling",
+          "name": "Rolling 21-day",
+          "qlike": 0.663823,
+          "qlike_se_nw": 0.388725,
+          "rmse": 0.07436,
+          "mae": 0.037574,
+          "bias": -0.000322,
+          "share_best": 0.2184,
+          "n": 348
+        },
+        {
+          "model": "ewma",
+          "name": "EWMA (λ = 0.94)",
+          "qlike": 0.76055,
+          "qlike_se_nw": 0.492276,
+          "rmse": 0.07189,
+          "mae": 0.037551,
+          "bias": 0.002168,
+          "share_best": 0.1753,
+          "n": 348
+        },
+        {
+          "model": "lgbm",
+          "name": "LightGBM",
+          "qlike": 0.87501,
+          "qlike_se_nw": 0.553033,
+          "rmse": 0.071188,
+          "mae": 0.035572,
+          "bias": -0.017553,
+          "share_best": 0.342,
+          "n": 348
+        }
+      ],
+      "winner": "garch_t",
+      "winner_name": "GARCH-t",
+      "verdict": "GARCH-t had the lowest QLIKE, but there was no meaningful difference from the runner-up, Rolling 21-day. LightGBM did not beat GARCH-t, though the gap is not statistically meaningful.",
+      "takeaway": "GARCH-t had the lowest QLIKE, but there was no meaningful difference from the runner-up, Rolling 21-day. LightGBM did not beat GARCH-t, though the gap is not statistically meaningful. GARCH-t's current forecast of annualized volatility over the next 21 trading days is 8.0%.",
+      "comparisons": {
+        "winner_vs_runner_up": {
+          "mean_diff": -0.0112,
+          "rel_diff": -0.0168,
+          "t_stat": -0.3347,
+          "meaningful": false
+        },
+        "lgbm_vs_garch_t": {
+          "mean_diff": 0.2223,
+          "rel_diff": 0.3407,
+          "t_stat": 1.2258,
+          "meaningful": false
+        }
+      },
+      "current_forecast": {
+        "rolling": 0.067349,
+        "ewma": 0.076229,
+        "garch_t": 0.080079,
+        "lgbm": 0.074975
+      },
+      "as_of": "2026-10-29",
+      "refits": {
+        "garch_t": {
+          "fits": 84,
+          "not_ok": 0
+        },
+        "lgbm": {
+          "fits": 84,
+          "not_ok": 0
+        }
+      },
+      "features": [
+        "abs_r",
+        "abs_r_mean_5",
+        "abs_r_mean_21",
+        "abs_r_mean_63",
+        "rv_5",
+        "rv_21",
+        "rv_63",
+        "rv_126",
+        "cumret_5",
+        "cumret_21",
+        "drawdown_252",
+        "bench_rv_21",
+        "vix_level",
+        "vix_chg_5"
+      ],
+      "dropped_features": [],
+      "leakage_guard": {
+        "max_purge_violation_days": 0,
+        "clean": true
+      },
+      "runtime_seconds": 2.4
+    },
+    {
+      "portfolio": "Defensive dividend",
+      "weights": {
+        "JNJ": 0.2,
+        "PG": 0.2,
+        "KO": 0.2,
+        "PFE": 0.1,
+        "XOM": 0.15,
+        "WMT": 0.15
+      },
+      "benchmark": "SPY",
+      "window": {
+        "start": "2016-11-01",
+        "end": "2026-10-29",
+        "n_obs": 2514
+      },
+      "evaluation": {
+        "first_origin": "2019-11-01",
+        "last_origin": "2026-09-28",
+        "n_points": 348
+      },
+      "metrics": [
+        {
+          "model": "garch_t",
+          "name": "GARCH-t",
+          "qlike": 0.487029,
+          "qlike_se_nw": 0.320073,
+          "rmse": 0.076193,
+          "mae": 0.039366,
+          "bias": 0.007406,
+          "share_best": 0.2557,
+          "n": 348
+        },
+        {
+          "model": "rolling",
+          "name": "Rolling 21-day",
+          "qlike": 0.617523,
+          "qlike_se_nw": 0.397383,
+          "rmse": 0.088542,
+          "mae": 0.043594,
+          "bias": -0.00109,
+          "share_best": 0.1695,
+          "n": 348
+        },
+        {
+          "model": "ewma",
+          "name": "EWMA (λ = 0.94)",
+          "qlike": 0.670705,
+          "qlike_se_nw": 0.476529,
+          "rmse": 0.085115,
+          "mae": 0.041532,
+          "bias": 0.001697,
+          "share_best": 0.1925,
+          "n": 348
+        },
+        {
+          "model": "lgbm",
+          "name": "LightGBM",
+          "qlike": 0.682865,
+          "qlike_se_nw": 0.476468,
+          "rmse": 0.086089,
+          "mae": 0.039894,
+          "bias": -0.007635,
+          "share_best": 0.3822,
+          "n": 348
+        }
+      ],
+      "winner": "garch_t",
+      "winner_name": "GARCH-t",
+      "verdict": "GARCH-t had the lowest QLIKE, but there was no meaningful difference from the runner-up, Rolling 21-day. LightGBM did not beat GARCH-t, though the gap is not statistically meaningful.",
+      "takeaway": "GARCH-t had the lowest QLIKE, but there was no meaningful difference from the runner-up, Rolling 21-day. LightGBM did not beat GARCH-t, though the gap is not statistically meaningful. GARCH-t's current forecast of annualized volatility over the next 21 trading days is 17.6%.",
+      "comparisons": {
+        "winner_vs_runner_up": {
+          "mean_diff": -0.1305,
+          "rel_diff": -0.2113,
+          "t_stat": -1.6358,
+          "meaningful": false
+        },
+        "lgbm_vs_garch_t": {
+          "mean_diff": 0.1958,
+          "rel_diff": 0.4021,
+          "t_stat": 1.0652,
+          "meaningful": false
+        }
+      },
+      "current_forecast": {
+        "rolling": 0.186329,
+        "ewma": 0.176418,
+        "garch_t": 0.175585,
+        "lgbm": 0.11092
+      },
+      "as_of": "2026-10-29",
+      "refits": {
+        "garch_t": {
+          "fits": 84,
+          "not_ok": 0
+        },
+        "lgbm": {
+          "fits": 84,
+          "not_ok": 0
+        }
+      },
+      "features": [
+        "abs_r",
+        "abs_r_mean_5",
+        "abs_r_mean_21",
+        "abs_r_mean_63",
+        "rv_5",
+        "rv_21",
+        "rv_63",
+        "rv_126",
+        "cumret_5",
+        "cumret_21",
+        "drawdown_252",
+        "bench_rv_21",
+        "vix_level",
+        "vix_chg_5"
+      ],
+      "dropped_features": [],
+      "leakage_guard": {
+        "max_purge_violation_days": 0,
+        "clean": true
+      },
+      "runtime_seconds": 2.5
+    }
+  ],
+  "caveats": [
+    "Evaluation points are every 5 trading days but each target spans 21 days, so consecutive losses overlap; naive standard errors would be understated. QLIKE standard errors and every 'meaningful' statement use Newey-West with lag 21 (evaluation points), which is conservative.",
+    "'Meaningful' means a Newey-West t-statistic of the QLIKE loss differential of at least 1.96 in absolute value and a relative QLIKE gap of at least 1%. This is a Diebold-Mariano-style check, approximate under overlap.",
+    "LightGBM predicts log realized volatility and the prediction is exponentiated with no bias correction (per spec), so it targets the conditional median; QLIKE penalizes under-forecasting, which works against it.",
+    "Hyperparameters (LightGBM 200 trees, depth 3, learning rate 0.05, subsample 0.8; EWMA lambda 0.94; GARCH(1,1)-t) were fixed before any evaluation. Nothing was tuned on the test period.",
+    "One 10-year window per portfolio ending at the data snapshot; results depend on the period (it includes the 2020 COVID shock and the 2022 rate shock)."
+  ]
+}
