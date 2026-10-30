@@ -1,0 +1,451 @@
+{
+ "portfolio_name": "Diversified global",
+ "source": "template",
+ "provider": "ollama",
+ "model": "qwen2.5:3b",
+ "draft": {
+  "summary": "[[fact:portfolio_name]] holds [[fact:n_holdings]] positions ([[fact:holdings]]) and is compared with [[fact:benchmark]]. Between [[fact:start_date]] and [[fact:end_date]] it grew at [[fact:cagr]] a year with annualized volatility of [[fact:ann_vol]], and its worst peak-to-trough loss was [[fact:max_drawdown]]. [[fact:top_risk_contributor]] is [[fact:top_risk_contributor_weight]] of the weight but [[fact:top_risk_contributor_pct]] of the volatility.",
+  "return_and_risk": "The Sharpe ratio is [[fact:sharpe]] and the Sortino ratio is [[fact:sortino]], using a risk-free rate of [[fact:rf_annual]]. The benchmark grew at [[fact:benchmark_cagr]] a year with volatility of [[fact:benchmark_ann_vol]] and a maximum drawdown of [[fact:benchmark_max_drawdown]]. Beta to the benchmark is [[fact:beta]]. The maximum drawdown ran from [[fact:max_drawdown_peak]] to [[fact:max_drawdown_trough]] and lasted [[fact:max_drawdown_duration]] in total. The effective number of independent risk bets is [[fact:effective_n_bets]]. Daily returns have skewness of [[fact:skew]] and excess kurtosis of [[fact:excess_kurtosis]]; positive excess kurtosis means fatter tails than a normal distribution.",
+  "tail_risk": "On a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least [[fact:var_95_1d_hist]], and the average loss on those days is [[fact:es_95_1d_hist]]. At 99% confidence the historical VaR is [[fact:var_99_1d_hist]] and the Expected Shortfall [[fact:es_99_1d_hist]], against a normal-distribution VaR of [[fact:var_99_1d_normal]]. The 10-day 95% historical VaR is [[fact:var_95_10d_hist]]. In a rolling backtest the 95% historical VaR was exceeded on [[fact:kupiec_exceptions_95_hist]] days against [[fact:kupiec_expected_95_hist]] expected (Kupiec verdict: [[fact:kupiec_verdict_95_hist]]); at 99% the verdict is [[fact:kupiec_verdict_99_hist]]. Over the next [[fact:mc_horizon]], a simulation assuming [[fact:mc_drift_annual]] annual drift gives a [[fact:mc_p_loss]] chance of a loss, a median return of [[fact:mc_median_terminal]] and a [[fact:mc_p_dd_20]] chance of a drawdown deeper than one fifth of value.",
+  "stress_and_regimes": "Of [[fact:stress_scenarios_run]] historical stress scenarios with enough history, the worst was [[fact:worst_stress_scenario]]: the portfolio returned [[fact:worst_stress_return]] against [[fact:worst_stress_benchmark_return]] for the benchmark. A regime model on the benchmark puts the market in a [[fact:regime_current]] regime ([[fact:regime_current_prob]] probability); in Stress regimes this portfolio's volatility is [[fact:stress_vol_multiple]] its Calm level. In a walk-forward volatility test the best forecaster was [[fact:vol_forecast_winner]], which forecasts annualized volatility of [[fact:vol_forecast_current]] for the next month.",
+  "disclosed_risks": [],
+  "caveats": ""
+ },
+ "sections": {
+  "summary": "Diversified global holds 7 positions (SPY, EFA, EEM, AGG, GLD, VNQ, TLT) and is compared with SPY. Between 2016-11-01 and 2026-10-29 it grew at 9.33% a year with annualized volatility of 11.73%, and its worst peak-to-trough loss was -23.16%. SPY is 30.00% of the weight but 42.24% of the volatility.",
+  "return_and_risk": "The Sharpe ratio is 0.57 and the Sortino ratio is 1.15, using a risk-free rate of 3.00%. The benchmark grew at 15.58% a year with volatility of 17.95% and a maximum drawdown of -33.72%. Beta to the benchmark is 0.60. The maximum drawdown ran from 2020-02-19 to 2020-03-23 and lasted 105 trading days in total. The effective number of independent risk bets is 3.80. Daily returns have skewness of -0.66 and excess kurtosis of 16.96; positive excess kurtosis means fatter tails than a normal distribution.",
+  "tail_risk": "On a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least 1.05%, and the average loss on those days is 1.72%. At 99% confidence the historical VaR is 1.89% and the Expected Shortfall 3.08%, against a normal-distribution VaR of 1.72%. The 10-day 95% historical VaR is 3.04%. In a rolling backtest the 95% historical VaR was exceeded on 131 days against 113.2 expected (Kupiec verdict: consistent); at 99% the verdict is consistent. Over the next 252 trading days, a simulation assuming 5.00% annual drift gives a 32.98% chance of a loss, a median return of 4.95% and a 8.77% chance of a drawdown deeper than one fifth of value.",
+  "stress_and_regimes": "Of 4 historical stress scenarios with enough history, the worst was Global Financial Crisis: the portfolio returned -31.46% against -46.04% for the benchmark. A regime model on the benchmark puts the market in a Calm regime (90.37% probability); in Stress regimes this portfolio's volatility is 6.3x its Calm level. In a walk-forward volatility test the best forecaster was GARCH-t, which forecasts annualized volatility of 8.01% for the next month.",
+  "disclosed_risks": "No 10-K filings are indexed for these holdings (ETFs and funds do not file them).",
+  "caveats": "- All figures are historical estimates from daily data between 2016-11-01 and 2026-10-29; future losses can be larger.\n- Value at Risk and Expected Shortfall assume the past is representative of the future; the normal-distribution versions understate fat tails.\n- Monte Carlo results depend on the assumed annual return of 5.00% and resample past daily returns.\n- Regimes come from a hidden Markov model fitted to the benchmark; the current regime uses only data up to the last date.\n- Disclosed risks summarize the latest 10-K risk factors; ETFs and funds have none."
+ },
+ "disclosed_risks": [],
+ "markdown": "# Risk memo: Diversified global\n\n_Deterministic template memo. Verified: 0 unsupported numbers, 49 figures traced to code._\n\n## Summary\n\nDiversified global holds 7 positions (SPY, EFA, EEM, AGG, GLD, VNQ, TLT) and is compared with SPY. Between 2016-11-01 and 2026-10-29 it grew at 9.33% a year with annualized volatility of 11.73%, and its worst peak-to-trough loss was -23.16%. SPY is 30.00% of the weight but 42.24% of the volatility.\n\n## Return and risk profile\n\nThe Sharpe ratio is 0.57 and the Sortino ratio is 1.15, using a risk-free rate of 3.00%. The benchmark grew at 15.58% a year with volatility of 17.95% and a maximum drawdown of -33.72%. Beta to the benchmark is 0.60. The maximum drawdown ran from 2020-02-19 to 2020-03-23 and lasted 105 trading days in total. The effective number of independent risk bets is 3.80. Daily returns have skewness of -0.66 and excess kurtosis of 16.96; positive excess kurtosis means fatter tails than a normal distribution.\n\n## Tail risk\n\nOn a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least 1.05%, and the average loss on those days is 1.72%. At 99% confidence the historical VaR is 1.89% and the Expected Shortfall 3.08%, against a normal-distribution VaR of 1.72%. The 10-day 95% historical VaR is 3.04%. In a rolling backtest the 95% historical VaR was exceeded on 131 days against 113.2 expected (Kupiec verdict: consistent); at 99% the verdict is consistent. Over the next 252 trading days, a simulation assuming 5.00% annual drift gives a 32.98% chance of a loss, a median return of 4.95% and a 8.77% chance of a drawdown deeper than one fifth of value.\n\n## Stress and regimes\n\nOf 4 historical stress scenarios with enough history, the worst was Global Financial Crisis: the portfolio returned -31.46% against -46.04% for the benchmark. A regime model on the benchmark puts the market in a Calm regime (90.37% probability); in Stress regimes this portfolio's volatility is 6.3x its Calm level. In a walk-forward volatility test the best forecaster was GARCH-t, which forecasts annualized volatility of 8.01% for the next month.\n\n## Disclosed risks from filings\n\nNo 10-K filings are indexed for these holdings (ETFs and funds do not file them).\n\n## Caveats and limitations\n\n- All figures are historical estimates from daily data between 2016-11-01 and 2026-10-29; future losses can be larger.\n- Value at Risk and Expected Shortfall assume the past is representative of the future; the normal-distribution versions understate fat tails.\n- Monte Carlo results depend on the assumed annual return of 5.00% and resample past daily returns.\n- Regimes come from a hidden Markov model fitted to the benchmark; the current regime uses only data up to the last date.\n- Disclosed risks summarize the latest 10-K risk factors; ETFs and funds have none.\n\n_Educational tool, not investment advice. Models are simplifications; historical risk measures can understate future losses._\n",
+ "verification": {
+  "ok": true,
+  "violations": [],
+  "figures_traced": 49,
+  "facts_used": [
+   "portfolio_name",
+   "n_holdings",
+   "holdings",
+   "benchmark",
+   "start_date",
+   "end_date",
+   "cagr",
+   "ann_vol",
+   "max_drawdown",
+   "top_risk_contributor",
+   "top_risk_contributor_weight",
+   "top_risk_contributor_pct",
+   "sharpe",
+   "sortino",
+   "rf_annual",
+   "benchmark_cagr",
+   "benchmark_ann_vol",
+   "benchmark_max_drawdown",
+   "beta",
+   "max_drawdown_peak",
+   "max_drawdown_trough",
+   "max_drawdown_duration",
+   "effective_n_bets",
+   "skew",
+   "excess_kurtosis",
+   "var_95_1d_hist",
+   "es_95_1d_hist",
+   "var_99_1d_hist",
+   "es_99_1d_hist",
+   "var_99_1d_normal",
+   "var_95_10d_hist",
+   "kupiec_exceptions_95_hist",
+   "kupiec_expected_95_hist",
+   "kupiec_verdict_95_hist",
+   "kupiec_verdict_99_hist",
+   "mc_horizon",
+   "mc_drift_annual",
+   "mc_p_loss",
+   "mc_median_terminal",
+   "mc_p_dd_20",
+   "stress_scenarios_run",
+   "worst_stress_scenario",
+   "worst_stress_return",
+   "worst_stress_benchmark_return",
+   "regime_current",
+   "regime_current_prob",
+   "stress_vol_multiple",
+   "vol_forecast_winner",
+   "vol_forecast_current"
+  ],
+  "citations": [],
+  "unsupported_numbers": 0,
+  "word_count": 303
+ },
+ "attempts": [
+  {
+   "attempt": 1,
+   "raw": "{\n  \"summary\": \"The portfolio, named Diversified global, has a Sharpe ratio of 0.57 and an annualized volatility of 11.73%. It has a maximum drawdown of -23.16%, occurring in 2020, and a compound annual growth rate (CAGR) of 9.33%. The portfolio is heavily weighted in SPY, with 30% of its assets, contributing 42.24% to its volatility.\",\n  \"return_and_risk\": \"The portfolio's return is 9.33% annually, with a Sharpe ratio of 0.57, indicating that for every unit of risk taken, the portfolio returns 0.57 units. The annualized volatility is 11.73%, suggesting that the portfolio's returns can fluctuate by approximately 11.73% from one year to the next. The maximum drawdown of -23.16% is a significant risk, as it represents the worst loss the portfolio experienced during the analysis period.\",\n  \"tail_risk\": \"The portfolio's worst peak-to-trough loss was in 2020, when it fell from a peak to a trough of -23.16%. This is a substantial drawdown, and the portfolio's performance during such a period can be highly unpredictable. The portfolio's risk is further highlighted by its maximum drawdown duration of 105 trading days, which is a significant period of underperformance.\",\n  \"stress_and_regimes\": \"The portfolio's performance under stress scenarios is also of concern. In the Global Financial Crisis scenario, the portfolio's return was -31.46%, and its maximum drawdown was -32.58%. The portfolio's volatility in stress regimes is 6.3 times higher than in the current 'Calm' regime, indicating that the portfolio may underperform during market downturns.\",\n  \"caveats\": \"These estimates are based on historical data and may not accurately predict future performance. The portfolio's performance can be influenced by various factors not captured in the historical data, such as new regulations, technological advancements, and geopolitical events.\",\n  \"disclosed_risks\": [\n    {\"text\": \"The portfolio is heavily weighted in SPY, which could lead to significant losses if the S&P 500 experiences a downturn.\", \"chunk_ids\": [\"fact:top_risk_contributor\", \"fact:top_risk_contributor_pct\", \"fact:top_risk_contributor_weight\"]},\n    {\"text\": \"The portfolio's maximum drawdown of -23.16% is a significant risk, as it represents the worst loss the portfolio experienced during the analysis period.\", \"chunk_ids\": [\"fact:max_drawdown\"]}\n  ]\n}",
+   "verification": {
+    "ok": false,
+    "violations": [
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.57' outside a placeholder",
+      "field": "summary",
+      "snippet": "global, has a Sharpe ratio of 0.57 and an annualized volatility",
+      "token": "0.57"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '11.73%' outside a placeholder",
+      "field": "summary",
+      "snippet": "d an annualized volatility of 11.73%. It has a maximum drawdown of",
+      "token": "11.73%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '23.16%' outside a placeholder",
+      "field": "summary",
+      "snippet": "It has a maximum drawdown of -23.16%, occurring in 2020, and a com",
+      "token": "23.16%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '9.33%' outside a placeholder",
+      "field": "summary",
+      "snippet": "annual growth rate (CAGR) of 9.33%. The portfolio is heavily wei",
+      "token": "9.33%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '30%' outside a placeholder",
+      "field": "summary",
+      "snippet": "heavily weighted in SPY, with 30% of its assets, contributing 4",
+      "token": "30%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '42.24%' outside a placeholder",
+      "field": "summary",
+      "snippet": "% of its assets, contributing 42.24% to its volatility.",
+      "token": "42.24%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '9.33%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "The portfolio's return is 9.33% annually, with a Sharpe ratio",
+      "token": "9.33%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.57' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "ually, with a Sharpe ratio of 0.57, indicating that for every un",
+      "token": "0.57"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.57' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "taken, the portfolio returns 0.57 units. The annualized volatil",
+      "token": "0.57"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '11.73%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "The annualized volatility is 11.73%, suggesting that the portfoli",
+      "token": "11.73%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '11.73%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "an fluctuate by approximately 11.73% from one year to the next. Th",
+      "token": "11.73%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '23.16%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "ext. The maximum drawdown of -23.16% is a significant risk, as it",
+      "token": "23.16%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '23.16%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "l from a peak to a trough of -23.16%. This is a substantial drawdo",
+      "token": "23.16%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '105' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "maximum drawdown duration of 105 trading days, which is a sign",
+      "token": "105"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '31.46%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": ", the portfolio's return was -31.46%, and its maximum drawdown was",
+      "token": "31.46%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '32.58%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "and its maximum drawdown was -32.58%. The portfolio's volatility i",
+      "token": "32.58%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '6.3' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "latility in stress regimes is 6.3 times higher than in the curr",
+      "token": "6.3"
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:top_risk_contributor",
+      "field": "disclosed_risks[0]",
+      "snippet": "fact:top_risk_contributor",
+      "token": ""
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:top_risk_contributor_pct",
+      "field": "disclosed_risks[0]",
+      "snippet": "fact:top_risk_contributor_pct",
+      "token": ""
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:top_risk_contributor_weight",
+      "field": "disclosed_risks[0]",
+      "snippet": "fact:top_risk_contributor_weight",
+      "token": ""
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '23.16%' outside a placeholder",
+      "field": "disclosed_risks[1]",
+      "snippet": "tfolio's maximum drawdown of -23.16% is a significant risk, as it",
+      "token": "23.16%"
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:max_drawdown",
+      "field": "disclosed_risks[1]",
+      "snippet": "fact:max_drawdown",
+      "token": ""
+     }
+    ],
+    "figures_traced": 0,
+    "facts_used": [],
+    "citations": [],
+    "unsupported_numbers": 18,
+    "word_count": 312
+   }
+  },
+  {
+   "attempt": 2,
+   "raw": "{\n    \"summary\": \"The portfolio, named Diversified global, has a compound annual growth rate of 9.33% and an annualized volatility of 11.73%. It has a Sharpe ratio of 0.57, indicating that for every unit of risk taken, the portfolio returns 0.57 units of excess return over the risk-free rate. The maximum drawdown was -23.16%, occurring in 2020, and the portfolio's worst stress scenario return was -31.46% during the Global Financial Crisis.\",\n    \"return_and_risk\": \"The portfolio's return is 9.33% annually, with a volatility of 11.73%. The Sharpe ratio of 0.57 suggests that for every unit of risk, the portfolio generates 0.57 units of excess return. The maximum drawdown of -23.16% is a significant risk, and the worst stress scenario return of -31.46% during the Global Financial Crisis highlights the portfolio's potential downside risk.\",\n    \"tail_risk\": \"The portfolio's maximum drawdown of -23.16% is a critical risk, indicating that the portfolio can lose up to 23.16% of its value at its worst point. The worst stress scenario return of -31.46% during the Global Financial Crisis underscores the portfolio's potential for significant losses under extreme market conditions.\",\n    \"stress_and_regimes\": \"The portfolio's volatility in stress regimes is 6.3 times higher than in the current Calm regime. The best volatility forecasting model is GARCH-t, which outperformed LightGBM in the walk-forward test. The forecasted annualized volatility for the next month is 8.01%, indicating moderate volatility expectations.\",\n    \"caveats\": \"These estimates are based on historical data and simulations, and do not guarantee future performance. The portfolio's performance can be affected by market conditions and other factors not captured in the analysis.\",\n    \"disclosed_risks\": [\n        {\n            \"text\": \"The portfolio's maximum drawdown of -23.16% and the worst stress scenario return of -31.46% during the Global Financial Crisis highlight significant tail risks.\",\n            \"chunk_ids\": [\"fact:max_drawdown\", \"fact:worst_stress_return\", \"fact:worst_stress_scenario\"]\n        },\n        {\n            \"text\": \"The portfolio's Sharpe ratio of 0.57 suggests that for every unit of risk, the portfolio generates 0.57 units of excess return, indicating a moderate risk-reward profile.\",\n            \"chunk_ids\": [\"fact:sharpe\"]\n        }\n    ]\n}",
+   "verification": {
+    "ok": false,
+    "violations": [
+     {
+      "kind": "stray_numeral",
+      "detail": "number '9.33%' outside a placeholder",
+      "field": "summary",
+      "snippet": "ompound annual growth rate of 9.33% and an annualized volatility",
+      "token": "9.33%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '11.73%' outside a placeholder",
+      "field": "summary",
+      "snippet": "d an annualized volatility of 11.73%. It has a Sharpe ratio of 0.5",
+      "token": "11.73%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.57' outside a placeholder",
+      "field": "summary",
+      "snippet": "73%. It has a Sharpe ratio of 0.57, indicating that for every un",
+      "token": "0.57"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.57' outside a placeholder",
+      "field": "summary",
+      "snippet": "taken, the portfolio returns 0.57 units of excess return over t",
+      "token": "0.57"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '23.16%' outside a placeholder",
+      "field": "summary",
+      "snippet": "te. The maximum drawdown was -23.16%, occurring in 2020, and the p",
+      "token": "23.16%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '31.46%' outside a placeholder",
+      "field": "summary",
+      "snippet": "t stress scenario return was -31.46% during the Global Financial C",
+      "token": "31.46%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '9.33%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "The portfolio's return is 9.33% annually, with a volatility o",
+      "token": "9.33%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '11.73%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "nnually, with a volatility of 11.73%. The Sharpe ratio of 0.57 sug",
+      "token": "11.73%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.57' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "f 11.73%. The Sharpe ratio of 0.57 suggests that for every unit",
+      "token": "0.57"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.57' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "risk, the portfolio generates 0.57 units of excess return. The m",
+      "token": "0.57"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '23.16%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "urn. The maximum drawdown of -23.16% is a significant risk, and th",
+      "token": "23.16%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '31.46%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "st stress scenario return of -31.46% during the Global Financial C",
+      "token": "31.46%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '23.16%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "tfolio's maximum drawdown of -23.16% is a critical risk, indicatin",
+      "token": "23.16%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '23.16%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "the portfolio can lose up to 23.16% of its value at its worst poi",
+      "token": "23.16%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '31.46%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "st stress scenario return of -31.46% during the Global Financial C",
+      "token": "31.46%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '6.3' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "latility in stress regimes is 6.3 times higher than in the curr",
+      "token": "6.3"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '8.01%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "atility for the next month is 8.01%, indicating moderate volatili",
+      "token": "8.01%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '23.16%' outside a placeholder",
+      "field": "disclosed_risks[0]",
+      "snippet": "tfolio's maximum drawdown of -23.16% and the worst stress scenario",
+      "token": "23.16%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '31.46%' outside a placeholder",
+      "field": "disclosed_risks[0]",
+      "snippet": "st stress scenario return of -31.46% during the Global Financial C",
+      "token": "31.46%"
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:max_drawdown",
+      "field": "disclosed_risks[0]",
+      "snippet": "fact:max_drawdown",
+      "token": ""
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:worst_stress_return",
+      "field": "disclosed_risks[0]",
+      "snippet": "fact:worst_stress_return",
+      "token": ""
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:worst_stress_scenario",
+      "field": "disclosed_risks[0]",
+      "snippet": "fact:worst_stress_scenario",
+      "token": ""
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.57' outside a placeholder",
+      "field": "disclosed_risks[1]",
+      "snippet": "e portfolio's Sharpe ratio of 0.57 suggests that for every unit",
+      "token": "0.57"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.57' outside a placeholder",
+      "field": "disclosed_risks[1]",
+      "snippet": "risk, the portfolio generates 0.57 units of excess return, indic",
+      "token": "0.57"
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:sharpe",
+      "field": "disclosed_risks[1]",
+      "snippet": "fact:sharpe",
+      "token": ""
+     }
+    ],
+    "figures_traced": 0,
+    "facts_used": [],
+    "citations": [],
+    "unsupported_numbers": 21,
+    "word_count": 301
+   }
+  }
+ ],
+ "first_pass_ok": false,
+ "retried": true,
+ "fell_back": true,
+ "fallback_reason": "2 drafts failed verification (25 violations in the last)",
+ "chunk_ids": [],
+ "report_hash": "5a793d15923ca120e438f868b441ed82955d0f6e711f0cd8862807ffc281b4d1",
+ "cache_key": "ed0b31164d8008b757061f066dc19e9c601c6723c45f0649bde40d6eea9cc9f6",
+ "prompt_version": "m8-v1",
+ "as_of": "2026-10-29"
+}

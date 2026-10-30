@@ -1,0 +1,504 @@
+{
+ "portfolio_name": "Defensive dividend",
+ "source": "template",
+ "provider": "ollama",
+ "model": "qwen2.5:3b",
+ "draft": {
+  "summary": "[[fact:portfolio_name]] holds [[fact:n_holdings]] positions ([[fact:holdings]]) and is compared with [[fact:benchmark]]. Between [[fact:start_date]] and [[fact:end_date]] it grew at [[fact:cagr]] a year with annualized volatility of [[fact:ann_vol]], and its worst peak-to-trough loss was [[fact:max_drawdown]]. [[fact:top_risk_contributor]] is [[fact:top_risk_contributor_weight]] of the weight but [[fact:top_risk_contributor_pct]] of the volatility.",
+  "return_and_risk": "The Sharpe ratio is [[fact:sharpe]] and the Sortino ratio is [[fact:sortino]], using a risk-free rate of [[fact:rf_annual]]. The benchmark grew at [[fact:benchmark_cagr]] a year with volatility of [[fact:benchmark_ann_vol]] and a maximum drawdown of [[fact:benchmark_max_drawdown]]. Beta to the benchmark is [[fact:beta]]. The maximum drawdown ran from [[fact:max_drawdown_peak]] to [[fact:max_drawdown_trough]] and lasted [[fact:max_drawdown_duration]] in total. The effective number of independent risk bets is [[fact:effective_n_bets]]. Daily returns have skewness of [[fact:skew]] and excess kurtosis of [[fact:excess_kurtosis]]; positive excess kurtosis means fatter tails than a normal distribution.",
+  "tail_risk": "On a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least [[fact:var_95_1d_hist]], and the average loss on those days is [[fact:es_95_1d_hist]]. At 99% confidence the historical VaR is [[fact:var_99_1d_hist]] and the Expected Shortfall [[fact:es_99_1d_hist]], against a normal-distribution VaR of [[fact:var_99_1d_normal]]. The 10-day 95% historical VaR is [[fact:var_95_10d_hist]]. In a rolling backtest the 95% historical VaR was exceeded on [[fact:kupiec_exceptions_95_hist]] days against [[fact:kupiec_expected_95_hist]] expected (Kupiec verdict: [[fact:kupiec_verdict_95_hist]]); at 99% the verdict is [[fact:kupiec_verdict_99_hist]]. Over the next [[fact:mc_horizon]], a simulation assuming [[fact:mc_drift_annual]] annual drift gives a [[fact:mc_p_loss]] chance of a loss, a median return of [[fact:mc_median_terminal]] and a [[fact:mc_p_dd_20]] chance of a drawdown deeper than one fifth of value.",
+  "stress_and_regimes": "Of [[fact:stress_scenarios_run]] historical stress scenarios with enough history, the worst was [[fact:worst_stress_scenario]]: the portfolio returned [[fact:worst_stress_return]] against [[fact:worst_stress_benchmark_return]] for the benchmark. A regime model on the benchmark puts the market in a [[fact:regime_current]] regime ([[fact:regime_current_prob]] probability); in Stress regimes this portfolio's volatility is [[fact:stress_vol_multiple]] its Calm level. In a walk-forward volatility test the best forecaster was [[fact:vol_forecast_winner]], which forecasts annualized volatility of [[fact:vol_forecast_current]] for the next month.",
+  "disclosed_risks": [
+   {
+    "text": "COCA COLA CO (KO) discloses a risk in its 10-K.",
+    "chunk_ids": [
+     "KO-2025-1A-0001"
+    ]
+   },
+   {
+    "text": "Walmart Inc. (WMT) discloses a risk in its 10-K.",
+    "chunk_ids": [
+     "WMT-2026-1A-0001"
+    ]
+   },
+   {
+    "text": "PFIZER INC (PFE) discloses a risk in its 10-K.",
+    "chunk_ids": [
+     "PFE-2025-1A-0001"
+    ]
+   },
+   {
+    "text": "Walmart Inc. (WMT) discloses a risk: Natural disasters, climate change, geopolitical events, catastrophic and other events could materially adversely affect our financial performance.",
+    "chunk_ids": [
+     "WMT-2026-1A-0020"
+    ]
+   }
+  ],
+  "caveats": ""
+ },
+ "sections": {
+  "summary": "Defensive dividend holds 6 positions (JNJ, PG, KO, PFE, XOM, WMT) and is compared with SPY. Between 2016-11-01 and 2026-10-29 it grew at 13.34% a year with annualized volatility of 14.68%, and its worst peak-to-trough loss was -28.29%. PG is 20.00% of the weight but 20.13% of the volatility.",
+  "return_and_risk": "The Sharpe ratio is 0.73 and the Sortino ratio is 1.34, using a risk-free rate of 3.00%. The benchmark grew at 15.58% a year with volatility of 17.95% and a maximum drawdown of -33.72%. Beta to the benchmark is 0.52. The maximum drawdown ran from 2020-01-17 to 2020-03-23 and lasted 206 trading days in total. The effective number of independent risk bets is 5.71. Daily returns have skewness of -0.17 and excess kurtosis of 12.18; positive excess kurtosis means fatter tails than a normal distribution.",
+  "tail_risk": "On a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least 1.26%, and the average loss on those days is 2.08%. At 99% confidence the historical VaR is 2.36% and the Expected Shortfall 3.85%, against a normal-distribution VaR of 2.15%. The 10-day 95% historical VaR is 3.27%. In a rolling backtest the 95% historical VaR was exceeded on 132 days against 113.2 expected (Kupiec verdict: consistent); at 99% the verdict is model underestimates risk. Over the next 252 trading days, a simulation assuming 5.00% annual drift gives a 36.73% chance of a loss, a median return of 4.20% and a 14.15% chance of a drawdown deeper than one fifth of value.",
+  "stress_and_regimes": "Of 4 historical stress scenarios with enough history, the worst was COVID crash: the portfolio returned -27.30% against -33.72% for the benchmark. A regime model on the benchmark puts the market in a Calm regime (90.37% probability); in Stress regimes this portfolio's volatility is 5.5x its Calm level. In a walk-forward volatility test the best forecaster was GARCH-t, which forecasts annualized volatility of 17.56% for the next month.",
+  "disclosed_risks": "- COCA COLA CO (KO) discloses a risk in its 10-K. ([KO 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm))\n- Walmart Inc. (WMT) discloses a risk in its 10-K. ([WMT 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm))\n- PFIZER INC (PFE) discloses a risk in its 10-K. ([PFE 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/78003/000007800326000026/pfe-20251231.htm))\n- Walmart Inc. (WMT) discloses a risk: Natural disasters, climate change, geopolitical events, catastrophic and other events could materially adversely affect our financial performance. ([WMT 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm))",
+  "caveats": "- All figures are historical estimates from daily data between 2016-11-01 and 2026-10-29; future losses can be larger.\n- Value at Risk and Expected Shortfall assume the past is representative of the future; the normal-distribution versions understate fat tails.\n- Monte Carlo results depend on the assumed annual return of 5.00% and resample past daily returns.\n- Regimes come from a hidden Markov model fitted to the benchmark; the current regime uses only data up to the last date.\n- Disclosed risks summarize the latest 10-K risk factors; ETFs and funds have none."
+ },
+ "disclosed_risks": [
+  {
+   "text": "COCA COLA CO (KO) discloses a risk in its 10-K.",
+   "chunk_ids": [
+    "KO-2025-1A-0001"
+   ],
+   "citations": [
+    "KO 10-K FY2025, Item 1A"
+   ],
+   "urls": [
+    "https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm"
+   ]
+  },
+  {
+   "text": "Walmart Inc. (WMT) discloses a risk in its 10-K.",
+   "chunk_ids": [
+    "WMT-2026-1A-0001"
+   ],
+   "citations": [
+    "WMT 10-K FY2026, Item 1A"
+   ],
+   "urls": [
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm"
+   ]
+  },
+  {
+   "text": "PFIZER INC (PFE) discloses a risk in its 10-K.",
+   "chunk_ids": [
+    "PFE-2025-1A-0001"
+   ],
+   "citations": [
+    "PFE 10-K FY2025, Item 1A"
+   ],
+   "urls": [
+    "https://www.sec.gov/Archives/edgar/data/78003/000007800326000026/pfe-20251231.htm"
+   ]
+  },
+  {
+   "text": "Walmart Inc. (WMT) discloses a risk: Natural disasters, climate change, geopolitical events, catastrophic and other events could materially adversely affect our financial performance.",
+   "chunk_ids": [
+    "WMT-2026-1A-0020"
+   ],
+   "citations": [
+    "WMT 10-K FY2026, Item 1A"
+   ],
+   "urls": [
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm"
+   ]
+  }
+ ],
+ "markdown": "# Risk memo: Defensive dividend\n\n_Deterministic template memo. Verified: 0 unsupported numbers, 49 figures traced to code._\n\n## Summary\n\nDefensive dividend holds 6 positions (JNJ, PG, KO, PFE, XOM, WMT) and is compared with SPY. Between 2016-11-01 and 2026-10-29 it grew at 13.34% a year with annualized volatility of 14.68%, and its worst peak-to-trough loss was -28.29%. PG is 20.00% of the weight but 20.13% of the volatility.\n\n## Return and risk profile\n\nThe Sharpe ratio is 0.73 and the Sortino ratio is 1.34, using a risk-free rate of 3.00%. The benchmark grew at 15.58% a year with volatility of 17.95% and a maximum drawdown of -33.72%. Beta to the benchmark is 0.52. The maximum drawdown ran from 2020-01-17 to 2020-03-23 and lasted 206 trading days in total. The effective number of independent risk bets is 5.71. Daily returns have skewness of -0.17 and excess kurtosis of 12.18; positive excess kurtosis means fatter tails than a normal distribution.\n\n## Tail risk\n\nOn a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least 1.26%, and the average loss on those days is 2.08%. At 99% confidence the historical VaR is 2.36% and the Expected Shortfall 3.85%, against a normal-distribution VaR of 2.15%. The 10-day 95% historical VaR is 3.27%. In a rolling backtest the 95% historical VaR was exceeded on 132 days against 113.2 expected (Kupiec verdict: consistent); at 99% the verdict is model underestimates risk. Over the next 252 trading days, a simulation assuming 5.00% annual drift gives a 36.73% chance of a loss, a median return of 4.20% and a 14.15% chance of a drawdown deeper than one fifth of value.\n\n## Stress and regimes\n\nOf 4 historical stress scenarios with enough history, the worst was COVID crash: the portfolio returned -27.30% against -33.72% for the benchmark. A regime model on the benchmark puts the market in a Calm regime (90.37% probability); in Stress regimes this portfolio's volatility is 5.5x its Calm level. In a walk-forward volatility test the best forecaster was GARCH-t, which forecasts annualized volatility of 17.56% for the next month.\n\n## Disclosed risks from filings\n\n- COCA COLA CO (KO) discloses a risk in its 10-K. ([KO 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm))\n- Walmart Inc. (WMT) discloses a risk in its 10-K. ([WMT 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm))\n- PFIZER INC (PFE) discloses a risk in its 10-K. ([PFE 10-K FY2025, Item 1A](https://www.sec.gov/Archives/edgar/data/78003/000007800326000026/pfe-20251231.htm))\n- Walmart Inc. (WMT) discloses a risk: Natural disasters, climate change, geopolitical events, catastrophic and other events could materially adversely affect our financial performance. ([WMT 10-K FY2026, Item 1A](https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm))\n\n## Caveats and limitations\n\n- All figures are historical estimates from daily data between 2016-11-01 and 2026-10-29; future losses can be larger.\n- Value at Risk and Expected Shortfall assume the past is representative of the future; the normal-distribution versions understate fat tails.\n- Monte Carlo results depend on the assumed annual return of 5.00% and resample past daily returns.\n- Regimes come from a hidden Markov model fitted to the benchmark; the current regime uses only data up to the last date.\n- Disclosed risks summarize the latest 10-K risk factors; ETFs and funds have none.\n\n_Educational tool, not investment advice. Models are simplifications; historical risk measures can understate future losses._\n",
+ "verification": {
+  "ok": true,
+  "violations": [],
+  "figures_traced": 49,
+  "facts_used": [
+   "portfolio_name",
+   "n_holdings",
+   "holdings",
+   "benchmark",
+   "start_date",
+   "end_date",
+   "cagr",
+   "ann_vol",
+   "max_drawdown",
+   "top_risk_contributor",
+   "top_risk_contributor_weight",
+   "top_risk_contributor_pct",
+   "sharpe",
+   "sortino",
+   "rf_annual",
+   "benchmark_cagr",
+   "benchmark_ann_vol",
+   "benchmark_max_drawdown",
+   "beta",
+   "max_drawdown_peak",
+   "max_drawdown_trough",
+   "max_drawdown_duration",
+   "effective_n_bets",
+   "skew",
+   "excess_kurtosis",
+   "var_95_1d_hist",
+   "es_95_1d_hist",
+   "var_99_1d_hist",
+   "es_99_1d_hist",
+   "var_99_1d_normal",
+   "var_95_10d_hist",
+   "kupiec_exceptions_95_hist",
+   "kupiec_expected_95_hist",
+   "kupiec_verdict_95_hist",
+   "kupiec_verdict_99_hist",
+   "mc_horizon",
+   "mc_drift_annual",
+   "mc_p_loss",
+   "mc_median_terminal",
+   "mc_p_dd_20",
+   "stress_scenarios_run",
+   "worst_stress_scenario",
+   "worst_stress_return",
+   "worst_stress_benchmark_return",
+   "regime_current",
+   "regime_current_prob",
+   "stress_vol_multiple",
+   "vol_forecast_winner",
+   "vol_forecast_current"
+  ],
+  "citations": [
+   "KO-2025-1A-0001",
+   "WMT-2026-1A-0001",
+   "PFE-2025-1A-0001",
+   "WMT-2026-1A-0020"
+  ],
+  "unsupported_numbers": 0,
+  "word_count": 354
+ },
+ "attempts": [
+  {
+   "attempt": 1,
+   "raw": "{\n  \"summary\": \"The portfolio has a Sharpe ratio of 0.73, indicating that for every unit of risk taken, the portfolio returns 0.73 units of excess return over the risk-free rate. The maximum drawdown was -28.29%, which is a significant downturn from peak to trough. The portfolio is exposed to risks such as economic downturns, geopolitical events, and supply chain disruptions, as evidenced by the historical stress scenarios.\",\n  \"return_and_risk\": \"The portfolio has a compound annual growth rate (CAGR) of 13.34%, which is slightly lower than the benchmark's 15.58%. The annualized volatility is 14.68%, which is higher than the benchmark's 17.95%. The portfolio's Sortino ratio, which measures return per unit of downside volatility, is 1.34, indicating that the portfolio has a higher return for every unit of downside risk compared to the benchmark. The portfolio's Calmar ratio, which is the ratio of CAGR to maximum drawdown, is 0.47, suggesting that the portfolio has a lower risk-adjusted return than the benchmark.\",\n  \"tail_risk\": \"The portfolio's maximum drawdown of -28.29% is a significant risk, as it represents a substantial loss from peak to trough. The portfolio's worst stress scenario, the 2020 COVID crash, resulted in a -27.30% return, which is worse than the benchmark's -33.72% maximum drawdown. The portfolio's 95% Value at Risk (VaR) is 1.26%, indicating that there is a 5% chance in any given year that the portfolio could lose more than 1.26% of its value.\",\n  \"stress_and_regimes\": \"The portfolio's historical stress scenarios show that it underperforms during severe market downturns. The 2020 COVID crash scenario resulted in a -27.30% return, which is worse than the benchmark's -33.72% maximum drawdown. The portfolio's forecasted volatility in the next month is 17.56%, which is higher than the benchmark's 17.95%. The portfolio's most likely current market regime is 'Calm', but the volatility in stress scenarios is 5.5x higher than in the 'Calm' regime.\",\n  \"caveats\": \"These estimates are based on historical data and may not accurately predict future performance. The portfolio's performance is also influenced by the performance of its holdings, which are subject to their own risks and uncertainties.\",\n  \"disclosed_risks\": [\n    {\n      \"text\": \"The portfolio is exposed to risks such as economic downturns, geopolitical events, and supply chain disruptions, as evidenced by the historical stress scenarios.\",\n      \"chunk_ids\": [\"KO-2025-1A-0001\", \"WMT-2026-1A-0001\", \"WMT-2026-1A-0020\", \"JNJ-2025-1A-0001\", \"XOM-2025-1A-0001\"]\n    }\n  ]\n}",
+   "verification": {
+    "ok": false,
+    "violations": [
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.73' outside a placeholder",
+      "field": "summary",
+      "snippet": "rtfolio has a Sharpe ratio of 0.73, indicating that for every un",
+      "token": "0.73"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.73' outside a placeholder",
+      "field": "summary",
+      "snippet": "taken, the portfolio returns 0.73 units of excess return over t",
+      "token": "0.73"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '28.29%' outside a placeholder",
+      "field": "summary",
+      "snippet": "te. The maximum drawdown was -28.29%, which is a significant downt",
+      "token": "28.29%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '13.34%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "annual growth rate (CAGR) of 13.34%, which is slightly lower than",
+      "token": "13.34%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '15.58%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "ly lower than the benchmark's 15.58%. The annualized volatility is",
+      "token": "15.58%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '14.68%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "The annualized volatility is 14.68%, which is higher than the ben",
+      "token": "14.68%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '17.95%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "s higher than the benchmark's 17.95%. The portfolio's Sortino rati",
+      "token": "17.95%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '1.34' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "it of downside volatility, is 1.34, indicating that the portfoli",
+      "token": "1.34"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.47' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "CAGR to maximum drawdown, is 0.47, suggesting that the portfoli",
+      "token": "0.47"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '28.29%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "tfolio's maximum drawdown of -28.29% is a significant risk, as it",
+      "token": "28.29%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '27.30%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "0 COVID crash, resulted in a -27.30% return, which is worse than t",
+      "token": "27.30%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '33.72%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "s worse than the benchmark's -33.72% maximum drawdown. The portfol",
+      "token": "33.72%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '1.26%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "'s 95% Value at Risk (VaR) is 1.26%, indicating that there is a 5",
+      "token": "1.26%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '5%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "%, indicating that there is a 5% chance in any given year that",
+      "token": "5%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '1.26%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "ortfolio could lose more than 1.26% of its value.",
+      "token": "1.26%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '27.30%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "crash scenario resulted in a -27.30% return, which is worse than t",
+      "token": "27.30%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '33.72%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "s worse than the benchmark's -33.72% maximum drawdown. The portfol",
+      "token": "33.72%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '17.56%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "latility in the next month is 17.56%, which is higher than the ben",
+      "token": "17.56%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '17.95%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "s higher than the benchmark's 17.95%. The portfolio's most likely",
+      "token": "17.95%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '5.5' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "tility in stress scenarios is 5.5x higher than in the 'Calm' re",
+      "token": "5.5"
+     }
+    ],
+    "figures_traced": 0,
+    "facts_used": [],
+    "citations": [
+     "KO-2025-1A-0001",
+     "WMT-2026-1A-0001",
+     "WMT-2026-1A-0020",
+     "JNJ-2025-1A-0001",
+     "XOM-2025-1A-0001"
+    ],
+    "unsupported_numbers": 20,
+    "word_count": 359
+   }
+  },
+  {
+   "attempt": 2,
+   "raw": "{\n  \"summary\": \"The portfolio has a Sharpe ratio of 0.73, indicating that for every unit of risk taken, it offers a 0.73% excess return. The maximum drawdown was -28.29%, which is a significant downturn from peak to trough. The portfolio's volatility is 14.68%, and it has a Calmar ratio of 0.47, suggesting that the portfolio has not consistently outperformed its risk level over the analyzed period.\",\n  \"return_and_risk\": \"The portfolio has a compound annual growth rate (CAGR) of 13.34%, which is slightly lower than the benchmark's 15.58%. The annualized volatility is 14.68%, and the maximum drawdown is -28.29%, indicating that the portfolio can experience substantial losses. The Sortino ratio is 1.34, and the Calmar ratio is 0.47, suggesting that the portfolio's returns have not consistently outperformed its risk level over the analyzed period.\",\n  \"tail_risk\": \"The portfolio's maximum drawdown is -28.29%, which is a significant downturn from peak to trough. The portfolio's worst stress scenario, the 2020 COVID crash, resulted in a return of -27.30% and a maximum drawdown of -27.39%. The portfolio's stress scenarios show that it can experience substantial losses, especially during market downturns.\",\n  \"stress_and_regimes\": \"The portfolio's volatility in stress scenarios is 5.5 times higher than in the current calm regime. The portfolio's volatility forecasting model, GARCH-t, outperforms LightGBM in the walk-forward test. The forecasted volatility for the next month is 17.56%, indicating that the portfolio may experience higher volatility in the near future.\",\n  \"caveats\": \"These estimates are based on historical data and may not accurately predict future performance. The portfolio's performance can be affected by various factors not covered in this analysis, such as geopolitical events and changes in market conditions.\",\n  \"disclosed_risks\": [\n    {\n      \"text\": \"The portfolio is exposed to risks related to its holdings, such as the largest holding, Johnson & Johnson (JNJ), which contributes 20.13% to the portfolio's volatility. The portfolio's performance can also be affected by macroeconomic factors, such as changes in interest rates, inflation, and economic conditions.\",\n      \"chunk_ids\": [\"JNJ-2025-1A-0001\"]\n    },\n    {\n      \"text\": \"The portfolio's performance is also influenced by the performance of its benchmark, the S&P 500 (SPY). The benchmark's maximum drawdown is -33.72%, which is higher than the portfolio's maximum drawdown of -28.29%. The portfolio's performance can also be affected by the performance of other stress scenarios, such as the 2020 COVID crash and the 2022 rate shock.\",\n      \"chunk_ids\": [\"WMT-2026-1A-0020\", \"stress_covid_crash_return\", \"stress_s2022_rate_shock_return\"]\n    }\n  ]\n}",
+   "verification": {
+    "ok": false,
+    "violations": [
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.73' outside a placeholder",
+      "field": "summary",
+      "snippet": "rtfolio has a Sharpe ratio of 0.73, indicating that for every un",
+      "token": "0.73"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.73%' outside a placeholder",
+      "field": "summary",
+      "snippet": "it of risk taken, it offers a 0.73% excess return. The maximum dr",
+      "token": "0.73%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '28.29%' outside a placeholder",
+      "field": "summary",
+      "snippet": "rn. The maximum drawdown was -28.29%, which is a significant downt",
+      "token": "28.29%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '14.68%' outside a placeholder",
+      "field": "summary",
+      "snippet": "The portfolio's volatility is 14.68%, and it has a Calmar ratio of",
+      "token": "14.68%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.47' outside a placeholder",
+      "field": "summary",
+      "snippet": "and it has a Calmar ratio of 0.47, suggesting that the portfoli",
+      "token": "0.47"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '13.34%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "annual growth rate (CAGR) of 13.34%, which is slightly lower than",
+      "token": "13.34%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '15.58%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "ly lower than the benchmark's 15.58%. The annualized volatility is",
+      "token": "15.58%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '14.68%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "The annualized volatility is 14.68%, and the maximum drawdown is",
+      "token": "14.68%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '28.29%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "and the maximum drawdown is -28.29%, indicating that the portfoli",
+      "token": "28.29%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '1.34' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "losses. The Sortino ratio is 1.34, and the Calmar ratio is 0.47",
+      "token": "1.34"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.47' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "1.34, and the Calmar ratio is 0.47, suggesting that the portfoli",
+      "token": "0.47"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '28.29%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "tfolio's maximum drawdown is -28.29%, which is a significant downt",
+      "token": "28.29%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '27.30%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "ash, resulted in a return of -27.30% and a maximum drawdown of -27",
+      "token": "27.30%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '27.39%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "0% and a maximum drawdown of -27.39%. The portfolio's stress scena",
+      "token": "27.39%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '5.5' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "tility in stress scenarios is 5.5 times higher than in the curr",
+      "token": "5.5"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '17.56%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "atility for the next month is 17.56%, indicating that the portfoli",
+      "token": "17.56%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '20.13%' outside a placeholder",
+      "field": "disclosed_risks[0]",
+      "snippet": "nson (JNJ), which contributes 20.13% to the portfolio's volatility",
+      "token": "20.13%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '33.72%' outside a placeholder",
+      "field": "disclosed_risks[1]",
+      "snippet": "chmark's maximum drawdown is -33.72%, which is higher than the por",
+      "token": "33.72%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '28.29%' outside a placeholder",
+      "field": "disclosed_risks[1]",
+      "snippet": "tfolio's maximum drawdown of -28.29%. The portfolio's performance",
+      "token": "28.29%"
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "stress_covid_crash_return",
+      "field": "disclosed_risks[1]",
+      "snippet": "stress_covid_crash_return",
+      "token": ""
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "stress_s2022_rate_shock_return",
+      "field": "disclosed_risks[1]",
+      "snippet": "stress_s2022_rate_shock_return",
+      "token": ""
+     }
+    ],
+    "figures_traced": 0,
+    "facts_used": [],
+    "citations": [
+     "JNJ-2025-1A-0001",
+     "WMT-2026-1A-0020"
+    ],
+    "unsupported_numbers": 19,
+    "word_count": 369
+   }
+  }
+ ],
+ "first_pass_ok": false,
+ "retried": true,
+ "fell_back": true,
+ "fallback_reason": "2 drafts failed verification (21 violations in the last)",
+ "chunk_ids": [
+  "KO-2025-1A-0001",
+  "WMT-2026-1A-0001",
+  "PFE-2025-1A-0001",
+  "WMT-2026-1A-0020",
+  "JNJ-2025-1A-0001",
+  "XOM-2025-1A-0001"
+ ],
+ "report_hash": "96fa809609ba040aeff1d3f7bc1e04b86d69c686e7d0828f6126620877412845",
+ "cache_key": "30d41b5ab3c3b4ddc18a510ea5e745e3b2619e42049e71456fb048377d600ab0",
+ "prompt_version": "m8-v1",
+ "as_of": "2026-10-29"
+}

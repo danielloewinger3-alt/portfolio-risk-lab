@@ -1,0 +1,385 @@
+{
+ "generated_at": "2026-10-30 10:40 UTC",
+ "git_commit": "c2579bc",
+ "provider": "ollama",
+ "model": "qwen2.5:3b",
+ "summary": {
+  "n_questions": 9,
+  "verified_first_pass": 6,
+  "retried": 3,
+  "llm_mode": 9,
+  "retrieval_only": 0,
+  "insufficient_evidence": 2,
+  "claims_kept": 13,
+  "claims_dropped": 1,
+  "citation_validity": 1.0
+ },
+ "questions": [
+  {
+   "question": "What risks do export controls and trade restrictions pose?",
+   "tickers": [
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "GOOGL",
+    "AMZN",
+    "META"
+   ],
+   "retrieved": [
+    "MSFT-2026-1A-0065",
+    "MSFT-2026-1A-0049",
+    "NVDA-2026-1A-0062",
+    "META-2025-1A-0084",
+    "NVDA-2026-1A-0078",
+    "AMZN-2025-1A-0005"
+   ],
+   "mode": "llm",
+   "attempts": 1,
+   "first_pass_ok": true,
+   "insufficient_evidence": false,
+   "answer": "Export controls and trade restrictions pose risks such as restrictions on the export of products, potential penalties for violations of anti-corruption laws or regulations, and increased investment in foreign competitors who are less likely to be restricted by U.S. controls. These controls also impose complex and burdensome compliance obligations on partners, suppliers, and customers, and incorrect allegations about compliance efforts can negatively impact business, relationships, and reputation.",
+   "claims": [
+    {
+     "text": "Export controls have in the past and may in the future negatively impact demand for our products and services not only in China, but also in other markets, such as Europe, Latin America, and Southeast Asia. Export controls increase the risk of investing in U.S. advanced semiconductor products, because by the time a new product is ready for market, it may be subject to new unilateral export controls restricting its sale, resulting in excess inventory and purchase obligations as we recently experienced with the H20.",
+     "chunk_ids": [
+      "NVDA-2026-1A-0062",
+      "NVDA-2026-1A-0078"
+     ]
+    }
+   ],
+   "dropped_claims": [],
+   "citation_validity": 1.0,
+   "fallback_reason": null,
+   "seconds": 15.7
+  },
+  {
+   "question": "What does the company say about competition from AI?",
+   "tickers": [
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "GOOGL",
+    "AMZN",
+    "META"
+   ],
+   "retrieved": [
+    "MSFT-2026-1A-0005",
+    "NVDA-2026-1A-0060",
+    "GOOGL-2025-1A-0009",
+    "AAPL-2025-1A-0012",
+    "MSFT-2026-1A-0047",
+    "META-2025-1A-0032"
+   ],
+   "mode": "llm",
+   "attempts": 1,
+   "first_pass_ok": true,
+   "insufficient_evidence": false,
+   "answer": "The company mentions that AI technology and services are highly competitive and are also the subject of evolving review and investigation by various governmental and regulatory agencies in jurisdictions around the world, which are applying, or are considering applying, platform moderation, intellectual property, products liability, cybersecurity, export controls, consumer protection, and data protection laws to AI and/or are considering general legal frameworks on AI (such as the EU AI Act).",
+   "claims": [
+    {
+     "text": "AI technology and services are highly competitive and are also the subject of evolving review and investigation by various governmental and regulatory agencies in jurisdictions around the world, which are applying, or are considering applying, platform moderation, intellectual property, products liability, cybersecurity, export controls, consumer protection, and data protection laws to AI and/or are considering general legal frameworks on AI (such as the EU AI Act).",
+     "chunk_ids": [
+      "META-2025-1A-0032"
+     ]
+    }
+   ],
+   "dropped_claims": [],
+   "citation_validity": 1.0,
+   "fallback_reason": null,
+   "seconds": 13.9
+  },
+  {
+   "question": "What are the main cybersecurity risks?",
+   "tickers": [
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "GOOGL",
+    "AMZN",
+    "META"
+   ],
+   "retrieved": [
+    "META-2025-1A-0152",
+    "NVDA-2026-1A-0032",
+    "NVDA-2026-1A-0031",
+    "MSFT-2026-1A-0050",
+    "GOOGL-2025-7-0013",
+    "MSFT-2026-1A-0019"
+   ],
+   "mode": "llm",
+   "attempts": 1,
+   "first_pass_ok": true,
+   "insufficient_evidence": false,
+   "answer": "The main cybersecurity risks include security breaches, improper access to or disclosure of data, hacking and phishing attacks, cyber incidents and attacks, ransomware attacks, and errors or misconduct by employees, contractors, or other third-party service providers. These risks can harm reputation, reduce revenue, increase expenses, and significantly impact the business.",
+   "claims": [
+    {
+     "text": "Security breaches, improper access to or disclosure of data, hacking and phishing attacks, cyber incidents and attacks, ransomware attacks, and errors or misconduct by employees, contractors, or other third-party service providers are the main cybersecurity risks.",
+     "chunk_ids": [
+      "META-2025-1A-0152",
+      "NVDA-2026-1A-0032",
+      "NVDA-2026-1A-0031",
+      "MSFT-2026-1A-0050",
+      "GOOGL-2025-7-0013",
+      "MSFT-2026-1A-0019"
+     ]
+    }
+   ],
+   "dropped_claims": [],
+   "citation_validity": 1.0,
+   "fallback_reason": null,
+   "seconds": 14.0
+  },
+  {
+   "question": "What supply chain or manufacturing concentration risks are disclosed?",
+   "tickers": [
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "GOOGL",
+    "AMZN",
+    "META"
+   ],
+   "retrieved": [
+    "NVDA-2026-1A-0009",
+    "NVDA-2026-1A-0020",
+    "META-2025-1A-0086",
+    "AAPL-2025-1A-0004",
+    "META-2025-1A-0087",
+    "GOOGL-2025-1A-0017"
+   ],
+   "mode": "llm",
+   "attempts": 1,
+   "first_pass_ok": true,
+   "insufficient_evidence": false,
+   "answer": "NVIDIA (NVDA) and Meta Platforms (META) disclose risks related to supply chain and manufacturing concentration. NVIDIA mentions dependency on third-party suppliers and foundries, and Meta Platforms highlights risks from restrictions on international trade and geopolitical tensions that can affect their business and supply chain.",
+   "claims": [
+    {
+     "text": "NVIDIA (NVDA) and Meta Platforms (META) disclose risks related to supply chain and manufacturing concentration. NVIDIA mentions dependency on third-party suppliers and foundries, and Meta Platforms highlights risks from restrictions on international trade and geopolitical tensions that can affect their business and supply chain.",
+     "chunk_ids": [
+      "NVDA-2026-1A-0009",
+      "META-2025-1A-0086",
+      "META-2025-1A-0087"
+     ]
+    }
+   ],
+   "dropped_claims": [],
+   "citation_validity": 1.0,
+   "fallback_reason": null,
+   "seconds": 12.9
+  },
+  {
+   "question": "How exposed is the company to interest rate changes?",
+   "tickers": [
+    "JNJ",
+    "PG",
+    "KO",
+    "PFE",
+    "XOM",
+    "WMT"
+   ],
+   "retrieved": [
+    "PG-2026-7-0064",
+    "WMT-2026-7A-0001",
+    "PG-2026-7-0063",
+    "PFE-2025-1A-0019",
+    "JNJ-2025-7-0031",
+    "KO-2025-1A-0058"
+   ],
+   "mode": "llm",
+   "attempts": 2,
+   "first_pass_ok": false,
+   "insufficient_evidence": true,
+   "answer": "PROCTER & GAMBLE Co (PG) and PFIZER INC (PFE) have significant interest rate exposure through their debt and investments, while COCA COLA CO (KO) uses derivative financial instruments to reduce its exposure to interest rate changes. JOHNSON & JOHNSON (JNJ) does not disclose specific interest rate exposure in its SEC 10-K filing.",
+   "claims": [
+    {
+     "text": "PROCTER & GAMBLE Co (PG) and PFIZER INC (PFE) have significant interest rate exposure through their debt and investments, while COCA COLA CO (KO) uses derivative financial instruments to reduce its exposure to interest rate changes.",
+     "chunk_ids": [
+      "PG-2026-7-0064",
+      "PFE-2025-1A-0019",
+      "KO-2025-1A-0058"
+     ]
+    },
+    {
+     "text": "JOHNSON & JOHNSON (JNJ) does not disclose specific interest rate exposure in its SEC 10-K filing.",
+     "chunk_ids": [
+      "JNJ-2025-7-0031"
+     ]
+    }
+   ],
+   "dropped_claims": [],
+   "citation_validity": 1.0,
+   "fallback_reason": null,
+   "seconds": 33.9
+  },
+  {
+   "question": "How could foreign currency movements affect results?",
+   "tickers": [
+    "JNJ",
+    "PG",
+    "KO",
+    "PFE",
+    "XOM",
+    "WMT"
+   ],
+   "retrieved": [
+    "PG-2026-7-0064",
+    "WMT-2026-7A-0003",
+    "KO-2025-1A-0057",
+    "PG-2026-1A-0003",
+    "KO-2025-7-0086",
+    "PFE-2025-7-0082"
+   ],
+   "mode": "llm",
+   "attempts": 1,
+   "first_pass_ok": true,
+   "insufficient_evidence": false,
+   "answer": "Foreign currency movements could have a material adverse effect on results, as seen in the fluctuations in net operating revenues, operating income, and the value of balance sheet items denominated in foreign currencies. For example, in 2025, the weighted-average fluctuations in exchange rates for foreign currencies in which COCA COLA CO conducted operations resulted in a decrease of 2% in net operating revenues. Additionally, the Company's exposure to foreign currency movements is managed through strategies such as hedging activities, which aim to mitigate the impact of exchange rate fluctuations on net income.",
+   "claims": [
+    {
+     "text": "Fluctuations in foreign currency exchange rates could have a material adverse effect on our financial results. We earn revenues, pay expenses, own assets and incur liabilities in countries using many currencies other than the U.S. dollar. In 2025, we derived $28.8 billion of net operating revenues from operations outside the United States.",
+     "chunk_ids": [
+      "KO-2025-1A-0057"
+     ]
+    },
+    {
+     "text": "The Company's exposure to foreign currency movements is managed through strategies such as hedging activities, which aim to mitigate the impact of exchange rate fluctuations on net income.",
+     "chunk_ids": [
+      "KO-2025-7-0086"
+     ]
+    }
+   ],
+   "dropped_claims": [],
+   "citation_validity": 1.0,
+   "fallback_reason": null,
+   "seconds": 18.2
+  },
+  {
+   "question": "What regulatory or antitrust risks does the company face?",
+   "tickers": [
+    "JNJ",
+    "PG",
+    "KO",
+    "PFE",
+    "XOM",
+    "WMT"
+   ],
+   "retrieved": [
+    "JNJ-2025-1A-0025",
+    "JNJ-2025-1A-0021",
+    "PG-2026-1A-0029",
+    "WMT-2026-1A-0026",
+    "WMT-2026-1A-0077",
+    "KO-2025-1A-0036"
+   ],
+   "mode": "llm",
+   "attempts": 2,
+   "first_pass_ok": false,
+   "insufficient_evidence": false,
+   "answer": "The company faces regulatory and antitrust risks related to compliance with laws and regulations, including the U.K. Bribery Act 2010, the U.S. FCPA, and various local laws and regulations in different countries. These risks include potential administrative and legal proceedings, claims for civil penalties, criminal sanctions, and exclusion from healthcare programs.",
+   "claims": [
+    {
+     "text": "JOHNSON & JOHNSON (JNJ) faces risks associated with the U.K. Bribery Act 2010 and the U.S. FCPA, which could lead to administrative and legal proceedings and actions, including claims for civil penalties, criminal sanctions, and exclusion from healthcare programs.",
+     "chunk_ids": [
+      "JNJ-2025-1A-0025"
+     ]
+    },
+    {
+     "text": "PROCTER & GAMBLE Co (PG) faces legal and regulatory risks related to laws and regulations across countries, including those involving intellectual property, product liability, product composition, manufacturing processes, packaging, marketing, antitrust and competition, privacy, cybersecurity, data protection, and data transfers.",
+     "chunk_ids": [
+      "PG-2026-1A-0029"
+     ]
+    },
+    {
+     "text": "Walmart Inc. (WMT) faces risks related to changes and compliance with laws, regulations, and interpretations specific to the businesses and jurisdictions in which they operate, which could affect their reputation, market position, or business and financial performance.",
+     "chunk_ids": [
+      "WMT-2026-1A-0026",
+      "WMT-2026-1A-0077"
+     ]
+    },
+    {
+     "text": "COCA COLA CO (KO) faces risks related to new product launches, including governmental regulations such as alcohol regulations related to licensing, trade and pricing practices, labeling, advertising, promotion, and marketing practices, and relationships with distributors.",
+     "chunk_ids": [
+      "KO-2025-1A-0036"
+     ]
+    }
+   ],
+   "dropped_claims": [],
+   "citation_validity": 1.0,
+   "fallback_reason": null,
+   "seconds": 40.1
+  },
+  {
+   "question": "How do commodity or energy prices affect the business?",
+   "tickers": [
+    "JNJ",
+    "PG",
+    "KO",
+    "PFE",
+    "XOM",
+    "WMT"
+   ],
+   "retrieved": [
+    "XOM-2025-1A-0001",
+    "WMT-2026-1A-0014",
+    "XOM-2025-1A-0005",
+    "KO-2025-1A-0002",
+    "PG-2026-1A-0012",
+    "WMT-2026-1A-0012"
+   ],
+   "mode": "llm",
+   "attempts": 1,
+   "first_pass_ok": true,
+   "insufficient_evidence": false,
+   "answer": "Commodity or energy prices affect the business by impacting the demand for oil, gas, petrochemicals, and other products. For example, ExxonMobil's operations and earnings may be significantly affected by changes in oil, gas, and petrochemical prices. A material increase in oil or natural gas prices could have a material adverse effect on the Company\u2019s operations, results, financial condition, and proved reserves, especially in the Upstream segment. On the other hand, a material decrease in oil or natural gas prices could have a material adverse effect on the Company\u2019s operations, results, financial condition, and proved reserves, especially in the Upstream segment.",
+   "claims": [
+    {
+     "text": "Commodity prices and margins also vary depending on a number of factors affecting supply. For example, increased supply of oil or natural gas could lead to a material adverse effect on the Company\u2019s operations, results, financial condition, and proved reserves, especially in the Upstream segment.",
+     "chunk_ids": [
+      "XOM-2025-1A-0001"
+     ]
+    }
+   ],
+   "dropped_claims": [],
+   "citation_validity": 1.0,
+   "fallback_reason": null,
+   "seconds": 16.4
+  },
+  {
+   "question": "What does the company say about the weather on Mars?",
+   "tickers": [
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "GOOGL",
+    "AMZN",
+    "META"
+   ],
+   "retrieved": [
+    "AAPL-2025-1A-0007",
+    "AAPL-2025-1A-0042",
+    "AMZN-2025-1A-0025",
+    "AMZN-2025-1A-0022",
+    "META-2025-1A-0065",
+    "MSFT-2026-1A-0062"
+   ],
+   "mode": "llm",
+   "attempts": 2,
+   "first_pass_ok": false,
+   "insufficient_evidence": true,
+   "answer": "The provided passages do not contain any information about the weather on Mars or any related risks.",
+   "claims": [],
+   "dropped_claims": [
+    {
+     "text": "",
+     "chunk_ids": [],
+     "reasons": [
+      "missing_citation in claims[0]: claim cites no chunk"
+     ]
+    }
+   ],
+   "citation_validity": 1.0,
+   "fallback_reason": null,
+   "seconds": 9.9
+  }
+ ]
+}

@@ -17,7 +17,7 @@ import logging
 import sys
 from functools import lru_cache
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import AliasChoices, Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -28,12 +28,22 @@ PROJECT_ROOT: Path = Path(__file__).resolve().parents[2]
 """Repository root (the directory containing ``pyproject.toml``)."""
 
 DEFAULT_LLM_MODEL = "claude-sonnet-5-5"
+DEFAULT_OLLAMA_MODEL = "qwen2.5:3b"
+DEFAULT_OLLAMA_URL = "http://127.0.0.1:11434"
+
+LLMProvider = Literal["auto", "anthropic", "ollama", "none"]
+"""``auto`` (default) resolves at runtime in :func:`risklab.llm.client.resolve_provider`:
+``anthropic`` if an API key is set, else ``ollama`` if the server answers, else ``none``."""
 
 # Env/secret keys that Settings understands; used to pick values out of st.secrets.
 _SECRET_KEYS: tuple[str, ...] = (
     "ANTHROPIC_API_KEY",
     "RISKLAB_LLM_MODEL",
     "RISKLAB_LLM_CALL_LIMIT",
+    "RISKLAB_LLM_PROVIDER",
+    "RISKLAB_LLM_TIMEOUT",
+    "RISKLAB_OLLAMA_MODEL",
+    "RISKLAB_OLLAMA_URL",
     "SEC_USER_AGENT",
     "RISKLAB_DATA_DIR",
     "RISKLAB_OFFLINE",
@@ -60,6 +70,20 @@ class Settings(BaseSettings):
     llm_call_limit: int = Field(
         default=20, ge=0, validation_alias=AliasChoices("RISKLAB_LLM_CALL_LIMIT", "llm_call_limit")
     )
+    llm_provider: LLMProvider = Field(
+        default="auto", validation_alias=AliasChoices("RISKLAB_LLM_PROVIDER", "llm_provider")
+    )
+    llm_timeout: float = Field(
+        default=120.0, gt=0, validation_alias=AliasChoices("RISKLAB_LLM_TIMEOUT", "llm_timeout")
+    )
+    ollama_model: str = Field(
+        default=DEFAULT_OLLAMA_MODEL,
+        validation_alias=AliasChoices("RISKLAB_OLLAMA_MODEL", "ollama_model"),
+    )
+    ollama_url: str = Field(
+        default=DEFAULT_OLLAMA_URL,
+        validation_alias=AliasChoices("RISKLAB_OLLAMA_URL", "ollama_url"),
+    )
     sec_user_agent: str | None = Field(
         default=None, validation_alias=AliasChoices("SEC_USER_AGENT", "sec_user_agent")
     )
@@ -84,6 +108,21 @@ class Settings(BaseSettings):
     def _blank_model_to_default(cls, v: Any) -> Any:
         if isinstance(v, str) and not v.strip():
             return DEFAULT_LLM_MODEL
+        return v
+
+    @field_validator("llm_provider", mode="before")
+    @classmethod
+    def _normalize_provider(cls, v: Any) -> Any:
+        """Case-insensitive; blank means ``auto``."""
+        if isinstance(v, str):
+            return v.strip().lower() or "auto"
+        return v
+
+    @field_validator("ollama_model", "ollama_url", mode="before")
+    @classmethod
+    def _blank_ollama_to_default(cls, v: Any, info: Any) -> Any:
+        if isinstance(v, str) and not v.strip():
+            return DEFAULT_OLLAMA_MODEL if info.field_name == "ollama_model" else DEFAULT_OLLAMA_URL
         return v
 
     @field_validator("data_dir", mode="after")

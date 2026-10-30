@@ -1,0 +1,521 @@
+{
+ "portfolio_name": "Classic 60/40",
+ "source": "template",
+ "provider": "ollama",
+ "model": "qwen2.5:3b",
+ "draft": {
+  "summary": "[[fact:portfolio_name]] holds [[fact:n_holdings]] positions ([[fact:holdings]]) and is compared with [[fact:benchmark]]. Between [[fact:start_date]] and [[fact:end_date]] it grew at [[fact:cagr]] a year with annualized volatility of [[fact:ann_vol]], and its worst peak-to-trough loss was [[fact:max_drawdown]]. [[fact:top_risk_contributor]] is [[fact:top_risk_contributor_weight]] of the weight but [[fact:top_risk_contributor_pct]] of the volatility.",
+  "return_and_risk": "The Sharpe ratio is [[fact:sharpe]] and the Sortino ratio is [[fact:sortino]], using a risk-free rate of [[fact:rf_annual]]. The benchmark grew at [[fact:benchmark_cagr]] a year with volatility of [[fact:benchmark_ann_vol]] and a maximum drawdown of [[fact:benchmark_max_drawdown]]. Beta to the benchmark is [[fact:beta]]. The maximum drawdown ran from [[fact:max_drawdown_peak]] to [[fact:max_drawdown_trough]] and lasted [[fact:max_drawdown_duration]] in total. The effective number of independent risk bets is [[fact:effective_n_bets]]. Daily returns have skewness of [[fact:skew]] and excess kurtosis of [[fact:excess_kurtosis]]; positive excess kurtosis means fatter tails than a normal distribution.",
+  "tail_risk": "On a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least [[fact:var_95_1d_hist]], and the average loss on those days is [[fact:es_95_1d_hist]]. At 99% confidence the historical VaR is [[fact:var_99_1d_hist]] and the Expected Shortfall [[fact:es_99_1d_hist]], against a normal-distribution VaR of [[fact:var_99_1d_normal]]. The 10-day 95% historical VaR is [[fact:var_95_10d_hist]]. In a rolling backtest the 95% historical VaR was exceeded on [[fact:kupiec_exceptions_95_hist]] days against [[fact:kupiec_expected_95_hist]] expected (Kupiec verdict: [[fact:kupiec_verdict_95_hist]]); at 99% the verdict is [[fact:kupiec_verdict_99_hist]]. Over the next [[fact:mc_horizon]], a simulation assuming [[fact:mc_drift_annual]] annual drift gives a [[fact:mc_p_loss]] chance of a loss, a median return of [[fact:mc_median_terminal]] and a [[fact:mc_p_dd_20]] chance of a drawdown deeper than one fifth of value.",
+  "stress_and_regimes": "Of [[fact:stress_scenarios_run]] historical stress scenarios with enough history, the worst was [[fact:worst_stress_scenario]]: the portfolio returned [[fact:worst_stress_return]] against [[fact:worst_stress_benchmark_return]] for the benchmark. A regime model on the benchmark puts the market in a [[fact:regime_current]] regime ([[fact:regime_current_prob]] probability); in Stress regimes this portfolio's volatility is [[fact:stress_vol_multiple]] its Calm level. In a walk-forward volatility test the best forecaster was [[fact:vol_forecast_winner]], which forecasts annualized volatility of [[fact:vol_forecast_current]] for the next month.",
+  "disclosed_risks": [],
+  "caveats": ""
+ },
+ "sections": {
+  "summary": "Classic 60/40 holds 4 positions (SPY, IEF, TLT, GLD) and is compared with SPY. Between 2016-11-01 and 2026-10-29 it grew at 10.26% a year with annualized volatility of 11.01%, and its worst peak-to-trough loss was -22.20%. SPY is 60.00% of the weight but 93.05% of the volatility.",
+  "return_and_risk": "The Sharpe ratio is 0.67 and the Sortino ratio is 1.34, using a risk-free rate of 3.00%. The benchmark grew at 15.58% a year with volatility of 17.95% and a maximum drawdown of -33.72%. Beta to the benchmark is 0.58. The maximum drawdown ran from 2021-12-27 to 2022-10-14 and lasted 547 trading days in total. The effective number of independent risk bets is 1.15. Daily returns have skewness of -0.17 and excess kurtosis of 11.88; positive excess kurtosis means fatter tails than a normal distribution.",
+  "tail_risk": "On a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least 1.01%, and the average loss on those days is 1.64%. At 99% confidence the historical VaR is 1.92% and the Expected Shortfall 2.85%, against a normal-distribution VaR of 1.61%. The 10-day 95% historical VaR is 3.21%. In a rolling backtest the 95% historical VaR was exceeded on 135 days against 113.2 expected (Kupiec verdict: model underestimates risk); at 99% the verdict is consistent. Over the next 252 trading days, a simulation assuming 5.00% annual drift gives a 32.05% chance of a loss, a median return of 4.88% and a 5.10% chance of a drawdown deeper than one fifth of value.",
+  "stress_and_regimes": "Of 4 historical stress scenarios with enough history, the worst was Global Financial Crisis: the portfolio returned -26.34% against -46.04% for the benchmark. A regime model on the benchmark puts the market in a Calm regime (90.37% probability); in Stress regimes this portfolio's volatility is 6.4x its Calm level. In a walk-forward volatility test the best forecaster was GARCH-t, which forecasts annualized volatility of 7.31% for the next month.",
+  "disclosed_risks": "No 10-K filings are indexed for these holdings (ETFs and funds do not file them).",
+  "caveats": "- All figures are historical estimates from daily data between 2016-11-01 and 2026-10-29; future losses can be larger.\n- Value at Risk and Expected Shortfall assume the past is representative of the future; the normal-distribution versions understate fat tails.\n- Monte Carlo results depend on the assumed annual return of 5.00% and resample past daily returns.\n- Regimes come from a hidden Markov model fitted to the benchmark; the current regime uses only data up to the last date.\n- Disclosed risks summarize the latest 10-K risk factors; ETFs and funds have none."
+ },
+ "disclosed_risks": [],
+ "markdown": "# Risk memo: Classic 60/40\n\n_Deterministic template memo. Verified: 0 unsupported numbers, 49 figures traced to code._\n\n## Summary\n\nClassic 60/40 holds 4 positions (SPY, IEF, TLT, GLD) and is compared with SPY. Between 2016-11-01 and 2026-10-29 it grew at 10.26% a year with annualized volatility of 11.01%, and its worst peak-to-trough loss was -22.20%. SPY is 60.00% of the weight but 93.05% of the volatility.\n\n## Return and risk profile\n\nThe Sharpe ratio is 0.67 and the Sortino ratio is 1.34, using a risk-free rate of 3.00%. The benchmark grew at 15.58% a year with volatility of 17.95% and a maximum drawdown of -33.72%. Beta to the benchmark is 0.58. The maximum drawdown ran from 2021-12-27 to 2022-10-14 and lasted 547 trading days in total. The effective number of independent risk bets is 1.15. Daily returns have skewness of -0.17 and excess kurtosis of 11.88; positive excess kurtosis means fatter tails than a normal distribution.\n\n## Tail risk\n\nOn a typical bad day (1-day, 95% confidence, historical) the portfolio loses at least 1.01%, and the average loss on those days is 1.64%. At 99% confidence the historical VaR is 1.92% and the Expected Shortfall 2.85%, against a normal-distribution VaR of 1.61%. The 10-day 95% historical VaR is 3.21%. In a rolling backtest the 95% historical VaR was exceeded on 135 days against 113.2 expected (Kupiec verdict: model underestimates risk); at 99% the verdict is consistent. Over the next 252 trading days, a simulation assuming 5.00% annual drift gives a 32.05% chance of a loss, a median return of 4.88% and a 5.10% chance of a drawdown deeper than one fifth of value.\n\n## Stress and regimes\n\nOf 4 historical stress scenarios with enough history, the worst was Global Financial Crisis: the portfolio returned -26.34% against -46.04% for the benchmark. A regime model on the benchmark puts the market in a Calm regime (90.37% probability); in Stress regimes this portfolio's volatility is 6.4x its Calm level. In a walk-forward volatility test the best forecaster was GARCH-t, which forecasts annualized volatility of 7.31% for the next month.\n\n## Disclosed risks from filings\n\nNo 10-K filings are indexed for these holdings (ETFs and funds do not file them).\n\n## Caveats and limitations\n\n- All figures are historical estimates from daily data between 2016-11-01 and 2026-10-29; future losses can be larger.\n- Value at Risk and Expected Shortfall assume the past is representative of the future; the normal-distribution versions understate fat tails.\n- Monte Carlo results depend on the assumed annual return of 5.00% and resample past daily returns.\n- Regimes come from a hidden Markov model fitted to the benchmark; the current regime uses only data up to the last date.\n- Disclosed risks summarize the latest 10-K risk factors; ETFs and funds have none.\n\n_Educational tool, not investment advice. Models are simplifications; historical risk measures can understate future losses._\n",
+ "verification": {
+  "ok": true,
+  "violations": [],
+  "figures_traced": 49,
+  "facts_used": [
+   "portfolio_name",
+   "n_holdings",
+   "holdings",
+   "benchmark",
+   "start_date",
+   "end_date",
+   "cagr",
+   "ann_vol",
+   "max_drawdown",
+   "top_risk_contributor",
+   "top_risk_contributor_weight",
+   "top_risk_contributor_pct",
+   "sharpe",
+   "sortino",
+   "rf_annual",
+   "benchmark_cagr",
+   "benchmark_ann_vol",
+   "benchmark_max_drawdown",
+   "beta",
+   "max_drawdown_peak",
+   "max_drawdown_trough",
+   "max_drawdown_duration",
+   "effective_n_bets",
+   "skew",
+   "excess_kurtosis",
+   "var_95_1d_hist",
+   "es_95_1d_hist",
+   "var_99_1d_hist",
+   "es_99_1d_hist",
+   "var_99_1d_normal",
+   "var_95_10d_hist",
+   "kupiec_exceptions_95_hist",
+   "kupiec_expected_95_hist",
+   "kupiec_verdict_95_hist",
+   "kupiec_verdict_99_hist",
+   "mc_horizon",
+   "mc_drift_annual",
+   "mc_p_loss",
+   "mc_median_terminal",
+   "mc_p_dd_20",
+   "stress_scenarios_run",
+   "worst_stress_scenario",
+   "worst_stress_return",
+   "worst_stress_benchmark_return",
+   "regime_current",
+   "regime_current_prob",
+   "stress_vol_multiple",
+   "vol_forecast_winner",
+   "vol_forecast_current"
+  ],
+  "citations": [],
+  "unsupported_numbers": 0,
+  "word_count": 303
+ },
+ "attempts": [
+  {
+   "attempt": 1,
+   "raw": "{\n  \"summary\": \"The Classic 60/40 portfolio has a Sharpe ratio of 0.67 and a maximum drawdown of -22.20%. It is less volatile than the benchmark, with a beta of 0.58. The portfolio's risk is managed through a historical backtest, which underestimates risk, as indicated by the Kupiec test.\",\n  \"return_and_risk\": \"The portfolio has a compound annual growth rate (CAGR) of 10.26%, which is lower than the benchmark's 15.58%. The annualized volatility is 11.01%, and the maximum drawdown is -22.20%. The portfolio's risk is managed through a historical backtest, which underestimates risk, as indicated by the Kupiec test. The portfolio's risk is also influenced by the largest holding, SPY, which contributes 93.05% of the portfolio's volatility.\",\n  \"tail_risk\": \"The portfolio's maximum drawdown is -22.20%, which occurred in 2022. The portfolio's risk is managed through a historical backtest, which underestimates risk, as indicated by the Kupiec test. The portfolio's risk is also influenced by the largest holding, SPY, which contributes 93.05% of the portfolio's volatility. The portfolio's risk is further influenced by the Global Financial Crisis stress scenario, which resulted in a portfolio return of -26.34% and a maximum drawdown of -26.37%.\",\n  \"stress_and_regimes\": \"The portfolio's risk is managed through a historical backtest, which underestimates risk, as indicated by the Kupiec test. The portfolio's risk is also influenced by the largest holding, SPY, which contributes 93.05% of the portfolio's volatility. The portfolio's risk is further influenced by the Global Financial Crisis stress scenario, which resulted in a portfolio return of -26.34% and a maximum drawdown of -26.37%. The portfolio's risk is also influenced by the current market regime, which is currently in the Calm regime with a probability of 90.37%. The portfolio's risk is forecasted to be 7.31% in the next month, as predicted by the best volatility forecasting model, GARCH-t.\",\n  \"caveats\": \"These estimates are based on historical data and may not accurately predict future performance. The portfolio's risk is influenced by the largest holding, SPY, and the current market regime, which can change over time. The portfolio's risk is also influenced by historical stress scenarios, which may not accurately represent future market conditions.\",\n  \"disclosed_risks\": [\n    {\"text\": \"The portfolio's risk is underrepresented by the historical backtest, as indicated by the Kupiec test.\", \"chunk_ids\": [\"fact:kupiec_verdict_95_hist\", \"fact:kupiec_verdict_99_hist\", \"fact:kupiec_exceptions_95_hist\", \"fact:kupiec_expected_95_hist\"]}\n  ]\n}",
+   "verification": {
+    "ok": false,
+    "violations": [
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.67' outside a placeholder",
+      "field": "summary",
+      "snippet": "rtfolio has a Sharpe ratio of 0.67 and a maximum drawdown of -22",
+      "token": "0.67"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '22.20%' outside a placeholder",
+      "field": "summary",
+      "snippet": "67 and a maximum drawdown of -22.20%. It is less volatile than the",
+      "token": "22.20%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.58' outside a placeholder",
+      "field": "summary",
+      "snippet": "the benchmark, with a beta of 0.58. The portfolio's risk is mana",
+      "token": "0.58"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '10.26%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "annual growth rate (CAGR) of 10.26%, which is lower than the benc",
+      "token": "10.26%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '15.58%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "is lower than the benchmark's 15.58%. The annualized volatility is",
+      "token": "15.58%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '11.01%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "The annualized volatility is 11.01%, and the maximum drawdown is",
+      "token": "11.01%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '22.20%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "and the maximum drawdown is -22.20%. The portfolio's risk is mana",
+      "token": "22.20%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '93.05%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "lding, SPY, which contributes 93.05% of the portfolio's volatility",
+      "token": "93.05%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '22.20%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "tfolio's maximum drawdown is -22.20%, which occurred in 2022. The",
+      "token": "22.20%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '93.05%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "lding, SPY, which contributes 93.05% of the portfolio's volatility",
+      "token": "93.05%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '26.34%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "ted in a portfolio return of -26.34% and a maximum drawdown of -26",
+      "token": "26.34%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '26.37%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "4% and a maximum drawdown of -26.37%.",
+      "token": "26.37%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '93.05%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "lding, SPY, which contributes 93.05% of the portfolio's volatility",
+      "token": "93.05%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '26.34%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "ted in a portfolio return of -26.34% and a maximum drawdown of -26",
+      "token": "26.34%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '26.37%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "4% and a maximum drawdown of -26.37%. The portfolio's risk is also",
+      "token": "26.37%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '90.37%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "regime with a probability of 90.37%. The portfolio's risk is fore",
+      "token": "90.37%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '7.31%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "io's risk is forecasted to be 7.31% in the next month, as predict",
+      "token": "7.31%"
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:kupiec_verdict_95_hist",
+      "field": "disclosed_risks[0]",
+      "snippet": "fact:kupiec_verdict_95_hist",
+      "token": ""
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:kupiec_verdict_99_hist",
+      "field": "disclosed_risks[0]",
+      "snippet": "fact:kupiec_verdict_99_hist",
+      "token": ""
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:kupiec_exceptions_95_hist",
+      "field": "disclosed_risks[0]",
+      "snippet": "fact:kupiec_exceptions_95_hist",
+      "token": ""
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:kupiec_expected_95_hist",
+      "field": "disclosed_risks[0]",
+      "snippet": "fact:kupiec_expected_95_hist",
+      "token": ""
+     }
+    ],
+    "figures_traced": 0,
+    "facts_used": [],
+    "citations": [],
+    "unsupported_numbers": 17,
+    "word_count": 358
+   }
+  },
+  {
+   "attempt": 2,
+   "raw": "{\n    \"summary\": \"The Classic 60/40 portfolio has a Sharpe ratio of 0.67 and an annualized volatility of 11.01%. It has a maximum drawdown of -22.20%, which occurred during the 2008 Global Financial Crisis. The portfolio's beta to the benchmark is 0.58, indicating it is less volatile than the benchmark. The portfolio's expected annual return is 5.00%, and it has a 90.37% probability of being in the Calm market regime.\",\n    \"return_and_risk\": \"The portfolio's return is 10.26% annually, which is lower than the benchmark's 15.58% annual return. The portfolio's annualized volatility is 11.01%, and its maximum drawdown is -22.20%. The portfolio's beta to the benchmark is 0.58, suggesting it is less volatile than the benchmark. The portfolio's expected annual return is 5.00%, and it has a 90.37% probability of being in the Calm market regime.\",\n    \"tail_risk\": \"The portfolio's maximum drawdown is -22.20%, which is a significant risk. The portfolio's expected shortfall (ES) is 1.64% for a 1-day 95% VaR, indicating that the portfolio could lose up to 1.64% on a given day with a 95% confidence level. The portfolio's historical stress scenarios show that it could lose up to 26.34% in a Global Financial Crisis scenario, with a maximum drawdown of -26.37%. The portfolio's expected return in a stress scenario is -26.34%.\",\n    \"stress_and_regimes\": \"The portfolio's forecasted volatility in the next month is 7.31%, which is higher than the current volatility of 11.01%. The portfolio's volatility is forecasted to be 6.4x higher in stress regimes, such as the 2008 Global Financial Crisis. The portfolio's current market regime is the Calm, with a probability of 90.37%. The portfolio's expected return in the Calm regime is 5.00%, and it has a 93.05% probability of being in the Calm regime.\",\n    \"caveats\": \"These estimates are based on historical data and may not accurately predict future performance. The portfolio's performance is sensitive to the largest holding, SPY, which contributes 93.05% of the portfolio's volatility.\",\n    \"disclosed_risks\": [\n        {\n            \"text\": \"The portfolio is exposed to market volatility and could experience significant losses during market downturns, such as the 2008 Global Financial Crisis. The portfolio's maximum drawdown is -22.20%, and it could lose up to 1.64% on a given day with a 95% confidence level.\",\n            \"chunk_ids\": [\"fact:max_drawdown\", \"fact:es_95_1d_hist\"]\n        },\n        {\n            \"text\": \"The portfolio's expected return in the Calm market regime is 5.00%, but it could lose up to 26.34% in a Global Financial Crisis scenario. The portfolio's volatility is forecasted to be 6.4x higher in stress regimes.\",\n            \"chunk_ids\": [\"fact:regime_current\", \"fact:regime_current_prob\", \"fact:stress_global_financial_crisis_return\"]\n        }\n    ]\n}",
+   "verification": {
+    "ok": false,
+    "violations": [
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.67' outside a placeholder",
+      "field": "summary",
+      "snippet": "rtfolio has a Sharpe ratio of 0.67 and an annualized volatility",
+      "token": "0.67"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '11.01%' outside a placeholder",
+      "field": "summary",
+      "snippet": "d an annualized volatility of 11.01%. It has a maximum drawdown of",
+      "token": "11.01%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '22.20%' outside a placeholder",
+      "field": "summary",
+      "snippet": "It has a maximum drawdown of -22.20%, which occurred during the 20",
+      "token": "22.20%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.58' outside a placeholder",
+      "field": "summary",
+      "snippet": "io's beta to the benchmark is 0.58, indicating it is less volati",
+      "token": "0.58"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '5.00%' outside a placeholder",
+      "field": "summary",
+      "snippet": "o's expected annual return is 5.00%, and it has a 90.37% probabil",
+      "token": "5.00%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '90.37%' outside a placeholder",
+      "field": "summary",
+      "snippet": "return is 5.00%, and it has a 90.37% probability of being in the C",
+      "token": "90.37%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '10.26%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "The portfolio's return is 10.26% annually, which is lower than",
+      "token": "10.26%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '15.58%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "is lower than the benchmark's 15.58% annual return. The portfolio'",
+      "token": "15.58%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '11.01%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "io's annualized volatility is 11.01%, and its maximum drawdown is",
+      "token": "11.01%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '22.20%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "and its maximum drawdown is -22.20%. The portfolio's beta to the",
+      "token": "22.20%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '0.58' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "io's beta to the benchmark is 0.58, suggesting it is less volati",
+      "token": "0.58"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '5.00%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "o's expected annual return is 5.00%, and it has a 90.37% probabil",
+      "token": "5.00%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '90.37%' outside a placeholder",
+      "field": "return_and_risk",
+      "snippet": "return is 5.00%, and it has a 90.37% probability of being in the C",
+      "token": "90.37%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '22.20%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "tfolio's maximum drawdown is -22.20%, which is a significant risk.",
+      "token": "22.20%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '1.64%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "'s expected shortfall (ES) is 1.64% for a 1-day 95% VaR, indicati",
+      "token": "1.64%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '1.64%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "he portfolio could lose up to 1.64% on a given day with a 95% con",
+      "token": "1.64%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '26.34%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "show that it could lose up to 26.34% in a Global Financial Crisis",
+      "token": "26.34%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '26.37%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": ", with a maximum drawdown of -26.37%. The portfolio's expected ret",
+      "token": "26.37%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '26.34%' outside a placeholder",
+      "field": "tail_risk",
+      "snippet": "turn in a stress scenario is -26.34%.",
+      "token": "26.34%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '7.31%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "latility in the next month is 7.31%, which is higher than the cur",
+      "token": "7.31%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '11.01%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "han the current volatility of 11.01%. The portfolio's volatility i",
+      "token": "11.01%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '6.4' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "olatility is forecasted to be 6.4x higher in stress regimes, su",
+      "token": "6.4"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '90.37%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "e Calm, with a probability of 90.37%. The portfolio's expected ret",
+      "token": "90.37%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '5.00%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "return in the Calm regime is 5.00%, and it has a 93.05% probabil",
+      "token": "5.00%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '93.05%' outside a placeholder",
+      "field": "stress_and_regimes",
+      "snippet": "regime is 5.00%, and it has a 93.05% probability of being in the C",
+      "token": "93.05%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '93.05%' outside a placeholder",
+      "field": "caveats",
+      "snippet": "lding, SPY, which contributes 93.05% of the portfolio's volatility",
+      "token": "93.05%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '22.20%' outside a placeholder",
+      "field": "disclosed_risks[0]",
+      "snippet": "tfolio's maximum drawdown is -22.20%, and it could lose up to 1.64",
+      "token": "22.20%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '1.64%' outside a placeholder",
+      "field": "disclosed_risks[0]",
+      "snippet": ".20%, and it could lose up to 1.64% on a given day with a 95% con",
+      "token": "1.64%"
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:max_drawdown",
+      "field": "disclosed_risks[0]",
+      "snippet": "fact:max_drawdown",
+      "token": ""
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:es_95_1d_hist",
+      "field": "disclosed_risks[0]",
+      "snippet": "fact:es_95_1d_hist",
+      "token": ""
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '5.00%' outside a placeholder",
+      "field": "disclosed_risks[1]",
+      "snippet": "in the Calm market regime is 5.00%, but it could lose up to 26.3",
+      "token": "5.00%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '26.34%' outside a placeholder",
+      "field": "disclosed_risks[1]",
+      "snippet": ".00%, but it could lose up to 26.34% in a Global Financial Crisis",
+      "token": "26.34%"
+     },
+     {
+      "kind": "stray_numeral",
+      "detail": "number '6.4' outside a placeholder",
+      "field": "disclosed_risks[1]",
+      "snippet": "olatility is forecasted to be 6.4x higher in stress regimes.",
+      "token": "6.4"
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:regime_current",
+      "field": "disclosed_risks[1]",
+      "snippet": "fact:regime_current",
+      "token": ""
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:regime_current_prob",
+      "field": "disclosed_risks[1]",
+      "snippet": "fact:regime_current_prob",
+      "token": ""
+     },
+     {
+      "kind": "unknown_citation",
+      "detail": "fact:stress_global_financial_crisis_return",
+      "field": "disclosed_risks[1]",
+      "snippet": "fact:stress_global_financial_crisis_return",
+      "token": ""
+     }
+    ],
+    "figures_traced": 0,
+    "facts_used": [],
+    "citations": [],
+    "unsupported_numbers": 31,
+    "word_count": 390
+   }
+  }
+ ],
+ "first_pass_ok": false,
+ "retried": true,
+ "fell_back": true,
+ "fallback_reason": "2 drafts failed verification (36 violations in the last)",
+ "chunk_ids": [],
+ "report_hash": "f708c05d7488d6a5611389037e0751465f74d3531eb19883820ef8b4f0a741e8",
+ "cache_key": "568a61207ce6b1857aca37519ca774c870295a4938346bdd5f0ac13381ef0627",
+ "prompt_version": "m8-v1",
+ "as_of": "2026-10-29"
+}
