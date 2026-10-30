@@ -6,6 +6,7 @@ import streamlit as st
 
 from components.data import snapshot_date
 from components.layout import page_link
+from components.llm import render_llm_counter
 from components.state import (
     COV_KEY,
     COV_LABELS,
@@ -68,3 +69,4 @@ def render_sidebar(p: Portfolio, data: PortfolioData | None = None) -> None:
         )
         st.divider()
         st.info(data_banner(data), icon=":material/database:")
+        render_llm_counter()

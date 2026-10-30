@@ -34,6 +34,8 @@ PAGES = [
     ("pages/4_Monte_Carlo.py", "Monte Carlo", ":material/ssid_chart:"),
     ("pages/5_Stress_Tests.py", "Stress tests", ":material/bolt:"),
     ("pages/6_Regimes_and_Volatility.py", "Regimes and volatility", ":material/waves:"),
+    ("pages/7_Filings_QA.py", "Filings Q&A", ":material/quick_reference_all:"),
+    ("pages/8_Risk_Memo.py", "Risk memo", ":material/edit_note:"),
     ("pages/9_Methodology.py", "Methodology", ":material/menu_book:"),
 ]
 
@@ -45,7 +47,8 @@ st.title("Portfolio Risk Lab")
 st.markdown(
     "**How can this portfolio fail?** Classical risk analytics (drawdowns, VaR and "
     "Expected Shortfall, Monte Carlo, historical stress tests), honestly evaluated ML on "
-    "volatility and market regimes, and transparent methodology."
+    "volatility and market regimes, cited answers from the holdings' 10-K filings, and a "
+    "risk memo in which every figure is computed by code."
 )
 st.caption(
     "Pick a sample portfolio or enter your own holdings, then press Analyze. Every page "
@@ -280,9 +283,5 @@ cols = st.columns(4)
 for i, (path, label, icon) in enumerate(PAGES):
     with cols[i % 4]:
         page_link(path, label, icon)
-st.caption(
-    "Filings Q&A and the Risk Memo arrive in a later milestone (they need the SEC filings "
-    "index and the LLM layer)."
-)
 
 disclaimer_footer()

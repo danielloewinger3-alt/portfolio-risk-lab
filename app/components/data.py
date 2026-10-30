@@ -23,6 +23,7 @@ from risklab.data.prices import (
 )
 from risklab.data.universe import IRX, VIX
 from risklab.errors import RiskLabError
+from risklab.llm.memo import Memo, memo_chunks, pregenerated_memo
 from risklab.ml.regimes import RegimeAnalysis, analyze_regimes
 from risklab.ml.volatility import ForecastEvaluation, market_features, walk_forward_vol
 from risklab.portfolio import (
@@ -32,6 +33,10 @@ from risklab.portfolio import (
     check_history,
     load_portfolio_data,
 )
+from risklab.rag.chunking import Chunk
+from risklab.rag.index import indexed_tickers
+from risklab.rag.retrieve import RetrievalResult, retrieve_detailed
+from risklab.report import RiskReport, build_report
 from risklab.risk.attribution import (
     ConcentrationSummary,
     concentration,
@@ -228,3 +233,34 @@ def history_check(p: Portfolio, offline: bool) -> HistoryCheck:
         tickers.append(p.benchmark)
     prices = load_prices(tickers, p.start, p.end, offline=offline)
     return check_history(p, prices)
+
+
+# ------------------------------------------------------------------ filings and memo
+@st.cache_data(show_spinner=False)
+def filing_tickers() -> list[str]:
+    """Tickers with a 10-K in the committed index (empty if the index is missing)."""
+    return indexed_tickers()
+
+
+@st.cache_data(show_spinner=False, max_entries=64)
+def retrieval(query: str, tickers: tuple[str, ...]) -> RetrievalResult:
+    """Hybrid retrieval over the holdings' 10-K passages (raises ``DataUnavailableError``)."""
+    return retrieve_detailed(query, list(tickers))
+
+
+@st.cache_data(show_spinner=False, hash_funcs=HASH, max_entries=16)
+def risk_report(p: Portfolio, offline: bool, cov_method: str) -> RiskReport:
+    """Every named fact the memo may quote (metrics, VaR, Monte Carlo, stress, ML, filings)."""
+    return build_report(p, offline=offline, cov_method=cov_method)  # type: ignore[arg-type]
+
+
+@st.cache_data(show_spinner=False)
+def memo_passages(tickers: tuple[str, ...]) -> list[Chunk]:
+    """Filing passages for the memo (fixed query; empty when no holding files a 10-K)."""
+    return memo_chunks(list(tickers))
+
+
+@st.cache_data(show_spinner=False)
+def committed_memo(name: str) -> Memo | None:
+    """The committed memo for a sample portfolio (``data/sample/memos``), if present."""
+    return pregenerated_memo(name)

@@ -165,15 +165,6 @@ def test_methodology() -> None:
     assert "CAGR / \\|max drawdown\\|" in calmar  # pipes escaped inside the table cell
 
 
-@pytest.mark.parametrize(
-    ("page", "title"), [("7_Filings_QA.py", "Filings Q&A"), ("8_Risk_Memo.py", "Risk memo")]
-)
-def test_coming_soon_stubs(page: str, title: str) -> None:
-    at = _run(page, _sample("Classic 60/40"))
-    _common(at, title)
-    assert any("Coming soon" in i.value for i in at.info)
-
-
 def test_unknown_ticker_offline_shows_friendly_error() -> None:
     p = Portfolio.from_weights({"ZZZZ": 1.0}, start=date(2020, 1, 2), end=date(2025, 1, 2))
     at = _run("1_Overview.py", p)

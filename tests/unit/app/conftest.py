@@ -16,8 +16,10 @@ if str(APP_DIR) not in sys.path:
 
 @pytest.fixture(autouse=True)
 def _offline(monkeypatch: pytest.MonkeyPatch) -> Iterator[None]:
-    """App tests never touch the network: the bundle is the only data source."""
+    """App tests never touch the network: the bundle is the only data source, and no LLM
+    provider is probed (tests that need one inject a fake client into session state)."""
     monkeypatch.setenv("RISKLAB_OFFLINE", "1")
+    monkeypatch.setenv("RISKLAB_LLM_PROVIDER", "none")
     get_settings.cache_clear()
     yield
     get_settings.cache_clear()
